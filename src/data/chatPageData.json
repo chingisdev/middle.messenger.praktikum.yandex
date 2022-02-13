@@ -1,0 +1,28 @@
+{
+    "chats": {
+        "chat1": {
+            "name": "Ivan",
+            "lastMessage": "Hello mate, how are you doing?",
+            "lastMessageTime": "9:43",
+            "unreadMessagesCount": "1"
+        },
+        "chat2": {
+            "name": "Canelo",
+            "lastMessage": "really want to rework it",
+            "lastMessageTime": "23:43",
+            "unreadMessagesCount": "5"
+        },
+        "chat3": {
+            "name": "Vanessa",
+            "lastMessage": "u2",
+            "lastMessageTime": "22:11",
+            "unreadMessagesCount": "12"
+        },
+        "chat4": {
+            "name": "Nikolai",
+            "lastMessage": "see you",
+            "lastMessageTime": "17:45",
+            "unreadMessagesCount": "8"
+        }
+    }
+}
