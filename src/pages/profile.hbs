@@ -30,45 +30,9 @@
                     <div class="profile__name">Ivan</div>
                 </div>
 
+                {{> profile/profileStaticFieldsList profilePageData }}
 
-                <div>
-                    <div class="profile__field">
-                        <p class="profile__field-text profile__field-text_left">Email</p>
-                        <p class="profile__field-text profile__field-text_right">pochta@mail.ru</p>
-                    </div>
-                    <div class="profile__field">
-                        <p class="profile__field-text profile__field-text_left">Login</p>
-                        <p class="profile__field-text profile__field-text_right">Ivanivanov</p>
-                    </div>
-                    <div class="profile__field">
-                        <p class="profile__field-text profile__field-text_left">First Name</p>
-                        <p class="profile__field-text profile__field-text_right">Ivan</p>
-                    </div>
-                    <div class="profile__field">
-                        <p class="profile__field-text profile__field-text_left">Last Name</p>
-                        <p class="profile__field-text profile__field-text_right">Ivanov</p>
-                    </div>
-                    <div class="profile__field">
-                        <p class="profile__field-text profile__field-text_left">Display Name</p>
-                        <p class="profile__field-text profile__field-text_right">Ivan</p>
-                    </div>
-                    <div class="profile__field">
-                        <p class="profile__field-text profile__field-text_left">Phone</p>
-                        <p class="profile__field-text profile__field-text_right">+7 (909) 967 30 30</p>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="profile__field">
-                        <a class="profile__link_redir"><p class="profile__field-text">Update profile</p></a>
-                    </div>
-                    <div class="profile__field">
-                        <a class="profile__link_redir"><p class="profile__field-text">Change password</p></a>
-                    </div>
-                    <div class="profile__field">
-                        <a class="profile__link_logout"><p class="profile__field-text">Log out</p></a>
-                    </div>
-                </div>
+                {{> profile/profileButtonsList profilePageData.buttons }}
             </div>
         </div>
     </body>

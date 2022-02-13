@@ -1,0 +1,45 @@
+{
+    "fields": {
+        "email": {
+            "name": "Email",
+            "content": "pochta@mail.ru"
+        },
+        "login": {
+            "name": "Login",
+            "content": "Ivanivanov"
+        },
+        "firstName": {
+            "name": "First Name",
+            "content": "Ivan"
+        },
+        "secondName": {
+            "name": "Second Name",
+            "content": "Ivanov"
+        },
+        "displayName": {
+            "name": "Display Name",
+            "content": "Ivan"
+        },
+        "phone": {
+            "name": "Phone",
+            "content": "+7 (909) 967 30 30"
+        }
+    },
+    "buttons": {
+        "updateProfile": {
+            "link": "",
+            "class": "profile__link_redir",
+            "title": "Update profile"
+        },
+        "changePassword": {
+            "link": "",
+            "class": "profile__link_redir",
+            "title": "Change password"
+        },
+        "logOut": {
+            "link": "",
+            "class": "profile__link_logout",
+            "title": "Log out"
+        }
+    }
+}
