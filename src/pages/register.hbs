@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../main.less">
+</head>
+
+<body>
+    <main>
+        <section class="login login__height_register">
+            <!-- template #1 -->
+            {{> enterForm/formTitle "Register"}}
+
+            <!-- template #2 -->
+            <form class="login__form">
+                {{> listFields registerPageData }}
+
+                {{> formButtons registerPageData }}
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

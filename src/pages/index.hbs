@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../../src/main.less">
+</head>
+
+<body>
+  <main>
+    <section class="login login__height_login">
+
+      {{> enterForm/formTitle "Sign in"}}
+
+      <form class="login__form">
+        {{> listFields loginPageData }}
+
+        {{> formButtons loginPageData }}
+      </form>
+    </section>
+    <div>
+        <a href="../../src/pages/notFoundError.hbs" hidden></a>
+        <a href="../../src/pages/serverError.hbs" hidden></a>
+    </div>
+  </main>
+</body>
+
+</html>

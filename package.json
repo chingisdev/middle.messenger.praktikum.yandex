@@ -5,7 +5,7 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel ./src/pages/login.hbs -p 3000 --no-cache",
+    "dev": "parcel ./src/pages/index.hbs -p 3000 --no-cache",
     "build": "parcel build ./src/pages/login.hbs"
   },
   "repository": {

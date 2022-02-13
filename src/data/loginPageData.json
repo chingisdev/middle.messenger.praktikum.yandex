@@ -1,0 +1,24 @@
+{
+    "inputFields": {
+        "login": {
+            "title": "Email",
+            "type": "email",
+            "name": "login",
+            "minLength": "2"
+        },
+        "password": {
+            "title": "Password",
+            "type": "password",
+            "name": "password",
+            "minLength": "4"
+        }
+    },
+    "loginButton": {
+        "link": "./chat.hbs",
+        "name": "Enter"
+    },
+    "redirectButton": {
+        "link": "./register.hbs",
+        "name": "Register"
+    }
+}
