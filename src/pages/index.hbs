@@ -7,16 +7,7 @@
 
 <body>
   <main>
-    <section class="login login__height_login">
-
-      {{> enterForm/formTitle "Sign in"}}
-
-      <form class="login__form">
-        {{> listFields loginPageData }}
-
-        {{> formButtons loginPageData }}
-      </form>
-    </section>
+    {{> entranceForm loginPageData}}
     <div>
         <a href="../../src/pages/notFoundError.hbs" hidden></a>
         <a href="../../src/pages/serverError.hbs" hidden></a>

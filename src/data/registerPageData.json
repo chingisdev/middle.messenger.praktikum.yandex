@@ -1,4 +1,6 @@
 {
+    "title": "Register",
+    "formClass": "login__height_register",
     "inputFields": {
         "email": {
             "title": "Email",

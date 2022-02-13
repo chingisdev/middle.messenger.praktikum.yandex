@@ -1,4 +1,6 @@
 {
+    "title": "Sign in",
+    "formClass": "login__height_login",
     "inputFields": {
         "login": {
             "title": "Email",
