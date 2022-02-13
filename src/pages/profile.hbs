@@ -5,29 +5,14 @@
     </head>
     <body>
         <div class="profile">
-
-            <div class="profile__back">
-
-                <!-- Template #1 -->
-                <div class="profile__back-button">
-                    
-                    <!-- <div class="arrow arrow__left"> -->
-                            <!-- <a class="profile__back-link" href="chat.html"></a> -->
-                            <!-- <a class="profile__back-link" href="./main.html"></a> -->
-                    <!-- </div> -->
-                    <a class="arrow arrow__left" href="chat.hbs"></a>
-                </div>
-            </div>
+            {{> buttons/back }}
 
             <div class="profile__settings">
 
                 <!-- Template #2 -->
                 <div class="profile__settings-head">
-                    <div class="profile__avatar">
-                        <p class="profile__avatar-text">Change</p>
-                        <p class="profile__avatar-text">avatar</p>
-                    </div>
-                    <div class="profile__name">Ivan</div>
+                    {{> profile/avatar}}
+                    {{> profile/name profilePageData.fields.firstName.content }}
                 </div>
 
                 {{> profile/staticInfoList profilePageData }}
