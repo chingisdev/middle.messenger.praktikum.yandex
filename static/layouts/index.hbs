@@ -1,0 +1,50 @@
+<!-- Doctype HTML5 -->
+<!doctype html>
+{{!-- <html lang="{{#if language}}{{language}}{{else}}en{{/if}}" dir="ltr">
+{{#block "head"}}
+  <head>
+    {{#block "meta"}}
+    {{> meta}}
+    {{/block}}
+
+    {{#block "relationships"}}
+    {{> relationships}}
+    {{/block}}
+
+    {{#block "title"}}
+    <title>{{title}}</title>
+    {{/block}}
+
+    {{#block "styles"}}
+    {{#each stylesheets}}
+    <link href="{{this}}" rel="stylesheet" />
+    {{/each}}
+    {{/block}}
+  </head>
+{{/block}} --}}
+<html>
+  <head>
+    {{!-- <link rel="stylesheet" href="../assets/styles/main.less"> --}}
+    <link rel="stylesheet" href="../main.less">
+  </head>
+{{#block "body"}}
+  {{!-- <body class="{{bodyclass}}"> --}}
+  <body>
+    {{!-- {{#block "header"}}
+    {{> header}}
+    {{/block}} --}}
+    {{#block "main"}}
+    {{/block}}
+{{!-- 
+    {{#block "footer"}}
+    {{> footer}}
+    {{/block}} --}}
+{{!-- 
+    {{#block "scripts"}}
+    {{#each scripts}}
+    <script defer src="{{this}}"></script>
+    {{/each}}
+    {{/block}} --}}
+  </body>
+{{/block}}
+</html>
