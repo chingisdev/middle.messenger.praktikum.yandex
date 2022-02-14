@@ -15,6 +15,8 @@
 
 ### ссылка на Pull request
 
+### ссылка на макет Figma
+https://www.figma.com/file/Sxfam3gU1Bn2zdmeKVN2r7/Messager?node-id=0%3A1
 ### ссылка на задеплоенный проект в netlify
-
+https://chingis-yandex-messenger.netlify.app/index.html
 
