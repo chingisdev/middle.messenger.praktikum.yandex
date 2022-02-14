@@ -5,6 +5,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
+    "static": "parcel ./src/pages/index.hbs -p 3000 --no-cache",
     "start": "npm run serve",
     "build": "parcel build 'src/pages/**/*.hbs'",
     "serve": "rm -rf ./dist && npm run build && node server.js"
