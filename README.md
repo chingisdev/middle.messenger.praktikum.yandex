@@ -6,10 +6,12 @@
 В исходниках используется шаблонизатор handlebars и препроцессор less.
 
 ### Установка и запуск
-1: git clone https://github.com/chingisdev/middle.messenger.praktikum.yandex.git && cd middle.messenger.praktikum.yandex \n
-2: npm install \n
-3: npm start
-4: Копируем 'localhost:3000/' и вставляем в поисковую строку в браузере
+1: копируем текст в кавычках: "git clone https://github.com/chingisdev/middle.messenger.praktikum.yandex.git && cd middle.messenger.praktikum.yandex" <br/>
+2: открываем терминал и заходим в нужную директорию <br />
+3: Вставляем скопированный текст <br />
+4: пишем команду: npm install <br/>
+5: пишем команду: npm start <br />
+6: Копируем 'localhost:3000/' и вставляем в поисковую строку в браузере <br />
 
 ### ссылка на Pull request
 
