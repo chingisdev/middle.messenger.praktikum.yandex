@@ -1,0 +1,34 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "engine": "16.13.0",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
+  "scripts": {
+    "dev": "parcel ./src/pages/index.hbs -p 3000 --no-cache",
+    "start": "npm run serve",
+    "build": "parcel build 'src/pages/**/*.hbs'",
+    "serve": "rm -rf ./dist && npm run build && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingisdev/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "Chingis Bakhtevaleev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chingisdev/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/chingisdev/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@parcel/config-default": "2.3.1",
+    "@parcel/transformer-less": "2.3.1",
+    "express": "4.17.2",
+    "parcel": "2.3.1"
+  },
+  "dependencies": {
+    "handlebars": "4.7.7"
+  }
+}

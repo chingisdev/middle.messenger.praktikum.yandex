@@ -1,0 +1,56 @@
+{
+    "title": "Register",
+    "formClass": "login__height_register",
+    "inputFields": {
+        "email": {
+            "title": "Email",
+            "type": "email",
+            "name": "email",
+            "minLength": "2"
+        },
+        "login": {
+            "title": "Login",
+            "type": "email",
+            "name": "login",
+            "minLength": "2"
+        },
+        "firstName": {
+            "title": "First Name",
+            "type": "text",
+            "name": "first_name",
+            "minLength": "2"
+        },
+        "secondName": {
+            "title": "Second Name",
+            "type": "text",
+            "name": "second_name",
+            "minLength": "2"
+        },
+        "phone": {
+            "title": "Phone",
+            "type": "text",
+            "name": "phone",
+            "minLength": "2"
+        },
+        "password": {
+            "title": "Password",
+            "type": "password",
+            "name": "password",
+            "minLength": "4"
+        },
+        "confirmPassword": {
+            "title": "Confirm Password",
+            "type": "password",
+            "name": "password",
+            "minLength": "4"
+        }
+    },
+    "loginButton": {
+        "link": "./chat.hbs",
+        "name": "Register"
+    },
+    "redirectButton": {
+        "link": "./index.hbs",
+        "name": "Sign in"
+    }
+}
