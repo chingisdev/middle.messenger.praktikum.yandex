@@ -7,8 +7,8 @@
 .chat__menu {
     display: flex;
     width: 320px;
-    background-color: #FBFBFB;
-    border-right: 1px solid #EAEAEA;
+    background-color: @middleGray;
+    border-right: 1px solid @borderGray;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -20,7 +20,7 @@
     align-items: center;
     width: 95%;
     height: 110px;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid @borderGray;
 }
 
 .navigation__profile-link-wrapper {
@@ -42,12 +42,12 @@
 
 .navigation__profile {
     font-style: 12px;
-    color: #999999;
+    color: @darkGray;
     font-weight: 500;
 }
 
 .navigation__profile-arrow {
-    border: solid #999999;
+    border: solid @darkGray;
     border-width: 0 1px 1px 0;
     display: inline-block;
     padding: 4px;
@@ -59,31 +59,25 @@
 
 .search__input {
     border: none;
-    // background-color: #efefef;
     height: 32px;
     border-radius: 5px;
-    // outline: none;
     width: 100%;
     align-items: center;
     text-align: center;
-    background: #efefef url(/static/images/loupe.svg) 40% no-repeat;
+    background: @inputGray url(/static/images/loupe.svg) 40% no-repeat;
     &:focus {   
-        border-color: #999999;
+        border-color: @darkGray;
         outline: none;
         background: none;
-        background-color: #efefef;
+        background-color: @inputGray;
         padding: 0;
     }
 }
 
 .chat__block {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid @borderGray;
     height: 70px;
     width: 95%;
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: space-between;
-    // align-items: center;
 }
 
 .chat__position-fixer {
@@ -98,7 +92,7 @@
 .chat__avatar {
     width: 47px;
     height: 47px;
-    background-color: #efefef;
+    background-color: @inputGray;
     border-radius: 90px;
 }
 
@@ -107,7 +101,6 @@
     flex-direction: row;
     justify-content: flex-start;
     gap: 10px;
-    // align-items: center;
 }
 
 .chat__info {
@@ -128,7 +121,7 @@
     font-size: 12px;
     line-height: 15px;
     font-weight: 400;
-    color: #999999;
+    color: @darkGray;
     margin: 0;
 }
 
@@ -152,7 +145,7 @@
     line-height: 13px;
     text-align: right;
     font-weight: 500;
-    color: #999999;
+    color: @darkGray;
     margin: 0;
 }
 
@@ -160,13 +153,13 @@
     margin: auto;
     width: 20px;
     height: 20px;
-    background-color: #000000;
+    background-color: @black;
     border-radius: 90px;
     display: flex;
 }
 
 .message__quantity {
-    color: #ffffff;
+    color: @white;
     font-weight: 500;
     font-size: 11px;
     text-align: center;

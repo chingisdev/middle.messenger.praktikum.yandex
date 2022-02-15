@@ -1,5 +1,5 @@
 .arrow {
-    border: solid white;
+    border: solid @white;
     border-width: 0 2px 2px 0;
     display: inline-block;
     padding: 3px;
@@ -20,15 +20,15 @@
 
 .profile__back {
     width: 70px;
-    background-color: #FBFBFB;
-    border-right: 1px solid #EAEAEA;
+    background-color: @middleGray;
+    border-right: 1px solid @borderGray;
     display: flex;
 }
 
 .profile__back-button {
     width: 28px;
     height: 28px;
-    background-color: #000000;
+    background-color: @black;
     margin: auto;
     border-radius: 30px;
     display: flex;
@@ -45,7 +45,6 @@
 .profile__settings {
     display: flex;
     flex-direction: column;
-    // justify-content: space-around;
     justify-content: center;
     gap: 40px;
     align-items: center;
@@ -70,13 +69,13 @@
     align-items: center;
     width: 130px;
     height: 130px;
-    background-color: #EFEFEF;
+    background-color: @inputGray;
     border-radius: 70px;
     cursor: pointer;
-    color: #EFEFEF;
+    color: @inputGray;
     &:hover {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
+        background-color: @avatarBackground;
+        color: @white;
     }
 }
 
@@ -91,9 +90,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid @borderGray;
     margin-bottom: 8px;
-    // padding-bottom: 8px;
     &:nth-last-of-type(1) {
         border-bottom: none;
     }
@@ -105,26 +103,26 @@
 }
 
 .profile__field-text_left {
-    color: #1e1e1e;
+    color: @black;
 }
 
 .profile__field-text_right {
-    color: #999999;
+    color: @darkGray;
 }
 
 .profile__link {
     text-decoration: none;
-    color: #2077ed;
+    color: @blue;
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 8px 0;
     outline: none;
     &_redir {
-        color: #2077ed;
+        color: @blue;
         text-decoration: none;
     };
     &_logout {
-        color: #FF0000;
+        color: @red;
         text-decoration: none;
     }
 }
