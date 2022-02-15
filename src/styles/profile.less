@@ -4,11 +4,10 @@
     display: inline-block;
     padding: 3px;
     margin: auto;
-}
-
-.arrow__left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+    &__left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    };
 }
 
 .profile {
@@ -16,117 +15,102 @@
     height: 100vh;
     display: flex;
     justify-content: flex-start;
-}
-
-.profile__back {
-    width: 70px;
-    background-color: @middleGray;
-    border-right: 1px solid @borderGray;
-    display: flex;
-}
-
-.profile__back-button {
-    width: 28px;
-    height: 28px;
-    background-color: @black;
-    margin: auto;
-    border-radius: 30px;
-    display: flex;
-}
-
-.profile__back-link {
-    width: 28px;
-    height: 28px;
-    color: @white;
-    margin: 0;
-    text-decoration: none;
-}
-
-.profile__settings {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 40px;
-    align-items: center;
-    width: 100%;
-}
-
-.profile__settings-head {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.profile__avatar-text {
-    margin: 4px;
-}
-
-.profile__avatar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 130px;
-    height: 130px;
-    background-color: @inputGray;
-    border-radius: 70px;
-    cursor: pointer;
-    color: @inputGray;
-    &:hover {
-        background-color: @avatarBackground;
+    &__back {
+        width: 70px;
+        background-color: @middleGray;
+        border-right: 1px solid @borderGray;
+        display: flex;
+    };
+    &__back-button {
+        width: 28px;
+        height: 28px;
+        background-color: @black;
+        margin: auto;
+        border-radius: 30px;
+        display: flex;
+    };
+    &__back-link {
+        width: 28px;
+        height: 28px;
         color: @white;
-    }
-}
-
-.profile__name {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-
-.profile__field {
-    width: 510px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-bottom: 1px solid @borderGray;
-    margin-bottom: 8px;
-    &:nth-last-of-type(1) {
-        border-bottom: none;
-    }
-}
-
-.profile__field-text {
-    font-size: 14px;
-    line-height: 17px;
-}
-
-.profile__field-text_left {
-    color: @black;
-}
-
-.profile__field-text_right {
-    color: @darkGray;
-}
-
-.profile__link {
-    text-decoration: none;
-    color: @blue;
-    font-size: 14px;
-    line-height: 17px;
-    margin-bottom: 8px 0;
-    outline: none;
-    &_redir {
-        color: @blue;
+        margin: 0;
         text-decoration: none;
     };
-    &_logout {
-        color: @red;
+    &__settings {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        align-items: center;
+        width: 100%;
+    };
+    &__settings-head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    };
+    &__avatar-text {
+        margin: 4px;
+    };
+    &__avatar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 130px;
+        height: 130px;
+        background-color: @inputGray;
+        border-radius: 70px;
+        cursor: pointer;
+        color: @inputGray;
+        &:hover {
+            background-color: @avatarBackground;
+            color: @white;
+        }
+    };
+    &__name {
+        font-size: 16px;
+        font-weight: 600;
+    };
+    &__field {
+        width: 510px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid @borderGray;
+        margin-bottom: 8px;
+        &:nth-last-of-type(1) {
+            border-bottom: none;
+        }
+    };
+    &__field-text {
+        font-size: 14px;
+        line-height: 17px;
+        &__left {
+            color: @black;
+        };
+        &_right {
+            color: @darkGray;
+        };
+    };
+    &__link {
         text-decoration: none;
-    }
-}
-
-.profile__list {
-    padding: 0;
+        color: @blue;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 8px 0;
+        outline: none;
+        &_redir {
+            color: @blue;
+            text-decoration: none;
+        };
+        &_logout {
+            color: @red;
+            text-decoration: none;
+        }
+    };
+    &__list {
+        padding: 0;
+    };
 }
