@@ -17,7 +17,7 @@ export abstract class Block {
     private _element: HTMLElement | null = null;
     private meta: TBlockMeta = null;
     private eventBus: () => EventBus = null;
-    private props: ProxyConstructor | any; // по сути всегда делаем прокси 
+    protected props: ProxyConstructor | any; // по сути всегда делаем прокси 
 
     constructor(tagName: string = "div", props: any = {}) {
         const eventBus = new EventBus();
@@ -96,7 +96,7 @@ export abstract class Block {
         return this._element;
     }
 
-    render(): string { 
+    protected render(): string { 
         return '';
     }
 

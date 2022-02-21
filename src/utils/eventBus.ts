@@ -26,7 +26,9 @@ export default class EventBus {
 
     public emit(event: string, ...args: unknown[]): void {
         if (!this.listeners[event]) {
-            throw new Error(`Нет события: ${event}`);
+            // throw new Error(`Нет события для вызова emit: ${event}`);
+            console.log('non-existent event triggered');
+            return;
         }
 
         this.listeners[event].forEach((callback: Function) => {
