@@ -70,13 +70,13 @@ export abstract class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    _componentDidUpdate(oldProps, newProps) {
+    _componentDidUpdate(oldProps: any, newProps: any) {
         const response = this.componentDidUpdate(oldProps, newProps);
         return response;
     }
 
-    // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate(oldProps, newProps) {
+    // Может переопределять пользователь, + реализовать глубокое сравнение
+    componentDidUpdate(oldProps: any, newProps: any) {
         return true;
     }
 
@@ -88,12 +88,12 @@ export abstract class Block {
         Object.assign(this.props, nextProps);
     };
 
-    get element() {
-        return this._element;
-    }
+    // get element() {
+    //     return this._element;
+    // }
 
     getContent() {
-        return this.element;
+        return this._element;
     }
 
     render(): string { 
