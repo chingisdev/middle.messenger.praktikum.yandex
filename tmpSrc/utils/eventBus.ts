@@ -1,5 +1,5 @@
 // TODO: переделать хранилище listeners + методы на Map
-class EventBus {
+export default class EventBus {
     private listeners: Record<string, Function[]>;
 
     constructor() {
