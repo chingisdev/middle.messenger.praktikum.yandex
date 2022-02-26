@@ -1,3 +1,6 @@
+# Ссылка на пул реквест 2 спринта
+https://github.com/chingisdev/middle.messenger.praktikum.yandex/pull/2
+
 # Мессенджер 
 ### Проект созданный в рамках обучения в Яндекс.Практикум 
 ### Описание
