@@ -1,154 +1,406 @@
+.button {
+  cursor: pointer;
+  display: block;
+}
+
 .navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 95%;
+  justify-content: space-between;
+  height: 150px;
+  border-bottom: 1px solid @borderGray;
+
+  &__profile-link-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 95%;
-    height: 110px;
-    border-bottom: 1px solid @borderGray;
-    &__profile-link-wrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        width: 100%;
-    };
-    &__profile-link {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 5px;
-        text-decoration: none;
-        line-height: 32px;
-    };
-    &__profile {
-        font-style: 12px;
-        color: @darkGray;
-        font-weight: 500;
-    };
-    &__profile-arrow {
-        border: solid @darkGray;
-        border-width: 0 1px 1px 0;
-        display: inline-block;
-        padding: 4px;
-    };
-}
-
-
-.arrow__right {
-    transform: rotate(-45deg);
-}
-
-.search__input {
-    border: none;
-    height: 32px;
-    border-radius: 5px;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 10px;
     width: 100%;
+  }
+
+  &__profile-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
-    text-align: center;
-    background: @inputGray url(/static/images/loupe.svg) 40% no-repeat;
-    &:focus {   
-        border-color: @darkGray;
-        outline: none;
-        background: none;
-        background-color: @inputGray;
-        padding: 0;
-    }
+    gap: 5px;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    line-height: 32px;
+  }
+
+  &__profile {
+    //display: block;
+    //cursor: pointer;
+    font-size: 12px;
+    color: @darkGray;
+    font-weight: 500;
+  }
+
+  &__profile-arrow {
+    border: solid @darkGray;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 4px;
+  }
+}
+
+.arrow-right {
+  transform: rotate(-45deg);
+}
+
+.search-input {
+  border: none;
+  height: 32px;
+  border-radius: 5px;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  background: @inputGray url("/static/images/loupe.svg") 40% no-repeat;
+  margin-bottom: 10px;
+
+  &:focus {
+    border-color: @darkGray;
+    outline: none;
+    background: @inputGray none;
+    padding: 0;
+  }
 }
 
 .chat {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  //gap: 20px;
+  justify-content: flex-start;
+
+  &__menu {
+    display: flex;
+    width: 320px;
+    background-color: @middleGray;
+    border-right: 1px solid @borderGray;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__list {
+    overflow: hidden;
+
+    & ul {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      list-style: outside none none;
+      width: 320px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      margin: 0 auto;
+      &::-webkit-scrollbar { width: 0; }
+    }
+  }
+
+  &__block {
+    border-bottom: 1px solid @borderGray;
+    height: 70px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background-color: @focusblue;
+    }
+  }
+
+  &__position-fixer {
+    display: flex;
+    width: 95%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+  }
+
+  &__avatar {
+    width: 47px;
+    height: 47px;
+    background-color: @inputGray;
+    border-radius: 90px;
+  }
+
+  &__box {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    &__menu {
-        display: flex;
-        width: 320px;
-        background-color: @middleGray;
-        border-right: 1px solid @borderGray;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    };
-    &__block {
-        border-bottom: 1px solid @borderGray;
-        height: 70px;
-        width: 95%;
-    };
-    &__position-fixer {
-        display: flex;
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        height: 70px;
-    };
-    &__avatar {
-        width: 47px;
-        height: 47px;
-        background-color: @inputGray;
-        border-radius: 90px;
-    };
-    &__box {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 10px;
-    };
-    &__info {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 6px;
-    };
-    &__name {
-        font-size: 13px;
-        line-height: 13px;
-        font-weight: 600;
-        margin: 0;
-    };
-    &__message-preview {
-        font-size: 12px;
-        line-height: 15px;
-        font-weight: 400;
-        color: @darkGray;
-        margin: 0;
-    };
-    &__data {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        height: 47px;
-        align-items: center;
-    };
-    &__time {
-        font-size: 9px;
-        line-height: 13px;
-        text-align: right;
-        font-weight: 500;
-        color: @darkGray;
-        margin: 0;
-    };
-}
+    gap: 10px;
+  }
 
-.hide__long {
-    width: 190px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.message__quantity-box {
-    margin: auto;
-    width: 20px;
-    height: 20px;
-    background-color: @black;
-    border-radius: 90px;
+  &__info {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  &__name {
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__message-preview {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    color: @darkGray;
+    margin: 0;
+  }
+
+  &__data {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 47px;
+    align-items: center;
+  }
+
+  &__time {
+    font-size: 9px;
+    line-height: 13px;
+    text-align: right;
+    font-weight: 500;
+    color: @darkGray;
+    margin: 0;
+  }
 }
 
-.message__quantity {
-    color: @white;
-    font-weight: 500;
-    font-size: 11px;
-    text-align: center;
+.hide-long {
+  width: 190px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.message-quantity-box {
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  background-color: @black;
+  border-radius: 90px;
+  display: flex;
+}
+
+.message-quantity {
+  color: @white;
+  font-weight: 500;
+  font-size: 11px;
+  text-align: center;
+  margin: auto;
+}
+
+.conversation {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header {
+  width: 95%;
+  block-size: auto;
+  height: 7%;
+  border-bottom: 1px solid @borderGray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  &__action {
+    display: flex;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+
+    &:hover {
+      background-color: @grayHover;
+      border-radius: 90px;
+    }
+  }
+
+  &__image {
+    //display: block;
     margin: auto;
+    width: 3px;
+    height: 15px;
+    //z-index: 1;
+    background: transparent url("/static/images/burger.svg") 100% no-repeat;
+  }
+
+  &__avatar {
+    width: 34px;
+    height: 34px;
+    background-color: @inputGray;
+    border-radius: 90px;
+  }
+
+  &__name {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    color: @black;
+  }
+}
+
+.discussion {
+  width: 95%;
+  //border: 1px solid blue;
+  height: 86%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10px;
+  gap: 10px;
+  overflow: hidden;
+
+  &__scroll {
+    overflow-y: scroll;
+    //transform: rotateX(180deg);
+    &::-webkit-scrollbar { width: 0; }
+
+    &::-webkit-scrollbar-track-piece:end {
+      background: transparent;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__date {
+    //transform: rotateX(180deg);
+    margin: 20px 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: @darkGray;
+  }
+
+  &__message {
+    //transform: rotateX(180deg);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    &_left {
+      justify-content: flex-start;
+    }
+
+    &_right {
+      justify-content: flex-end;
+    }
+  }
+
+  &__box {
+    position: relative;
+    margin: 0;
+    max-width: 45%;
+    min-width: 20%;
+    padding: 11px;
+    border-radius: 10px;
+    overflow-x: auto;
+
+    &_left {
+      background-color: @grayMessage;
+    }
+
+    &_right {
+      background-color: @focusblue;
+    }
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    max-width: 92%;
+    min-width: 20%;
+    margin: 0;
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 4px;
+    right: 11px;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+    text-align: right;
+    color: @darkGray;
+  }
+}
+
+.message {
+  height: 7%;
+  width: 95%;
+  border-top: 1px solid @borderGray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  &__attach {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border: none;
+    background: transparent url("/static/images/attach.svg") 100% no-repeat;
+
+    &:hover {
+      background-color: @grayHover;
+      border-radius: 90px;
+    }
+  }
+
+  &__input {
+    border: none;
+    height: 32px;
+    border-radius: 30px;
+    width: 100%;
+    align-items: center;
+    background: @inputGray;
+    padding-left: 20px;
+
+    &:focus {
+      border-color: @darkGray;
+      outline: none;
+    }
+  }
+
+  &__send {
+    width: 28px;
+    height: 28px;
+    background-color: @black;
+    border: none;
+    border-radius: 110px;
+    display: flex;
+    padding-right: 5px;
+  }
 }

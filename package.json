@@ -1,40 +1,34 @@
 {
-  "name": "middle.messenger.praktikum.yandex",
+  "name": "test",
   "version": "1.0.0",
-  "engine": "16.13.0",
-  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "cleanup": "rm -rf .parcel-cache dist",
-    "dev": "parcel ./src/index.html --no-cache",
-    "start": "npm run serve",
-    "build": "parcel build 'src/pages/**/*.hbs'",
-    "serve": "rm -rf ./dist && npm run build && node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chingisdev/middle.messenger.praktikum.yandex.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint ./src/**/*.ts ./src/**/**/*.ts",
+    "fixLint": "npx eslint ./src/**/*.ts ./src/**/**/*.ts --fix",
+    "clean": "rm -rf node_modules dist .parcel-cache package-lock.json",
+    "retreat": "rm -rf dist .parcel-cache",
+    "dev": "parcel ./src/index.html",
+    "stylelint": "npx stylelint src/styles/*.css src/main.less"
   },
   "keywords": [],
-  "author": "Chingis Bakhtevaleev",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chingisdev/middle.messenger.praktikum.yandex/issues"
-  },
-  "homepage": "https://github.com/chingisdev/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "1.0.9",
-    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-    "@parcel/config-default": "2.3.1",
-    "@parcel/transformer-less": "2.3.1",
-    "@typescript-eslint/eslint-plugin": "5.12.0",
-    "@typescript-eslint/parser": "5.12.0",
-    "eslint": "8.9.0",
-    "express": "4.17.2",
-    "parcel": "2.3.1",
-    "stylelint": "14.5.1",
-    "typescript": "4.5.5"
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@parcel/transformer-less": "^2.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "parcel": "^2.3.2",
+    "postcss-less": "^6.0.0",
+    "stylelint": "^14.5.3",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-less": "^1.0.3"
   },
   "dependencies": {
-    "handlebars": "4.7.7"
+    "nanoid": "^3.3.1"
   }
 }

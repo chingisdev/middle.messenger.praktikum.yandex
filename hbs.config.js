@@ -1,3 +1,3 @@
 module.exports = {
-    'artials': 'src/partials'
+    'partials': 'src/partials'
 }
