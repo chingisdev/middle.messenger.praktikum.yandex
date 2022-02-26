@@ -15,3 +15,10 @@
 https://www.figma.com/file/Sxfam3gU1Bn2zdmeKVN2r7/Messager?node-id=0%3A1
 ### ссылка на задеплоенный проект в netlify
 https://chingis-yandex-messenger.netlify.app/index.html
+
+### Описание нового функционала
+1: Декомпозиция на компоненты
+2: Имплементация typescript
+3: Компоненты EventBus, Block, HTTPTransport
+4: Сделаны фейковые генерации объектов
+5: Имплементирован псевдо роутер
