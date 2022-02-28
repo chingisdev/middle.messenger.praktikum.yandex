@@ -4,13 +4,11 @@ import EntranceForm, { IForm } from '../../components/EntranceForm/EntranceForm'
 import List from '../../components/List/List';
 import Iterable from '../../components/Iterable/Iterable';
 import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
-import Button from '../../components/Button/Button';
-import { loginRedirectBtn, submitBtnAtr } from '../../utils/constants/redirectButtons';
+import Button, { IButton } from '../../components/Button/Button';
+import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { logFormUserInput, validation, validator } from '../../utils/Components/Validation';
 import Input, { IInput } from '../../components/Input/Input';
-import { inputEmailAttr, inputPassAttr } from '../../utils/constants/inputFieldAttr';
-
-
+import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
 export default class Login extends Block {
   protected initChildren() {
@@ -22,6 +20,18 @@ export default class Login extends Block {
     return this.compile(template, { });
   }
 }
+
+export const loginRedirectBtn: IButton = {
+  textClass: 'login__link login__link_redir',
+  buttonClass: 'login__redirect',
+  type: 'button',
+  textVisible: 'visible',
+  name: 'Register',
+  divVisible: 'hidden',
+  events: {
+    click: () => pseudoRouter('register'),
+  },
+};
 
 function createLoginProp(): IForm {
   return {

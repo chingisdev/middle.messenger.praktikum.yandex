@@ -1,11 +1,11 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import Button from '../Button/Button';
+import Button, { IButton } from '../Button/Button';
 import Search, { ISearch } from '../ChatSearch/Search';
 import List, { IList } from '../List/List';
-import { profileBtnAtr } from '../../utils/constants/redirectButtons';
 import Preview from '../ChatPreview/Preview';
 import Iterable from '../Iterable/Iterable';
+import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
 export const searchAtr: ISearch = {
   searchClass: 'search-input',
@@ -16,6 +16,18 @@ export const searchAtr: ISearch = {
     blur: (event) => {
       event.target.placeholder = 'search';
     },
+  },
+};
+export const profileBtnAtr: IButton = {
+  buttonClass: 'navigation__profile-link',
+  type: 'button',
+  textClass: 'navigation__profile',
+  textVisible: 'visible',
+  name: 'Profile',
+  arrowClass: 'navigation__profile-arrow arrow__right',
+  divVisible: 'visible',
+  events: {
+    click: () => pseudoRouter('profile'),
   },
 };
 export default class ChatNavigation extends Block {

@@ -1,39 +1,19 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
-import Button from '../../components/Button/Button';
+import Button, { IButton } from '../../components/Button/Button';
 import ProfileName, { IName } from '../../components/ProfileName/ProfileName';
-import { backBtnAtr, profileExitBtn } from '../../utils/constants/redirectButtons';
 import List from '../../components/List/List';
 import Iterable from '../../components/Iterable/Iterable';
 import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
-import { profilePassBtn, profileUpdateBtn } from '../../utils/constants/buttons';
+import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
-export const profileNameAtr: IName = {
-  name: 'SomeName',
-};
-export const profileEmail: IProfileField = {
-  name: 'Email',
-  content: 'pochta@mail.ru',
-};
-export const profileLogin: IProfileField = {
-  name: 'Login',
-  content: 'IvanIvanov',
-};
-export const profileFirstName: IProfileField = {
-  name: 'First Name',
-  content: 'Ivan',
-};
-export const profileSecondName: IProfileField = {
-  name: 'Second Name',
-  content: 'Ivanov',
-};
-export const profileDisplayName: IProfileField = {
-  name: 'Display Name',
-  content: 'Ivan',
-};
-export const profilePhone: IProfileField = {
-  name: 'Phone',
-  content: '+7 (909) 967 30 30',
+export const backBtnAtr: IButton = {
+  buttonClass: 'profile__back-button',
+  arrowClass: 'arrow arrow__left',
+  divVisible: 'visible',
+  events: {
+    click: () => pseudoRouter('chat'),
+  },
 };
 export default class Profile extends Block {
   protected initChildren() {
@@ -62,6 +42,42 @@ function createProfileFields() {
   });
 }
 
+const profileUpdateBtn: IButton = {
+  buttonClass: 'profile__control',
+  textClass: 'profile__control-redir',
+  type: 'button',
+  name: 'Update profile',
+  textVisible: 'visible',
+  divVisible: 'hidden',
+  events: {
+    click: () => console.log('update profile button'),
+  },
+};
+
+const profilePassBtn: IButton = {
+  buttonClass: 'profile__control',
+  textClass: 'profile__control-redir',
+  type: 'button',
+  name: 'Change password',
+  textVisible: 'visible',
+  divVisible: 'hidden',
+  events: {
+    click: () => console.log('change password button'),
+  },
+};
+
+export const profileExitBtn: IButton = {
+  buttonClass: 'profile__control',
+  textClass: 'profile__control-logout',
+  type: 'button',
+  name: 'Log out',
+  textVisible: 'visible',
+  divVisible: 'hidden',
+  events: {
+    click: () => pseudoRouter('login'),
+  },
+};
+
 function createProfileControlBtn() {
   return new List({
     class: 'profile__list',
@@ -73,4 +89,37 @@ function createProfileControlBtn() {
   });
 }
 
+const profileNameAtr: IName = {
+  name: 'SomeName',
+};
+
+const profileEmail: IProfileField = {
+  name: 'Email',
+  content: 'pochta@mail.ru',
+};
+
+const profileLogin: IProfileField = {
+  name: 'Login',
+  content: 'IvanIvanov',
+};
+
+const profileFirstName: IProfileField = {
+  name: 'First Name',
+  content: 'Ivan',
+};
+
+const profileSecondName: IProfileField = {
+  name: 'Second Name',
+  content: 'Ivanov',
+};
+
+const profileDisplayName: IProfileField = {
+  name: 'Display Name',
+  content: 'Ivan',
+};
+
+const profilePhone: IProfileField = {
+  name: 'Phone',
+  content: '+7 (909) 967 30 30',
+};
 

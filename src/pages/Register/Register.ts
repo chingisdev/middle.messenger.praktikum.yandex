@@ -4,10 +4,11 @@ import template from './template.hbs';
 import List from '../../components/List/List';
 import Iterable from '../../components/Iterable/Iterable';
 import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
-import Button from '../../components/Button/Button';
-import { registerRedirectBtn, submitBtnAtr } from '../../utils/constants/redirectButtons';
+import Button, { IButton } from '../../components/Button/Button';
+import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { logFormUserInput, validation, validator } from '../../utils/Components/Validation';
 import Input, { IInput } from '../../components/Input/Input';
+import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
 export default class Register extends Block {
   protected initChildren() {
@@ -94,6 +95,18 @@ const inputPhoneAttr: IInput = {
     blur: (event) => {
       validation(event.path[1], event.currentTarget.value, 'phone', validator);
     },
+  },
+};
+
+export const registerRedirectBtn: IButton = {
+  textClass: 'login__link login__link_redir',
+  buttonClass: 'login__redirect',
+  type: 'button',
+  textVisible: 'visible',
+  name: 'Sign in',
+  divVisible: 'hidden',
+  events: {
+    click: () => pseudoRouter('login'),
   },
 };
 
