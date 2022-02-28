@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": ["es2017", "DOM"],
+    "target": "ES5"
+  },
+  "noImplicitAny": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
+  "sourceMap": true,
+  "strictNullChecks": true
+}

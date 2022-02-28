@@ -1,34 +1,25 @@
 .error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+
+  &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 50px;
-}
+  }
 
-.error__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.error__code {
+  &__code {
     font-size: 40px;
     font-weight: 700;
     margin: 10px;
-}
+  }
 
-.error__message {
+  &__message {
     font-size: 20px;
     font-weight: 400;
     margin: 10px;
-}
-
-.error__link_redir {
-    font-size: 11px;
-    line-height: 15px;
-    font-weight: 400;
-    color: @blue;
-    margin: 0;
-    text-decoration: none;
+  }
 }

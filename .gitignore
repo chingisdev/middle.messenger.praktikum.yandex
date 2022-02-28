@@ -1,21 +1,13 @@
-// ignore dist folder
-./dist
 dist
-*/dist
-dist/*
 
-./node_modules
 node_modules
-*/node_modules
-node_modules/*
+
+.idea
 
 .parcel-cache
-./.parcel-cache
 
 .DS_Store
 
 .cache
-./.cache
-cache
 
 READMEbasic.txt
