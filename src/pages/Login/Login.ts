@@ -3,11 +3,12 @@ import template from './template.hbs';
 import EntranceForm, { IForm } from '../../components/EntranceForm/EntranceForm';
 import List from '../../components/List/List';
 import Iterable from '../../components/Iterable/Iterable';
-import EntranceField from '../../components/EntranceField/EntranceField';
-import { emailAttr, passwordAttr } from '../../utils/constants/markup';
+import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
 import Button from '../../components/Button/Button';
 import { loginRedirectBtn, submitBtnAtr } from '../../utils/constants/redirectButtons';
-import { logFormUserInput } from '../../utils/Components/Validation';
+import { logFormUserInput, validation, validator } from '../../utils/Components/Validation';
+import Input, { IInput } from '../../components/Input/Input';
+import { inputEmailAttr, inputPassAttr } from '../../utils/constants/inputFieldAttr';
 
 
 
@@ -44,3 +45,40 @@ function createLoginProp(): IForm {
     },
   };
 }
+
+
+const inputEmailAttr: IInput = {
+  type: 'email',
+  minLength: '2',
+  name: 'email',
+  events: {
+    blur: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'email', validator);
+    },
+  },
+};
+
+const inputPassAttr: IInput = {
+  type: 'password',
+  minLength: '4',
+  name: 'password',
+  events: {
+    blur: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'password', validator);
+    },
+  },
+};
+
+const passwordAttr: IEntranceField = {
+  title: 'Password',
+  name: 'password',
+  input: new Input(inputPassAttr),
+};
+
+const emailAttr: IEntranceField = {
+  title: 'Email',
+  name: 'email',
+  input: new Input(inputEmailAttr),
+};
+
+

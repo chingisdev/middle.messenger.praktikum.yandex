@@ -1,22 +1,40 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
 import Button from '../../components/Button/Button';
-import {
-  profileDisplayName,
-  profileEmail,
-  profileFirstName,
-  profileLogin,
-  profileNameAtr,
-  profilePhone,
-  profileSecondName
-} from '../../utils/constants/markup';
-import ProfileName from '../../components/ProfileName/ProfileName';
+import ProfileName, { IName } from '../../components/ProfileName/ProfileName';
 import { backBtnAtr, profileExitBtn } from '../../utils/constants/redirectButtons';
 import List from '../../components/List/List';
 import Iterable from '../../components/Iterable/Iterable';
-import ProfileField from '../../components/ProfileField/ProfileField';
+import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
 import { profilePassBtn, profileUpdateBtn } from '../../utils/constants/buttons';
 
+export const profileNameAtr: IName = {
+  name: 'SomeName',
+};
+export const profileEmail: IProfileField = {
+  name: 'Email',
+  content: 'pochta@mail.ru',
+};
+export const profileLogin: IProfileField = {
+  name: 'Login',
+  content: 'IvanIvanov',
+};
+export const profileFirstName: IProfileField = {
+  name: 'First Name',
+  content: 'Ivan',
+};
+export const profileSecondName: IProfileField = {
+  name: 'Second Name',
+  content: 'Ivanov',
+};
+export const profileDisplayName: IProfileField = {
+  name: 'Display Name',
+  content: 'Ivan',
+};
+export const profilePhone: IProfileField = {
+  name: 'Phone',
+  content: '+7 (909) 967 30 30',
+};
 export default class Profile extends Block {
   protected initChildren() {
     this.children.button = new Button(backBtnAtr);

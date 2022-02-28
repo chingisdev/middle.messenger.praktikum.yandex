@@ -1,13 +1,23 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 import Button from '../Button/Button';
-import { searchAtr } from '../../utils/constants/markup';
-import Search from '../ChatSearch/Search';
+import Search, { ISearch } from '../ChatSearch/Search';
 import List, { IList } from '../List/List';
 import { profileBtnAtr } from '../../utils/constants/redirectButtons';
 import Preview from '../ChatPreview/Preview';
 import Iterable from '../Iterable/Iterable';
 
+export const searchAtr: ISearch = {
+  searchClass: 'search-input',
+  events: {
+    focus: (event) => {
+      event.target.placeholder = '';
+    },
+    blur: (event) => {
+      event.target.placeholder = 'search';
+    },
+  },
+};
 export default class ChatNavigation extends Block {
   protected initChildren() {
     this.children.button = new Button(profileBtnAtr);

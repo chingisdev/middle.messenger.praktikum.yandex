@@ -1,10 +1,13 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 import RedirectButton from '../../components/Button/Button';
-import ErrorPageMessage from '../../components/ErrorPageMessage/ErrorPageMessage';
-import { notFoundMessage } from '../../utils/constants/markup';
+import ErrorPageMessage, { IErrorPageMessage } from '../../components/ErrorPageMessage/ErrorPageMessage';
 import { redirectBtnAtr } from '../../utils/constants/redirectButtons';
 
+export const notFoundMessage: IErrorPageMessage = {
+  code: '404',
+  message: 'Wrong gate',
+};
 export default class NotFound extends Block {
   initChildren() {
     this.children.info = new ErrorPageMessage(notFoundMessage);
