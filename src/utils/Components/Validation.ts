@@ -97,7 +97,7 @@ function checkFormData(data: Record<string, string>) {
   return isValid;
 }
 
-export function logFormUserInput(route: string) {
+export function logUserInput(route: string) {
   const elements = document.querySelectorAll('.login__input');
   const result = {};
   elements.forEach((elem: any) => {

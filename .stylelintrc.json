@@ -1,9 +1,14 @@
 {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "color-hex-case": "lower"
-    },
-    "ignoreFiles": [
-      "dist/*"
-    ]
-  } 
+  "extends": "stylelint-config-standard",
+  "customSyntax": "postcss-less",
+  "rules": {
+    "color-hex-case": "lower"
+  },
+  "plugins": [
+    "stylelint-less"
+  ],
+  "ignoreFiles": [
+    "build/*",
+    "dist/*"
+  ]
+}

@@ -6,7 +6,7 @@ import Iterable from '../../components/Iterable/Iterable';
 import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
-import { logFormUserInput, validation, validator } from '../../utils/Components/Validation';
+import { logUserInput, validation, validator } from '../../utils/Components/Validation';
 import Input, { IInput } from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
@@ -50,7 +50,8 @@ function createLoginProp(): IEntranceForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        logFormUserInput('chat');
+        debugger;
+        logUserInput('chat');
       },
     },
   };
@@ -59,10 +60,13 @@ function createLoginProp(): IEntranceForm {
 
 const inputEmailAttr: IInput = {
   type: 'email',
-  minLength: '2',
+  minLength: '5',
   name: 'email',
   events: {
     blur: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'email', validator);
+    },
+    focus: (event) => {
       validation(event.path[1], event.currentTarget.value, 'email', validator);
     },
   },
@@ -70,12 +74,15 @@ const inputEmailAttr: IInput = {
 
 const inputPassAttr: IInput = {
   type: 'password',
-  minLength: '4',
+  minLength: '8',
   name: 'password',
   events: {
     blur: (event) => {
       validation(event.path[1], event.currentTarget.value, 'password', validator);
     },
+    focus: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'password', validator);
+    }
   },
 };
 

@@ -1,6 +1,6 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import List from '../List';
+import List from '../List/List';
 import Button from '../Button/Button';
 
 export interface IEntranceForm {

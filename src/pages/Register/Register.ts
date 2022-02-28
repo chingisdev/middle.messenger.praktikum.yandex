@@ -6,7 +6,7 @@ import Iterable from '../../components/Iterable/Iterable';
 import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
-import { logFormUserInput, validation, validator } from '../../utils/Components/Validation';
+import { logUserInput, validation, validator } from '../../utils/Components/Validation';
 import Input, { IInput } from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
@@ -23,21 +23,27 @@ export default class Register extends Block<{}> {
 
 const inputEmailAttr: IInput = {
   type: 'email',
-  minLength: '2',
+  minLength: '5',
   name: 'email',
   events: {
     blur: (event) => {
       validation(event.path[1], event.currentTarget.value, 'email', validator);
     },
+    focus: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'email', validator);
+    }
   },
 };
 
 const inputLoginAttr: IInput = {
   type: 'text',
-  minLength: '2',
+  minLength: '3',
   name: 'login',
   events: {
     blur: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'login', validator);
+    },
+    focus: (event) => {
       validation(event.path[1], event.currentTarget.value, 'login', validator);
     },
   },
@@ -45,10 +51,13 @@ const inputLoginAttr: IInput = {
 
 const inputPassAttr: IInput = {
   type: 'password',
-  minLength: '4',
+  minLength: '8',
   name: 'password',
   events: {
     blur: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'password', validator);
+    },
+    focus: (event) => {
       validation(event.path[1], event.currentTarget.value, 'password', validator);
     },
   },
@@ -56,10 +65,13 @@ const inputPassAttr: IInput = {
 
 const inputConfirmPassAttr: IInput = {
   type: 'password',
-  minLength: '4',
+  minLength: '8',
   name: 'confirm_password',
   events: {
     blur: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'confirm', validator);
+    },
+    focus: (event) => {
       validation(event.path[1], event.currentTarget.value, 'confirm', validator);
     },
   },
@@ -73,6 +85,9 @@ const inputFirstNameAttr: IInput = {
     blur: (event) => {
       validation(event.path[1], event.currentTarget.value, 'name', validator);
     },
+    focus: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'name', validator);
+    },
   },
 };
 
@@ -84,15 +99,21 @@ const inputSecondNameAttr: IInput = {
     blur: (event) => {
       validation(event.path[1], event.currentTarget.value, 'name', validator);
     },
+    focus: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'name', validator);
+    },
   },
 };
 
 const inputPhoneAttr: IInput = {
   type: 'text',
-  minLength: '2',
+  minLength: '10',
   name: 'phone',
   events: {
     blur: (event) => {
+      validation(event.path[1], event.currentTarget.value, 'phone', validator);
+    },
+    focus: (event) => {
       validation(event.path[1], event.currentTarget.value, 'phone', validator);
     },
   },
@@ -132,7 +153,7 @@ function createRegisterProp(): IEntranceForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        logFormUserInput('chat');
+        logUserInput('chat');
       },
     },
   };
