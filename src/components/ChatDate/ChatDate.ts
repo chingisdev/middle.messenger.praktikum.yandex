@@ -5,7 +5,7 @@ export interface IDate {
   date: string,
 }
 
-export default class ChatDate extends Block {
+export default class ChatDate extends Block<IDate> {
   constructor(props: IDate) {
     super(props);
   }

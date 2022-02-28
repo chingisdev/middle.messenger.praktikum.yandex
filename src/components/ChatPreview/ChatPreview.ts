@@ -2,13 +2,13 @@ import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 import { IMessage } from '../ChatMessage/Message';
 
-export default class Preview extends Block {
+export default class ChatPreview extends Block<IChatPreview> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }
 }
 
-export interface IChat {
+interface IChatPreview {
   name: string,
   lastMessage: string,
   lastMessageTime: string,

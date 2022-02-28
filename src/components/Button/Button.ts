@@ -12,7 +12,7 @@ export interface IButton {
   events?: Record<string, (event) => void>,
 }
 
-export default class Button extends Block {
+export default class Button extends Block<IButton> {
   constructor(props: IButton) {
     super(props);
   }

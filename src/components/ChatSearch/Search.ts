@@ -6,7 +6,7 @@ export interface ISearch {
   events?: Record<string, (event) => void>
 }
 
-export default class Search extends Block {
+export default class Search extends Block<ISearch> {
   constructor(props: ISearch) {
     super(props);
   }

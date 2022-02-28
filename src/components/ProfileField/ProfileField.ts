@@ -6,7 +6,7 @@ export interface IProfileField {
   content: string,
 }
 
-export default class ProfileField extends Block {
+export default class ProfileField extends Block<IProfileField> {
   constructor(props: IProfileField) {
     super(props);
   }

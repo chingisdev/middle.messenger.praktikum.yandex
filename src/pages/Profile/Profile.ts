@@ -1,21 +1,13 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
 import Button, { IButton } from '../../components/Button/Button';
-import ProfileName, { IName } from '../../components/ProfileName/ProfileName';
+import ProfileName, { IProfileName } from '../../components/ProfileName/ProfileName';
 import List from '../../components/List/List';
 import Iterable from '../../components/Iterable/Iterable';
 import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
-export const backBtnAtr: IButton = {
-  buttonClass: 'profile__back-button',
-  arrowClass: 'arrow arrow__left',
-  divVisible: 'visible',
-  events: {
-    click: () => pseudoRouter('chat'),
-  },
-};
-export default class Profile extends Block {
+export default class Profile extends Block<{}> {
   protected initChildren() {
     this.children.button = new Button(backBtnAtr);
     this.children.name = new ProfileName(profileNameAtr);
@@ -41,6 +33,15 @@ function createProfileFields() {
     }),
   });
 }
+
+export const backBtnAtr: IButton = {
+  buttonClass: 'profile__back-button',
+  arrowClass: 'arrow arrow__left',
+  divVisible: 'visible',
+  events: {
+    click: () => pseudoRouter('chat'),
+  },
+};
 
 const profileUpdateBtn: IButton = {
   buttonClass: 'profile__control',
@@ -89,7 +90,7 @@ function createProfileControlBtn() {
   });
 }
 
-const profileNameAtr: IName = {
+const profileNameAtr: IProfileName = {
   name: 'SomeName',
 };
 

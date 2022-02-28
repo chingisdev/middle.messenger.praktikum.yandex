@@ -8,7 +8,7 @@ export interface IInput {
   events?: Record<string, (event) => void>
 }
 
-export default class Input extends Block {
+export default class Input extends Block<IInput> {
   constructor(props: IInput) {
     super(props);
   }

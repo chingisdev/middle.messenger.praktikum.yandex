@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import EventBus from './eventBus';
 import { LifecycleEvents } from '../constants/enviroment';
 
-export default class Block {
+export default class Block<Props extends {}> {
   private static EVENTS = LifecycleEvents;
 
   private _element: HTMLElement | null = null;
@@ -12,7 +12,7 @@ export default class Block {
   protected props: ProxyConstructor | any; // по сути всегда делаем прокси
 
   //  eslint-disable-next-line
-  protected children: Record<string, Block>;
+  protected children: Record<string, Block<Props>>;
 
   public id = nanoid(6);
 

@@ -1,14 +1,14 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import { IInput } from '../Input/Input';
+import Input, { IInput } from '../Input/Input';
 
 export interface IEntranceField {
   name: string,
   title: string,
-  input: IInput,
+  input: Input,
 }
 
-export default class EntranceField extends Block {
+export default class EntranceField extends Block<IEntranceField> {
   constructor(props: IEntranceField) {
     super(props);
   }

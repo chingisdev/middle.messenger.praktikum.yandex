@@ -1,5 +1,5 @@
 import Block from '../../utils/Components/Block';
-import EntranceForm, { IForm } from '../../components/EntranceForm/EntranceForm';
+import EntranceForm, { IEntranceForm } from '../../components/EntranceForm/EntranceForm';
 import template from './template.hbs';
 import List from '../../components/List/List';
 import Iterable from '../../components/Iterable/Iterable';
@@ -10,7 +10,7 @@ import { logFormUserInput, validation, validator } from '../../utils/Components/
 import Input, { IInput } from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
-export default class Register extends Block {
+export default class Register extends Block<{}> {
   protected initChildren() {
     const prop = createRegisterProp();
     this.children.form = new EntranceForm(prop);
@@ -110,7 +110,7 @@ export const registerRedirectBtn: IButton = {
   },
 };
 
-function createRegisterProp(): IForm {
+function createRegisterProp(): IEntranceForm {
   return {
     fields: new List({
       class: 'login__block',

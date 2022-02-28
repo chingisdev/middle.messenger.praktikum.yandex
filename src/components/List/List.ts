@@ -7,7 +7,7 @@ export interface IList {
   list: Iterable,
 }
 
-export default class List extends Block {
+export default class List extends Block<IList> {
   constructor(props: IList) {
     super(props);
   }

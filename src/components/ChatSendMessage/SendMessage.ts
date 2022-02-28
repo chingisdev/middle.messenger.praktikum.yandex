@@ -7,7 +7,7 @@ export interface ISendMessage {
   send: Button,
 }
 
-export default class SendMessage extends Block {
+export default class SendMessage extends Block<ISendMessage> {
   constructor(props: ISendMessage) {
     super(props);
   }

@@ -8,7 +8,7 @@ import ChatDate from '../ChatDate/ChatDate';
 import Message from '../ChatMessage/Message';
 import Iterable from '../Iterable/Iterable';
 
-export default class ChatWindow extends Block {
+export default class ChatWindow extends Block<{}> {
   protected initChildren() {
     this.children.header = new Header({
       name: 'Person',

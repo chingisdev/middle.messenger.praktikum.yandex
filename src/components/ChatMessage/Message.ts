@@ -8,7 +8,7 @@ export interface IMessage {
   message: string,
 }
 
-export default class Message extends Block {
+export default class Message extends Block<IMessage> {
   constructor(props: IMessage) {
     super(props);
   }
