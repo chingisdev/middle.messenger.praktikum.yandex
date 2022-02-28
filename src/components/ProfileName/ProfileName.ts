@@ -6,3 +6,7 @@ export default class ProfileName extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export interface IName {
+  name: string;
+}

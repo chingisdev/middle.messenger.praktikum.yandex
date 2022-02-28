@@ -1,5 +1,5 @@
-import { IInput } from './interfaces';
 import { validation, validator } from '../Components/Validation';
+import { IInput } from '../../components/Input/Input';
 
 export const inputEmailAttr: IInput = {
   type: 'email',

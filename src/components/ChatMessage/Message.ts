@@ -1,6 +1,12 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
-import {IMessage} from "../../utils/constants/interfaces";
+
+export interface IMessage {
+  positionClass: string,
+  backgroundClass: string,
+  date: string,
+  message: string,
+}
 
 export default class Message extends Block {
   constructor(props: IMessage) {

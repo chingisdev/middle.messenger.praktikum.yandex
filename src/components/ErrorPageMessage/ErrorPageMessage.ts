@@ -6,3 +6,8 @@ export default class ErrorPageMessage extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export interface IErrorPageMessage {
+  code: string,
+  message: string,
+}

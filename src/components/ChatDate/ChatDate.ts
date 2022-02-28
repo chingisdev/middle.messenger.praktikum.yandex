@@ -1,6 +1,9 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
-import {IDate} from "../../utils/constants/interfaces";
+
+export interface IDate {
+  date: string,
+}
 
 export default class ChatDate extends Block {
   constructor(props: IDate) {

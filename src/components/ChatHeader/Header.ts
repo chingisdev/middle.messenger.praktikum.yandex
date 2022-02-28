@@ -1,6 +1,11 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
-import {IHeader} from "../../utils/constants/interfaces";
+import Button from '../Button/Button';
+
+export interface IHeader {
+  name: string,
+  button: Button,
+}
 
 export default class Header extends Block {
   constructor(props: IHeader) {

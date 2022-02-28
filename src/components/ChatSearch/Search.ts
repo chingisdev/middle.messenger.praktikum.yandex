@@ -1,6 +1,10 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import {ISearch} from "../../utils/constants/interfaces";
+
+export interface ISearch {
+  searchClass: string,
+  events?: Record<string, (event) => void>
+}
 
 export default class Search extends Block {
   constructor(props: ISearch) {

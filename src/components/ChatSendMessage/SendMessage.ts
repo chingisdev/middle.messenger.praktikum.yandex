@@ -1,6 +1,11 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import {ISendMessage} from "../../utils/constants/interfaces";
+import Button from '../Button/Button';
+
+export interface ISendMessage {
+  attach: Button,
+  send: Button,
+}
 
 export default class SendMessage extends Block {
   constructor(props: ISendMessage) {

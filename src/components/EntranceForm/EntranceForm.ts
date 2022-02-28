@@ -1,6 +1,14 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import {IForm} from "../../utils/constants/interfaces";
+import List from '../List';
+import Button from '../Button/Button';
+
+export interface IForm {
+  fields: List,
+  submit: Button,
+  redirect: Button,
+  events?: Record<string, (event) => void>,
+}
 
 export default class EntranceForm extends Block {
   constructor(props: IForm) {

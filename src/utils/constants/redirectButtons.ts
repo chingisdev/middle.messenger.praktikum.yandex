@@ -1,5 +1,5 @@
-import { IButton } from './interfaces';
 import { pseudoRouter } from '../Components/PseudoRouter';
+import { IButton } from '../../components/Button/Button';
 
 export const redirectBtnAtr: IButton = {
   textClass: 'login__link login__link_redir',

@@ -1,6 +1,10 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
-import {IProfileField} from "../../utils/constants/interfaces";
+
+export interface IProfileField {
+  name: string,
+  content: string,
+}
 
 export default class ProfileField extends Block {
   constructor(props: IProfileField) {

@@ -1,4 +1,4 @@
-import List from '../components/List/List';
+import List, { IList } from '../components/List/List';
 import EntranceField from '../components/EntranceField/EntranceField';
 import {
   confirmPasswordAttr,
@@ -16,7 +16,6 @@ import {
   secondNameAttr,
 } from './constants/markup';
 import Button from '../components/Button/Button';
-import { IForm, IList } from './constants/interfaces';
 import Iterable from '../components/Iterable/Iterable';
 import Preview from '../components/ChatPreview/Preview';
 import Message from '../components/ChatMessage/Message';
@@ -33,6 +32,7 @@ import {
   submitBtnAtr,
 } from './constants/redirectButtons';
 import { logFormUserInput } from './Components/Validation';
+import { IForm } from '../components/EntranceForm/EntranceForm';
 
 export function generateMessages(): IList {
   const prop = {};

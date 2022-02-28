@@ -1,6 +1,12 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
-import {IInput} from "../../utils/constants/interfaces";
+
+export interface IInput {
+  name: string,
+  type: string,
+  minLength: string,
+  events?: Record<string, (event) => void>
+}
 
 export default class Input extends Block {
   constructor(props: IInput) {

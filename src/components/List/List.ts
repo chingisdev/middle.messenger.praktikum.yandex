@@ -1,6 +1,11 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import {IList} from "../../utils/constants/interfaces";
+import Iterable from '../Iterable/Iterable';
+
+export interface IList {
+  class: string,
+  list: Iterable,
+}
 
 export default class List extends Block {
   constructor(props: IList) {

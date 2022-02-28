@@ -1,4 +1,4 @@
-import { IButton } from './interfaces';
+import { IButton } from '../../components/Button/Button';
 
 export const attachBtnAtr: IButton = {
   buttonClass: 'message__attach',

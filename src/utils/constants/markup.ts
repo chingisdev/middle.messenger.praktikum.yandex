@@ -1,6 +1,3 @@
-import {
-  IEntranceField, IErrorPageMessage, IName, IProfileField, ISearch,
-} from './interfaces';
 import Input from '../../components/Input/Input';
 import {
   inputConfirmPassAttr,
@@ -10,6 +7,11 @@ import {
   inputPhoneAttr,
   inputSecondNameAttr,
 } from './inputFieldAttr';
+import { IProfileField } from '../../components/ProfileField/ProfileField';
+import { IErrorPageMessage } from '../../components/ErrorPageMessage/ErrorPageMessage';
+import { IEntranceField } from '../../components/EntranceField/EntranceField';
+import { IName } from '../../components/ProfileName/ProfileName';
+import { ISearch } from '../../components/ChatSearch/Search';
 
 export const loginAttr: IEntranceField = {
   title: 'Login',
@@ -68,7 +70,7 @@ export const profileNameAtr: IName = {
 };
 
 export const searchAtr: ISearch = {
-  searchClass: 'search__input',
+  searchClass: 'search-input',
   events: {
     focus: (event) => {
       event.target.placeholder = '';
