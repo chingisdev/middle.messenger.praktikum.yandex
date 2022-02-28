@@ -1,7 +1,7 @@
-import { HTTP_METHODS } from '../constants/enviroment';
+import { HttpMethods } from '../constants/enviroment';
 
 type TOptions = {
-    method: HTTP_METHODS,
+    method: HttpMethods,
     data?: any,
     headers?: Record<string, string>,
 }
@@ -26,7 +26,7 @@ export class HTTPTransport {
     const data = options.data ? queryStringify(options.data) : null;
     return this.request(
       url,
-      { ...options, method: HTTP_METHODS.GET, data },
+      { ...options, method: HttpMethods.GET, data },
       options.timeout,
     );
   }
@@ -34,7 +34,7 @@ export class HTTPTransport {
   put<IResponse>(url: string, options: any): Promise<IResponse> {
     return this.request(
       url,
-      { ...options, method: HTTP_METHODS.PUT },
+      { ...options, method: HttpMethods.PUT },
       options.timeout,
     );
   }
@@ -42,7 +42,7 @@ export class HTTPTransport {
   post<IResponse>(url: string, options: any): Promise<IResponse> {
     return this.request(
       url,
-      { ...options, method: HTTP_METHODS.POST },
+      { ...options, method: HttpMethods.POST },
       options.timeout,
     );
   }
@@ -50,7 +50,7 @@ export class HTTPTransport {
   delete<IResponse>(url: string, options: any): Promise<IResponse> {
     return this.request(
       url,
-      { ...options, method: HTTP_METHODS.DELETE },
+      { ...options, method: HttpMethods.DELETE },
       options.timeout,
     );
   }
@@ -61,7 +61,7 @@ export class HTTPTransport {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      if (method === HTTP_METHODS.GET) {
+      if (method === HttpMethods.GET) {
         url = url.concat(data);
       }
 
@@ -78,7 +78,7 @@ export class HTTPTransport {
         xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
       }
 
-      if (method === HTTP_METHODS.GET || !data) {
+      if (method === HttpMethods.GET || !data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));

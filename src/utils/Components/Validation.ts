@@ -1,65 +1,50 @@
 // TODO: rethink idea, apply validation on every field in List automatically
 
 import { pseudoRouter } from './PseudoRouter';
-
-const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-function checkEmail(value: string): boolean {
-  return emailRegEx.test(value);
-}
-
-const passwordRegEx = new RegExp('^.*(?=.{8,40})(?=.*[A-Z])(?=.*[0-9]).*$');
-function checkPassword(value: string): boolean {
-  return passwordRegEx.test(value);
-}
-
-const loginRegEx = new RegExp('^.*(?=.{3,20})(?=.*[a-zA-Z])'
-    + '(?:, (?=.*[0-9]))?(?!.*[/$"\'$#@!. %^&*()+=]).*$');
-function checkLogin(value: string): boolean {
-  return loginRegEx.test(value);
-}
-
-const phoneRegEx = new RegExp('^((\\+[1-9]|([0-9])){10,15})$');
-function checkPhone(value: string): boolean {
-  return phoneRegEx.test(value);
-}
-
-const nameRegEx = new RegExp('^([A-Z]|[А-Я]){1,}(?=.*[a-zA-Zа-яА-Я])'
-    + '(?!.*[/$"\'#@!. %^&*()+=_])(?!.*[0-9])');
-function checkName(value: string): boolean {
-  return nameRegEx.test(value);
-}
+import {
+  EMAIL_REGEX,
+  LOGIN_REGEX,
+  NAME_REGEX,
+  PASSWORD_REGEX,
+  PHONE_REGEX
+} from '../constants/enviroment';
 
 // TODO: make custom function for validation
 // const message = new RegExp('^.*(?=.+)');
 
-export function checkFieldValidity() {
+export function createPatternValidator() {
   let isValid: boolean;
   let pass: string = '';
+  let confirmPass: string = '';
   return function (value: string, field: string): boolean {
     switch (field.toLowerCase()) {
       case 'email': {
-        isValid = checkEmail(value);
+        isValid = EMAIL_REGEX.test(value);
         break;
       }
       case 'password': {
-        isValid = checkPassword(value);
+        isValid = PASSWORD_REGEX.test(value);
         pass = value;
+        if (confirmPass) {
+          isValid = isValid && pass === confirmPass;
+        }
         break;
       }
       case 'confirm': {
-        isValid = checkPassword(value) && value === pass;
+        isValid = PASSWORD_REGEX.test(value) && value === pass;
+        confirmPass = value;
         break;
       }
       case 'login': {
-        isValid = checkLogin(value);
+        isValid = LOGIN_REGEX.test(value);
         break;
       }
       case 'phone': {
-        isValid = checkPhone(value);
+        isValid = PHONE_REGEX.test(value);
         break;
       }
       case 'name': {
-        isValid = checkName(value);
+        isValid = NAME_REGEX.test(value);
         break;
       }
       default: return false;
@@ -68,7 +53,7 @@ export function checkFieldValidity() {
   };
 }
 
-export const validator = checkFieldValidity();
+export const validator = createPatternValidator();
 
 function toggleErrorClass(isValid: boolean, errorMessageContainer) {
   if (!isValid) {
@@ -83,7 +68,7 @@ function getDomElement(rootNode, selector: string) {
 }
 
 export function validation(
-  parent: any,
+  parent: HTMLElement,
   value: string,
   field: string,
   callback: (arg1: string, arg2: string) => boolean,
@@ -94,13 +79,13 @@ export function validation(
 }
 
 function makeFieldNameFromKey(key: string): string {
-  const array: string[] = key.split('_');
-  return array[array.length - 1].trim();
+  const keyParts: string[] = key.split('_');
+  return keyParts.pop().trim();
 
   // key.slice(key.indexOf('_'), key.length).trim();
 }
 
-function finalCheck(data: Record<string, string>) {
+function checkFormData(data: Record<string, string>) {
   let isValid = false;
   Object.entries(data).forEach(([key, value]) => {
     const newKey = makeFieldNameFromKey(key);
@@ -112,7 +97,7 @@ function finalCheck(data: Record<string, string>) {
   return isValid;
 }
 
-export function outputData(route: string) {
+export function logFormUserInput(route: string) {
   const elements = document.querySelectorAll('.login__input');
   const result = {};
   elements.forEach((elem: any) => {
@@ -123,7 +108,7 @@ export function outputData(route: string) {
   });
   console.log(result);
   let isValid = Object.keys(result).length === elements.length;
-  isValid = isValid ? finalCheck({ ...result }) : isValid;
+  isValid = isValid ? checkFormData({ ...result }) : isValid;
 
   if (isValid) {
     pseudoRouter(route);

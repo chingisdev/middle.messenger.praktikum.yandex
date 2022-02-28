@@ -19,7 +19,6 @@ import Button from '../components/Button/Button';
 import { IForm, IList } from './constants/interfaces';
 import Iterable from '../components/Iterable/Iterable';
 import Preview from '../components/ChatPreview/Preview';
-import Block from './Components/Block';
 import Message from '../components/ChatMessage/Message';
 import ChatDate from '../components/ChatDate/ChatDate';
 import ProfileField from '../components/ProfileField/ProfileField';
@@ -33,7 +32,7 @@ import {
   registerRedirectBtn,
   submitBtnAtr,
 } from './constants/redirectButtons';
-import { outputData } from './Components/Validation';
+import { logFormUserInput } from './Components/Validation';
 
 export function generateMessages(): IList {
   const prop = {};
@@ -110,7 +109,7 @@ export function createRegisterProp(): IForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        outputData('chat');
+        logFormUserInput('chat');
       },
     },
   };
@@ -130,7 +129,7 @@ export function createLoginProp(): IForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        outputData('chat');
+        logFormUserInput('chat');
       },
     },
   };

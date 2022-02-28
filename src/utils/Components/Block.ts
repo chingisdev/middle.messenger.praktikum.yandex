@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
 import EventBus from './eventBus';
-import { LIFECYCLE_EVENTS } from '../constants/enviroment';
+import { LifecycleEvents } from '../constants/enviroment';
 
 export default class Block {
-  private static EVENTS = LIFECYCLE_EVENTS;
+  private static EVENTS = LifecycleEvents;
 
   private _element: HTMLElement | null = null;
 
@@ -27,14 +27,14 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
   }
 
-  _createDocumentElement(tagName) {
+  private _createDocumentElement(tagName) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
@@ -43,7 +43,7 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
@@ -55,7 +55,7 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
+  private _componentDidUpdate(oldProps: any, newProps: any) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -83,7 +83,7 @@ export default class Block {
     return this.element;
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events } = this.props as any;
     if (!events || !this._element) {
       return;
@@ -94,7 +94,7 @@ export default class Block {
     });
   }
 
-  _removeEvents() {
+  private _removeEvents() {
     const { events } = this.props as any;
 
     if (!events || !this._element) {
@@ -110,7 +110,7 @@ export default class Block {
     return new DocumentFragment();
   }
 
-  _render() {
+  private _render() {
     const fragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -124,7 +124,7 @@ export default class Block {
     this._addEvents();
   }
 
-  _makePropsProxy(props: any) {
+  private _makePropsProxy(props: any) {
     const self = this;
     const proxyProps = new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
