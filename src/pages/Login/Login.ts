@@ -50,7 +50,6 @@ function createLoginProp(): IEntranceForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        debugger;
         logUserInput('chat');
       },
     },
