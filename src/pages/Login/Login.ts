@@ -54,6 +54,7 @@ function createLoginProp(): IEntranceForm {
 
 
 const inputEmailAttr: IInput = {
+  class: 'login__input',
   type: 'email',
   minLength: '5',
   name: 'email',
@@ -68,6 +69,7 @@ const inputEmailAttr: IInput = {
 };
 
 const inputPassAttr: IInput = {
+  class: 'login__input',
   type: 'password',
   minLength: '8',
   name: 'password',

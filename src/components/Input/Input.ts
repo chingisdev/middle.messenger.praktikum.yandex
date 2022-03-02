@@ -2,9 +2,12 @@ import template from './template.hbs';
 import Block from '../../utils/Components/Block';
 
 export interface IInput {
-  name: string,
-  type: string,
-  minLength: string,
+  class: string,
+  name?: string,
+  type?: string,
+  placeholder?: string,
+  minLength?: string,
+  disabled?: string,
   events?: Record<string, (event) => void>
 }
 

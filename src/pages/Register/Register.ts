@@ -21,6 +21,7 @@ export default class Register extends Block<{}> {
 }
 
 const inputEmailAttr: IInput = {
+  class: 'login__input',
   type: 'email',
   minLength: '5',
   name: 'email',
@@ -35,6 +36,7 @@ const inputEmailAttr: IInput = {
 };
 
 const inputLoginAttr: IInput = {
+  class: 'login__input',
   type: 'text',
   minLength: '3',
   name: 'login',
@@ -49,6 +51,7 @@ const inputLoginAttr: IInput = {
 };
 
 const inputPassAttr: IInput = {
+  class: 'login__input',
   type: 'password',
   minLength: '8',
   name: 'password',
@@ -63,6 +66,7 @@ const inputPassAttr: IInput = {
 };
 
 const inputConfirmPassAttr: IInput = {
+  class: 'login__input',
   type: 'password',
   minLength: '8',
   name: 'confirm_password',
@@ -77,6 +81,7 @@ const inputConfirmPassAttr: IInput = {
 };
 
 const inputFirstNameAttr: IInput = {
+  class: 'login__input',
   type: 'text',
   minLength: '2',
   name: 'first_name',
@@ -91,6 +96,7 @@ const inputFirstNameAttr: IInput = {
 };
 
 const inputSecondNameAttr: IInput = {
+  class: 'login__input',
   type: 'text',
   minLength: '2',
   name: 'second_name',
@@ -105,6 +111,7 @@ const inputSecondNameAttr: IInput = {
 };
 
 const inputPhoneAttr: IInput = {
+  class: 'login__input',
   type: 'text',
   minLength: '10',
   name: 'phone',

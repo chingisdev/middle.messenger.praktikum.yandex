@@ -6,6 +6,7 @@ import Profile from '../../pages/Profile/Profile';
 import ServerError from '../../pages/Error/ServerError';
 import NotFound from '../../pages/Error/NotFound';
 import { ROOT_PATH } from '../constants/enviroment';
+import ProfileUpdateUserInfo from '../../pages/ProfileUpdateUserInfo/ProfileUpdateUserInfo';
 
 // TODO: в какой момент удалять слушатели, изучить
 export function pseudoRouter(path: string) {
@@ -29,6 +30,11 @@ export function pseudoRouter(path: string) {
     }
     case 'profile': {
       const page = new Profile();
+      renderDOM(ROOT_PATH, page);
+      return;
+    }
+    case 'update': {
+      const page = new ProfileUpdateUserInfo();
       renderDOM(ROOT_PATH, page);
       return;
     }

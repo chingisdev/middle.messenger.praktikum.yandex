@@ -1,9 +1,15 @@
 import template from './template.hbs';
 import Block from '../../utils/Components/Block';
+import Input from '../Input/Input';
 
 export interface IProfileField {
+  partialClass?: string,
+  containerClass?: string,
+  labelClass?: string,
+  errorClass?: string,
   name: string,
-  content: string,
+  title: string,
+  input: Input
 }
 
 export default class ProfileField extends Block<IProfileField> {

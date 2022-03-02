@@ -5,6 +5,7 @@ import ProfileName, { IProfileName } from '../../components/ProfileName/ProfileN
 import List from '../../components/List/List';
 import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import Input from '../../components/Input/Input';
 
 export default class Profile extends Block<{}> {
   protected initChildren() {
@@ -33,7 +34,7 @@ function createProfileFields() {
   });
 }
 
-export const backBtnAtr: IButton = {
+const backBtnAtr: IButton = {
   buttonClass: 'profile__back-button',
   arrowClass: 'arrow arrow__left',
   divVisible: 'visible',
@@ -50,7 +51,7 @@ const profileUpdateBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    click: () => console.log('update profile button'),
+    click: () => pseudoRouter('update'),
   },
 };
 
@@ -91,31 +92,55 @@ const profileNameAtr: IProfileName = {
 
 const profileEmail: IProfileField = {
   name: 'Email',
-  content: 'pochta@mail.ru',
+  input: new Input({
+    class: "profile__input",
+    placeholder: 'pochta@mail.ru',
+    disabled: 'disabled',
+  })
 };
 
 const profileLogin: IProfileField = {
   name: 'Login',
-  content: 'IvanIvanov',
+  input: new Input({
+    class: "profile__input",
+    placeholder: 'Ivanio',
+    disabled: 'disabled',
+  })
 };
 
 const profileFirstName: IProfileField = {
   name: 'First Name',
-  content: 'Ivan',
+  input: new Input({
+    class: "profile__input",
+    placeholder: 'Ivan',
+    disabled: 'disabled',
+  })
 };
 
 const profileSecondName: IProfileField = {
   name: 'Second Name',
-  content: 'Ivanov',
+  input: new Input({
+    class: "profile__input",
+    placeholder: 'Ivanov',
+    disabled: 'disabled',
+  })
 };
 
 const profileDisplayName: IProfileField = {
   name: 'Display Name',
-  content: 'Ivan',
+  input: new Input({
+    class: "profile__input",
+    placeholder: 'Iva',
+    disabled: 'disabled',
+  })
 };
 
 const profilePhone: IProfileField = {
   name: 'Phone',
-  content: '+7 (909) 967 30 30',
+  input: new Input({
+    class: "profile__input",
+    placeholder: '+7 (909) 967 30 30',
+    disabled: 'disabled',
+  })
 };
 

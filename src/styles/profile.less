@@ -45,6 +45,15 @@
     text-decoration: none;
   }
 
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+  }
+
   &__settings {
     display: flex;
     flex-direction: column;
@@ -88,17 +97,25 @@
     font-weight: 600;
   }
 
-  &__field {
-    width: 510px;
+  &__part {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
     border-bottom: 1px solid @borderGray;
     margin-bottom: 8px;
 
     &:nth-last-of-type(1) {
       border-bottom: none;
     }
+  }
+
+  &__field {
+    width: 510px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   &__field-text {
@@ -112,6 +129,22 @@
     &_right {
       color: @darkGray;
     }
+  }
+
+  &__input {
+    text-align: right;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    line-height: 17px;
+    &:focus {
+      outline: none;
+    }
+    &:disabled {
+      background-color: transparent;
+      border: none;
+    }
+
   }
 
   &__link {
@@ -133,8 +166,29 @@
     }
   }
 
+  //&__list {
+  //  padding: 0;
+  //
+  //}
+
   &__list {
+    overflow: hidden;
+    width: 100%;
     padding: 0;
+
+    &_wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      list-style: outside none none;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      margin: 0 auto;
+      gap: 10px;
+      &::-webkit-scrollbar { width: 0; }
+    }
   }
 
   &__control {
