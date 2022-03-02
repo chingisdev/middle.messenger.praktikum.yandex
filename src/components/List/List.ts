@@ -1,6 +1,5 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import Iterable from '../Iterable/Iterable';
 
 export interface IList {
   class: string,

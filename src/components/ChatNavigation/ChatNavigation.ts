@@ -4,7 +4,6 @@ import Button, { IButton } from '../Button/Button';
 import Search, { ISearch } from '../ChatSearch/Search';
 import List, { IList } from '../List/List';
 import ChatPreview from '../ChatPreview/ChatPreview';
-import Iterable from '../Iterable/Iterable';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
 export const searchAtr: ISearch = {

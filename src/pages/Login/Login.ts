@@ -2,7 +2,6 @@ import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 import EntranceForm, { IEntranceForm } from '../../components/EntranceForm/EntranceForm';
 import List from '../../components/List/List';
-import Iterable from '../../components/Iterable/Iterable';
 import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';

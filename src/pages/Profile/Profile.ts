@@ -3,7 +3,6 @@ import Block from '../../utils/Components/Block';
 import Button, { IButton } from '../../components/Button/Button';
 import ProfileName, { IProfileName } from '../../components/ProfileName/ProfileName';
 import List from '../../components/List/List';
-import Iterable from '../../components/Iterable/Iterable';
 import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 

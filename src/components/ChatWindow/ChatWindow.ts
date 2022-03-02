@@ -6,7 +6,6 @@ import Button, { IButton } from '../Button/Button';
 import SendMessage from '../ChatSendMessage/SendMessage';
 import ChatDate from '../ChatDate/ChatDate';
 import Message from '../ChatMessage/Message';
-import Iterable from '../Iterable/Iterable';
 
 export default class ChatWindow extends Block<{}> {
   protected initChildren() {
