@@ -4,7 +4,6 @@ import Button, { IButton } from '../Button/Button';
 import Search, { ISearch } from '../ChatSearch/Search';
 import List, { IList } from '../List/List';
 import ChatPreview from '../ChatPreview/ChatPreview';
-import Iterable from '../Iterable/Iterable';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
 export const searchAtr: ISearch = {
@@ -44,9 +43,9 @@ export default class ChatNavigation extends Block<{}> {
 }
 
 function createChatPreviews(): IList {
-  const prop = {};
+  const prop = [];
   for (let i = 0; i < 20; i++) {
-    prop[`${i}`] = new ChatPreview({
+    prop.push(new ChatPreview({
       name: 'Batman',
       lastMessage: 'I wear a mask. And that mask, it’s not to hide who I am, but to create what I am.',
       lastMessageTime: '23:59',
@@ -56,11 +55,11 @@ function createChatPreviews(): IList {
           console.log('click on chat');
         },
       },
-    });
+    }));
   }
   return {
     class: 'chat__list',
-    list: new Iterable(prop),
+    list: prop,
   };
 }
 

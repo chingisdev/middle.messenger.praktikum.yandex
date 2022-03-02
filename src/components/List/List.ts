@@ -1,10 +1,9 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import Iterable from '../Iterable/Iterable';
 
 export interface IList {
   class: string,
-  list: Iterable,
+  list: Block<any>[],
 }
 
 export default class List extends Block<IList> {

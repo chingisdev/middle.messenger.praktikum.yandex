@@ -6,7 +6,6 @@ import Button, { IButton } from '../Button/Button';
 import SendMessage from '../ChatSendMessage/SendMessage';
 import ChatDate from '../ChatDate/ChatDate';
 import Message from '../ChatMessage/Message';
-import Iterable from '../Iterable/Iterable';
 
 export default class ChatWindow extends Block<{}> {
   protected initChildren() {
@@ -61,7 +60,7 @@ const actionBtnAtr: IButton = {
 };
 
 function generateMessages(): IList {
-  const prop = {};
+  const prop = [];
   const fraze = 'random fraze';
   let count = 0;
   for (let n = 0; n < 10; n++) {
@@ -91,6 +90,6 @@ function generateMessages(): IList {
   }
   return {
     class: 'discussion__scroll',
-    list: new Iterable(prop),
+    list: prop,
   };
 }

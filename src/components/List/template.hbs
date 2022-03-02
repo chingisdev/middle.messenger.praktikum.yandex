@@ -1,3 +1,7 @@
 <div class="{{ class }}">
-    {{{ list }}}
+    <div class="chat__list_wrapper">
+        {{#each list }}
+            {{{ this }}}
+        {{/each}}
+    </div>
 </div>

@@ -3,7 +3,6 @@ import Block from '../../utils/Components/Block';
 import Button, { IButton } from '../../components/Button/Button';
 import ProfileName, { IProfileName } from '../../components/ProfileName/ProfileName';
 import List from '../../components/List/List';
-import Iterable from '../../components/Iterable/Iterable';
 import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 
@@ -23,14 +22,14 @@ export default class Profile extends Block<{}> {
 function createProfileFields() {
   return new List({
     class: 'profile__list',
-    list: new Iterable({
-      email: new ProfileField(profileEmail),
-      login: new ProfileField(profileLogin),
-      firstName: new ProfileField(profileFirstName),
-      secondName: new ProfileField(profileSecondName),
-      displayName: new ProfileField(profileDisplayName),
-      phone: new ProfileField(profilePhone),
-    }),
+    list: [
+      new ProfileField(profileEmail),
+      new ProfileField(profileLogin),
+      new ProfileField(profileFirstName),
+      new ProfileField(profileSecondName),
+      new ProfileField(profileDisplayName),
+      new ProfileField(profilePhone)
+    ]
   });
 }
 
@@ -82,11 +81,7 @@ export const profileExitBtn: IButton = {
 function createProfileControlBtn() {
   return new List({
     class: 'profile__list',
-    list: new Iterable({
-      updateProfile: new Button(profileUpdateBtn),
-      changePassword: new Button(profilePassBtn),
-      exit: new Button(profileExitBtn),
-    }),
+    list: [new Button(profileUpdateBtn), new Button(profilePassBtn), new Button(profileExitBtn)]
   });
 }
 

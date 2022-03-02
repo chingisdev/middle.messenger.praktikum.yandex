@@ -1,6 +1,6 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import Input, { IInput } from '../Input/Input';
+import Input from '../Input/Input';
 
 export interface IEntranceField {
   name: string,
