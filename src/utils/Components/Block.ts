@@ -184,6 +184,17 @@ export default class Block<Props extends {}> {
     Object.entries(this.children).forEach(([key, child]) => {
       stub[key] = `<div data-id="id-${child.id}"></div>`;
     });
+    Object.entries(this.props).forEach(([key, child]) => {
+      if (Array.isArray(child)) {
+        stub[key] = [];
+        child.forEach((elem, index) => {
+          if (elem instanceof Block) {
+            this.children[index] = elem;
+            stub[key].push(`<div data-id="id-${elem.id}"></div>`);
+          }
+        })
+      }
+    })
     return stub;
   }
 
@@ -200,8 +211,15 @@ export default class Block<Props extends {}> {
   compile(template: (context: any) => string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     const stub = this.makeStub(context);
+    // console.log('second stub');
+    // console.log(stub);
     fragment.innerHTML = template(stub);
+    // console.log('before');
+    // console.log(fragment.innerHTML);
     this.substituteStub(fragment);
+    // console.log('after');
+    // console.log(fragment.content);
+    // console.log('_____________________');
     return fragment.content;
   }
 }

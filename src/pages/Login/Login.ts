@@ -37,10 +37,7 @@ function createLoginProp(): IEntranceForm {
   return {
     fields: new List({
       class: 'login__block',
-      list: new Iterable({
-        email: new EntranceField(emailAttr),
-        password: new EntranceField(passwordAttr),
-      }),
+      list: [new EntranceField(emailAttr), new EntranceField(passwordAttr)]
     }),
     submit: new Button({
       ...submitBtnAtr,

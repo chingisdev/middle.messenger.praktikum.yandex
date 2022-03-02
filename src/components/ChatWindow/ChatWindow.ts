@@ -61,7 +61,7 @@ const actionBtnAtr: IButton = {
 };
 
 function generateMessages(): IList {
-  const prop = {};
+  const prop = [];
   const fraze = 'random fraze';
   let count = 0;
   for (let n = 0; n < 10; n++) {
@@ -91,6 +91,6 @@ function generateMessages(): IList {
   }
   return {
     class: 'discussion__scroll',
-    list: new Iterable(prop),
+    list: prop,
   };
 }

@@ -23,14 +23,14 @@ export default class Profile extends Block<{}> {
 function createProfileFields() {
   return new List({
     class: 'profile__list',
-    list: new Iterable({
-      email: new ProfileField(profileEmail),
-      login: new ProfileField(profileLogin),
-      firstName: new ProfileField(profileFirstName),
-      secondName: new ProfileField(profileSecondName),
-      displayName: new ProfileField(profileDisplayName),
-      phone: new ProfileField(profilePhone),
-    }),
+    list: [
+      new ProfileField(profileEmail),
+      new ProfileField(profileLogin),
+      new ProfileField(profileFirstName),
+      new ProfileField(profileSecondName),
+      new ProfileField(profileDisplayName),
+      new ProfileField(profilePhone)
+    ]
   });
 }
 
@@ -82,11 +82,7 @@ export const profileExitBtn: IButton = {
 function createProfileControlBtn() {
   return new List({
     class: 'profile__list',
-    list: new Iterable({
-      updateProfile: new Button(profileUpdateBtn),
-      changePassword: new Button(profilePassBtn),
-      exit: new Button(profileExitBtn),
-    }),
+    list: [new Button(profileUpdateBtn), new Button(profilePassBtn), new Button(profileExitBtn)]
   });
 }
 

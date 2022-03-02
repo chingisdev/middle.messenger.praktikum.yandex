@@ -135,15 +135,15 @@ function createRegisterProp(): IEntranceForm {
   return {
     fields: new List({
       class: 'login__block',
-      list: new Iterable({
-        email: new EntranceField(emailAttr),
-        login: new EntranceField(loginAttr),
-        firstName: new EntranceField(firstNameAttr),
-        secondName: new EntranceField(secondNameAttr),
-        phone: new EntranceField(phoneAttr),
-        password: new EntranceField(passwordAttr),
-        confirmPas: new EntranceField(confirmPasswordAttr),
-      }),
+      list: [
+        new EntranceField(emailAttr),
+        new EntranceField(loginAttr),
+        new EntranceField(firstNameAttr),
+        new EntranceField(secondNameAttr),
+        new EntranceField(phoneAttr),
+        new EntranceField(passwordAttr),
+        new EntranceField(confirmPasswordAttr)
+      ]
     }),
     submit: new Button({
       ...submitBtnAtr,
