@@ -5,9 +5,9 @@ import List from '../../components/List/List';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { logUserInput, validation, validator } from '../../utils/Components/Validation';
-import Input, { IInput } from '../../components/Input/Input';
+import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
-import InputBox, { IInputBox } from '../../components/InputBox/InputBox';
+import InputField, { IInputField } from '../../components/InputField/InputField';
 
 export default class Login extends Block<{}> {
   protected initChildren() {
@@ -37,7 +37,7 @@ function createLoginProp(): IEntranceForm {
     fields: new List({
       listClass: 'login__field-box',
       blockClass: 'login__block',
-      list: [new InputBox(emailAttr), new InputBox(passwordAttr)]
+      list: [new InputField(emailField), new InputField(passwordField)]
     }),
     submit: new Button({
       ...submitBtnAtr,
@@ -54,7 +54,7 @@ function createLoginProp(): IEntranceForm {
 }
 
 
-const inputEmailAttr: IInput = {
+const emailInput: Input = new Input({
   class: 'login__input',
   type: 'email',
   minLength: '5',
@@ -67,9 +67,9 @@ const inputEmailAttr: IInput = {
       validation(event.path[1], event.currentTarget.value, 'email', validator);
     },
   },
-};
+});
 
-const inputPassAttr: IInput = {
+const passwordInput: Input = new Input({
   class: 'login__input',
   type: 'password',
   minLength: '8',
@@ -82,28 +82,26 @@ const inputPassAttr: IInput = {
       validation(event.path[1], event.currentTarget.value, 'password', validator);
     }
   },
-};
+});
 
-const partialClass = "login__field-box";
-const labelClass = "login__field-label";
-const errorClass = 'login__input-error';
+const commonInputProps: IInputField = {
+  errorClass: "login__input-error",
+  labelClass: "login__field-label",
+  partialClass: "login__field-box",
+}
 
-const passwordAttr: IInputBox = {
-  partialClass,
-  labelClass,
-  errorClass,
+const passwordField: IInputField = {
+  ...commonInputProps,
   title: 'Password',
   name: 'password',
-  input: new Input(inputPassAttr),
+  input: passwordInput,
 };
 
-const emailAttr: IInputBox = {
-  partialClass,
-  labelClass,
-  errorClass,
+const emailField: IInputField = {
+  ...commonInputProps,
   title: 'Email',
   name: 'email',
-  input: new Input(inputEmailAttr),
+  input: emailInput,
 };
 
 

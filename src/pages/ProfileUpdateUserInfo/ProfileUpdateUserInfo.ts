@@ -4,7 +4,7 @@ import template from './template.hbs';
 import List from '../../components/List/List';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { logUserInput, validation, validator } from '../../utils/Components/Validation';
-import InputBox, { IInputBox } from '../../components/InputBox/InputBox';
+import InputField, { IInputField } from '../../components/InputField/InputField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Input from '../../components/Input/Input';
 import ProfileForm, { IProfileForm } from '../../components/ProfileForm/ProfileForm';
@@ -42,12 +42,12 @@ function createProfileFields() {
     blockClass: 'profile__list',
     listClass: 'profile__list_wrapper',
     list: [
-      new InputBox(emailField),
-      new InputBox(loginField),
-      new InputBox(firstNameField),
-      new InputBox(secondNameField),
-      new InputBox(displayNameField),
-      new InputBox(phoneField)
+      new InputField(emailField),
+      new InputField(loginField),
+      new InputField(firstNameField),
+      new InputField(secondNameField),
+      new InputField(displayNameField),
+      new InputField(phoneField)
     ]
   });
 }
@@ -62,11 +62,12 @@ const backBtnAtr: IButton = {
 };
 
 // TODO: add validation on fields. Compare with login page.
-
-const partialClass = 'profile__part';
-const containerClass = 'profile__field';
-const labelClass = 'profile__field-text profile__field-text_left';
-const errorClass = 'login__input-error';
+const commonInputProps = {
+  partialClass: 'profile__part',
+  containerClass: 'profile__field',
+  labelClass: 'profile__field-text profile__field-text_left',
+  errorClass: 'login__input-error',
+}
 
 const emailInput: Input = new Input({
   class: "profile__input",
@@ -84,11 +85,8 @@ const emailInput: Input = new Input({
   },
 });
 
-const emailField: IInputBox = {
-  partialClass,
-  containerClass,
-  labelClass,
-  errorClass,
+const emailField: IInputField = {
+  ...commonInputProps,
   name: 'email',
   title: 'Email',
   input: emailInput,
@@ -110,11 +108,8 @@ const loginInput: Input = new Input({
   },
 });
 
-const loginField: IInputBox = {
-  partialClass,
-  containerClass,
-  labelClass,
-  errorClass,
+const loginField: IInputField = {
+  ...commonInputProps,
   name: 'login',
   title: 'Login',
   input: loginInput,
@@ -136,11 +131,8 @@ const firstNameInput = new Input({
   },
 });
 
-const firstNameField: IInputBox = {
-  partialClass,
-  containerClass,
-  labelClass,
-  errorClass,
+const firstNameField: IInputField = {
+  ...commonInputProps,
   name: 'first_name',
   title: 'First Name',
   input: firstNameInput,
@@ -162,11 +154,8 @@ const secondNameInput: Input = new Input({
   },
 });
 
-const secondNameField: IInputBox = {
-  partialClass,
-  containerClass,
-  labelClass,
-  errorClass,
+const secondNameField: IInputField = {
+  ...commonInputProps,
   name: 'second_name',
   title: 'Second Name',
   input: secondNameInput,
@@ -188,11 +177,8 @@ const displayNameInput: Input = new Input({
   },
 });
 
-const displayNameField: IInputBox = {
-  partialClass,
-  containerClass,
-  labelClass,
-  errorClass,
+const displayNameField: IInputField = {
+  ...commonInputProps,
   title: 'Display Name',
   name: 'display_name',
   input: displayNameInput,
@@ -214,11 +200,8 @@ const phoneInput = new Input({
   },
 });
 
-const phoneField: IInputBox = {
-  partialClass,
-  containerClass,
-  labelClass,
-  errorClass,
+const phoneField: IInputField = {
+  ...commonInputProps,
   name: 'phone',
   title: 'Phone',
   input: phoneInput,
