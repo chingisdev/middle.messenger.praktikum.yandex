@@ -53,8 +53,6 @@ export function createPatternValidator() {
   };
 }
 
-export const validator = createPatternValidator();
-
 function toggleErrorClass(isValid: boolean, errorMessageContainer) {
   if (!isValid) {
     errorMessageContainer.classList.add('visible');
@@ -97,6 +95,8 @@ function makeFieldNameFromKey(key: string): string {
 
   // key.slice(key.indexOf('_'), key.length).trim();
 }
+
+const validator = createPatternValidator();
 
 function checkFormData(data: Record<string, string>) {
   let isValid = false;

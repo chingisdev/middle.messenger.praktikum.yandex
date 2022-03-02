@@ -4,7 +4,11 @@ import template from './template.hbs';
 import List from '../../components/List/List';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
-import { logUserInput, validation, validator } from '../../utils/Components/Validation';
+import {
+  createPatternValidator,
+  logUserInput,
+  validation
+} from '../../utils/Components/Validation';
 import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import InputField, { IInputField } from '../../components/InputField/InputField';
@@ -48,6 +52,8 @@ function createRegisterProp(): IEntranceForm {
   };
 }
 
+const validator = createPatternValidator();
+
 const emailInput: Input = new Input({
   class: 'login__input',
   type: 'email',
@@ -55,10 +61,12 @@ const emailInput: Input = new Input({
   name: 'email',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
     }
   },
 });
@@ -70,11 +78,13 @@ const loginInput: Input = new Input({
   name: 'login',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'login', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'login', validator);
+    }
   },
 });
 
@@ -85,11 +95,13 @@ const passwordInput: Input = new Input({
   name: 'password',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'password', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'password', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'password', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'password', validator);
+    }
   },
 });
 
@@ -100,11 +112,13 @@ const confirmPassInput: Input = new Input({
   name: 'confirm_password',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'confirm', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'confirm', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'confirm', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'confirm', validator);
+    }
   },
 });
 
@@ -115,11 +129,13 @@ const firstNameInput: Input = new Input({
   name: 'first_name',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+    }
   },
 });
 
@@ -130,11 +146,13 @@ const secondNameInput: Input = new Input({
   name: 'second_name',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+    }
   },
 });
 
@@ -145,11 +163,13 @@ const phoneInput: Input = new Input({
   name: 'phone',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'phone', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'phone', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'phone', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'phone', validator);
+    }
   },
 });
 
@@ -165,10 +185,12 @@ export const registerRedirectBtn: IButton = {
   },
 };
 
+const partialClass = "login__field-box";
+
 const commonInputProps: IInputField = {
   errorClass: "login__input-error",
   labelClass: "login__field-label",
-  partialClass: "login__field-box",
+  partialClass
 }
 
 const loginField: IInputField = {
