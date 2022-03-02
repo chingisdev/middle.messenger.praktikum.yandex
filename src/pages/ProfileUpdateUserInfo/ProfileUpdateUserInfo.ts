@@ -61,7 +61,6 @@ const backBtnAtr: IButton = {
   },
 };
 
-// TODO: add validation on fields. Compare with login page.
 const commonInputProps = {
   partialClass: 'profile__part',
   containerClass: 'profile__field',

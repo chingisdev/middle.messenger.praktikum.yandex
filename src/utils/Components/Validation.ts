@@ -67,7 +67,20 @@ function getDomElement(rootNode, selector: string) {
   return rootNode.querySelector(selector);
 }
 
-export function validation(
+export function validation(event, partialClass, field, validator) {
+  const insertedValue = event.currentTarget.value;
+  let fieldNode = event.target;
+  let nodeClasses = fieldNode.classList;
+  while (!nodeClasses.contains(partialClass)) {
+    fieldNode = fieldNode.parentElement;
+    nodeClasses = fieldNode.classList;
+  }
+  const isValid = validator(insertedValue, field);
+  const errorClassList = fieldNode.querySelector('span').classList;
+  isValid ? errorClassList.remove('visible') : errorClassList.add('visible');
+}
+
+/*export function validation(
   parent: HTMLElement,
   value: string,
   field: string,
@@ -76,7 +89,7 @@ export function validation(
   const isValid = callback(value, field);
   const errorMessageContainer = getDomElement(parent, '.login__input-error');
   toggleErrorClass(isValid, errorMessageContainer);
-}
+}*/
 
 function makeFieldNameFromKey(key: string): string {
   const keyParts: string[] = key.split('_');

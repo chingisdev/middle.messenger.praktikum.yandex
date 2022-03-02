@@ -4,7 +4,11 @@ import EntranceForm, { IEntranceForm } from '../../components/EntranceForm/Entra
 import List from '../../components/List/List';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
-import { logUserInput, validation, validator } from '../../utils/Components/Validation';
+import {
+  createPatternValidator,
+  logUserInput,
+  validation
+} from '../../utils/Components/Validation';
 import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import InputField, { IInputField } from '../../components/InputField/InputField';
@@ -53,7 +57,6 @@ function createLoginProp(): IEntranceForm {
   };
 }
 
-
 const emailInput: Input = new Input({
   class: 'login__input',
   type: 'email',
@@ -61,13 +64,17 @@ const emailInput: Input = new Input({
   name: 'email',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
     },
   },
 });
+
+const validator = createPatternValidator();
 
 const passwordInput: Input = new Input({
   class: 'login__input',
@@ -76,18 +83,22 @@ const passwordInput: Input = new Input({
   name: 'password',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'password', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'password', validator);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'password', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'password', validator);
     }
   },
 });
 
+const partialClass = 'login__field-box';
+
 const commonInputProps: IInputField = {
   errorClass: "login__input-error",
   labelClass: "login__field-label",
-  partialClass: "login__field-box",
+  partialClass
 }
 
 const passwordField: IInputField = {
