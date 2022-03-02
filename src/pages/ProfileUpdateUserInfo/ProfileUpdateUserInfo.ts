@@ -4,7 +4,7 @@ import template from './template.hbs';
 import List from '../../components/List/List';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { logUserInput, validation, validator } from '../../utils/Components/Validation';
-import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
+import InputBox, { IInputBox } from '../../components/InputBox/InputBox';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Input from '../../components/Input/Input';
 import ProfileForm, { IProfileForm } from '../../components/ProfileForm/ProfileForm';
@@ -42,12 +42,12 @@ function createProfileFields() {
     blockClass: 'profile__list',
     listClass: 'profile__list_wrapper',
     list: [
-      new ProfileField(emailField),
-      new ProfileField(loginField),
-      new ProfileField(firstNameField),
-      new ProfileField(secondNameField),
-      new ProfileField(displayNameField),
-      new ProfileField(phoneField)
+      new InputBox(emailField),
+      new InputBox(loginField),
+      new InputBox(firstNameField),
+      new InputBox(secondNameField),
+      new InputBox(displayNameField),
+      new InputBox(phoneField)
     ]
   });
 }
@@ -84,7 +84,7 @@ const emailInput: Input = new Input({
   },
 });
 
-const emailField: IProfileField = {
+const emailField: IInputBox = {
   partialClass,
   containerClass,
   labelClass,
@@ -110,7 +110,7 @@ const loginInput: Input = new Input({
   },
 });
 
-const loginField: IProfileField = {
+const loginField: IInputBox = {
   partialClass,
   containerClass,
   labelClass,
@@ -136,7 +136,7 @@ const firstNameInput = new Input({
   },
 });
 
-const firstNameField: IProfileField = {
+const firstNameField: IInputBox = {
   partialClass,
   containerClass,
   labelClass,
@@ -162,7 +162,7 @@ const secondNameInput: Input = new Input({
   },
 });
 
-const secondNameField: IProfileField = {
+const secondNameField: IInputBox = {
   partialClass,
   containerClass,
   labelClass,
@@ -188,7 +188,7 @@ const displayNameInput: Input = new Input({
   },
 });
 
-const displayNameField: IProfileField = {
+const displayNameField: IInputBox = {
   partialClass,
   containerClass,
   labelClass,
@@ -214,7 +214,7 @@ const phoneInput = new Input({
   },
 });
 
-const phoneField: IProfileField = {
+const phoneField: IInputBox = {
   partialClass,
   containerClass,
   labelClass,

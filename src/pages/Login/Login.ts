@@ -2,12 +2,12 @@ import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 import EntranceForm, { IEntranceForm } from '../../components/EntranceForm/EntranceForm';
 import List from '../../components/List/List';
-import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { logUserInput, validation, validator } from '../../utils/Components/Validation';
 import Input, { IInput } from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import InputBox, { IInputBox } from '../../components/InputBox/InputBox';
 
 export default class Login extends Block<{}> {
   protected initChildren() {
@@ -35,8 +35,9 @@ export const loginRedirectBtn: IButton = {
 function createLoginProp(): IEntranceForm {
   return {
     fields: new List({
-      class: 'login__block',
-      list: [new EntranceField(emailAttr), new EntranceField(passwordAttr)]
+      listClass: 'login__field-box',
+      blockClass: 'login__block',
+      list: [new InputBox(emailAttr), new InputBox(passwordAttr)]
     }),
     submit: new Button({
       ...submitBtnAtr,
@@ -83,13 +84,23 @@ const inputPassAttr: IInput = {
   },
 };
 
-const passwordAttr: IEntranceField = {
+const partialClass = "login__field-box";
+const labelClass = "login__field-label";
+const errorClass = 'login__input-error';
+
+const passwordAttr: IInputBox = {
+  partialClass,
+  labelClass,
+  errorClass,
   title: 'Password',
   name: 'password',
   input: new Input(inputPassAttr),
 };
 
-const emailAttr: IEntranceField = {
+const emailAttr: IInputBox = {
+  partialClass,
+  labelClass,
+  errorClass,
   title: 'Email',
   name: 'email',
   input: new Input(inputEmailAttr),

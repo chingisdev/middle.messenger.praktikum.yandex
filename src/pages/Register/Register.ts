@@ -2,12 +2,12 @@ import Block from '../../utils/Components/Block';
 import EntranceForm, { IEntranceForm } from '../../components/EntranceForm/EntranceForm';
 import template from './template.hbs';
 import List from '../../components/List/List';
-import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { logUserInput, validation, validator } from '../../utils/Components/Validation';
 import Input, { IInput } from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import InputBox, { IInputBox } from '../../components/InputBox/InputBox';
 
 export default class Register extends Block<{}> {
   protected initChildren() {
@@ -140,15 +140,15 @@ export const registerRedirectBtn: IButton = {
 function createRegisterProp(): IEntranceForm {
   return {
     fields: new List({
-      class: 'login__block',
+      blockClass: 'login__block',
       list: [
-        new EntranceField(emailAttr),
-        new EntranceField(loginAttr),
-        new EntranceField(firstNameAttr),
-        new EntranceField(secondNameAttr),
-        new EntranceField(phoneAttr),
-        new EntranceField(passwordAttr),
-        new EntranceField(confirmPasswordAttr)
+        new InputBox(emailAttr),
+        new InputBox(loginAttr),
+        new InputBox(firstNameAttr),
+        new InputBox(secondNameAttr),
+        new InputBox(phoneAttr),
+        new InputBox(passwordAttr),
+        new InputBox(confirmPasswordAttr)
       ]
     }),
     submit: new Button({
@@ -165,38 +165,50 @@ function createRegisterProp(): IEntranceForm {
   };
 }
 
+const partialClass = "login__field-box";
+const labelClass = "login__field-label";
+const errorClass = 'login__input-error';
 
-const loginAttr: IEntranceField = {
+const baseInputProps = { partialClass, labelClass, errorClass };
+
+const loginAttr: IInputBox = {
+  ...baseInputProps,
   title: 'Login',
   name: 'login',
   input: new Input(inputLoginAttr),
 };
-const passwordAttr: IEntranceField = {
+const passwordAttr: IInputBox = {
+  ...baseInputProps,
   title: 'Password',
   name: 'password',
   input: new Input(inputPassAttr),
 };
-const firstNameAttr: IEntranceField = {
+const firstNameAttr: IInputBox = {
+  ...baseInputProps,
   title: 'First Name',
   name: 'first_name',
   input: new Input(inputFirstNameAttr),
 };
-const secondNameAttr: IEntranceField = {
+const secondNameAttr: IInputBox = {
+  ...baseInputProps,
   title: 'Second Name',
   name: 'second_name',
   input: new Input(inputSecondNameAttr),
 };
-const phoneAttr: IEntranceField = {
+const phoneAttr: IInputBox = {
+  ...baseInputProps,
   title: 'Phone',
   name: 'phone',
   input: new Input(inputPhoneAttr),
 };
-const emailAttr: IEntranceField = {
+const emailAttr: IInputBox = {
+  ...baseInputProps,
   title: 'Email',
   name: 'email',
   input: new Input(inputEmailAttr),
 };
-const confirmPasswordAttr: IEntranceField = {
+const confirmPasswordAttr: IInputBox = {
+  ...baseInputProps,
   title: 'Confirm Password',
   name: 'password',
   input: new Input(inputConfirmPassAttr),

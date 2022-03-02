@@ -2,7 +2,7 @@ import template from './template.hbs';
 import Block from '../../utils/Components/Block';
 import Input from '../Input/Input';
 
-export interface IProfileField {
+export interface IInputBox {
   partialClass?: string,
   containerClass?: string,
   labelClass?: string,
@@ -12,8 +12,8 @@ export interface IProfileField {
   input: Input
 }
 
-export default class ProfileField extends Block<IProfileField> {
-  constructor(props: IProfileField) {
+export default class InputBox extends Block<IInputBox> {
+  constructor(props: IInputBox) {
     super(props);
   }
 

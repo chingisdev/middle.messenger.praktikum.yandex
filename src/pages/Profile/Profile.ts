@@ -3,7 +3,7 @@ import Block from '../../utils/Components/Block';
 import Button, { IButton } from '../../components/Button/Button';
 import ProfileName, { IProfileName } from '../../components/ProfileName/ProfileName';
 import List from '../../components/List/List';
-import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
+import InputBox, { IInputBox } from '../../components/InputBox/InputBox';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Input from '../../components/Input/Input';
 
@@ -24,12 +24,12 @@ function createProfileFields() {
   return new List({
     class: 'profile__list',
     list: [
-      new ProfileField(profileEmail),
-      new ProfileField(profileLogin),
-      new ProfileField(profileFirstName),
-      new ProfileField(profileSecondName),
-      new ProfileField(profileDisplayName),
-      new ProfileField(profilePhone)
+      new InputBox(profileEmail),
+      new InputBox(profileLogin),
+      new InputBox(profileFirstName),
+      new InputBox(profileSecondName),
+      new InputBox(profileDisplayName),
+      new InputBox(profilePhone)
     ]
   });
 }
@@ -90,7 +90,7 @@ const profileNameAtr: IProfileName = {
   name: 'SomeName',
 };
 
-const profileEmail: IProfileField = {
+const profileEmail: IInputBox = {
   name: 'Email',
   input: new Input({
     class: "profile__input",
@@ -99,7 +99,7 @@ const profileEmail: IProfileField = {
   })
 };
 
-const profileLogin: IProfileField = {
+const profileLogin: IInputBox = {
   name: 'Login',
   input: new Input({
     class: "profile__input",
@@ -108,7 +108,7 @@ const profileLogin: IProfileField = {
   })
 };
 
-const profileFirstName: IProfileField = {
+const profileFirstName: IInputBox = {
   name: 'First Name',
   input: new Input({
     class: "profile__input",
@@ -117,7 +117,7 @@ const profileFirstName: IProfileField = {
   })
 };
 
-const profileSecondName: IProfileField = {
+const profileSecondName: IInputBox = {
   name: 'Second Name',
   input: new Input({
     class: "profile__input",
@@ -126,7 +126,7 @@ const profileSecondName: IProfileField = {
   })
 };
 
-const profileDisplayName: IProfileField = {
+const profileDisplayName: IInputBox = {
   name: 'Display Name',
   input: new Input({
     class: "profile__input",
@@ -135,7 +135,7 @@ const profileDisplayName: IProfileField = {
   })
 };
 
-const profilePhone: IProfileField = {
+const profilePhone: IInputBox = {
   name: 'Phone',
   input: new Input({
     class: "profile__input",

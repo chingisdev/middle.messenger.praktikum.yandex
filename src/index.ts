@@ -5,7 +5,7 @@ import ProfileUpdateUserInfo from './pages/ProfileUpdateUserInfo/ProfileUpdateUs
 import Profile from './pages/Profile/Profile';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const page = new ProfileUpdateUserInfo();
-  // const page = new Login();
+  // const page = new ProfileUpdateUserInfo();
+  const page = new Login();
   renderDOM(ROOT_PATH, page);
 });
