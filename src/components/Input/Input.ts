@@ -8,6 +8,7 @@ export interface IInput {
   placeholder?: string,
   minLength?: string,
   disabled?: string,
+  required?: string,
   events?: Record<string, (event) => void>
 }
 

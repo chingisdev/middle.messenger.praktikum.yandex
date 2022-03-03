@@ -102,12 +102,13 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    border-bottom: 1px solid @borderGray;
-    margin-bottom: 8px;
-
-    &:nth-last-of-type(1) {
-      border-bottom: none;
-    }
+    margin-top: 10px;
+    //border-bottom: 1px solid @borderGray;
+    //margin-bottom: 8px;
+    //
+    //&:nth-last-of-type(1) {
+    //  border-bottom: none;
+    //}
   }
 
   &__field {
@@ -116,6 +117,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-bottom: 1px solid @borderGray;
+    //margin-bottom: 8px;
+
+    //&:nth-last-of-type(1) {
+    //  border-bottom: none;
+    //}
   }
 
   &__field-text {
@@ -166,14 +173,8 @@
     }
   }
 
-  //&__list {
-  //  padding: 0;
-  //
-  //}
-
   &__list {
     overflow: hidden;
-    width: 100%;
     padding: 0;
 
     &_wrapper {

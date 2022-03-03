@@ -3,13 +3,27 @@ import Button, { IButton } from '../../components/Button/Button';
 import template from './template.hbs';
 import List from '../../components/List/List';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
-import { logUserInput, validation, validator } from '../../utils/Components/Validation';
+import {
+  createPatternValidator, initFormFields, saveGlobalForm, validateOnSubmit,
+  validation
+} from '../../utils/Components/Validation';
 import InputField, { IInputField } from '../../components/InputField/InputField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Input from '../../components/Input/Input';
 import ProfileForm, { IProfileForm } from '../../components/ProfileForm/ProfileForm';
 
 export default class ProfileUpdateUserInfo extends Block<{}> {
+  constructor() {
+    super();
+    initFormFields([
+      'email',
+      'login',
+      'first_name',
+      'second_name',
+      'display_name',
+      'phone',
+    ]);
+  }
   protected initChildren() {
     this.children.button = new Button(backBtnAtr);
     const formProps = createUpdateForm();
@@ -31,7 +45,7 @@ function createUpdateForm(): IProfileForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        logUserInput('chat');
+        validateOnSubmit('profile', validator);
       },
     },
   };
@@ -61,26 +75,35 @@ const backBtnAtr: IButton = {
   },
 };
 
+const validator = createPatternValidator();
+
+const partialClass = 'profile__part';
+
+const inputSelector = 'profile__input';
+
 const commonInputProps = {
-  partialClass: 'profile__part',
+  partialClass,
   containerClass: 'profile__field',
   labelClass: 'profile__field-text profile__field-text_left',
   errorClass: 'login__input-error',
 }
 
 const emailInput: Input = new Input({
-  class: "profile__input",
+  class: inputSelector,
   type: 'email',
   minLength: '5',
   name: 'email',
   placeholder: 'pochta@mail.ru',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
+      saveGlobalForm('email', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
+    }
   },
 });
 
@@ -92,18 +115,21 @@ const emailField: IInputField = {
 };
 
 const loginInput: Input = new Input({
-  class: "profile__input",
+  class: inputSelector,
   placeholder: 'Ivanio',
   type: 'text',
   minLength: '3',
   name: 'login',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'login', validator);
+      saveGlobalForm('login', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'login', validator);
+    }
   },
 });
 
@@ -115,18 +141,21 @@ const loginField: IInputField = {
 };
 
 const firstNameInput = new Input({
-  class: "profile__input",
+  class: inputSelector,
   placeholder: 'Ivan',
   type: 'text',
   minLength: '2',
   name: 'first_name',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+      saveGlobalForm('first_name', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+    }
   },
 });
 
@@ -138,18 +167,21 @@ const firstNameField: IInputField = {
 };
 
 const secondNameInput: Input = new Input({
-  class: "profile__input",
+  class: inputSelector,
   placeholder: 'Ivanov',
   type: 'text',
   minLength: '2',
   name: 'second_name',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+      saveGlobalForm('second_name', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+    }
   },
 });
 
@@ -161,18 +193,21 @@ const secondNameField: IInputField = {
 };
 
 const displayNameInput: Input = new Input({
-  class: "profile__input",
+  class: inputSelector,
   placeholder: 'Iva',
   type: 'text',
   minLength: '3',
-  name: 'login',
+  name: 'display_name',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+      saveGlobalForm('display_name', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'login', validator);
+    }
   },
 });
 
@@ -184,18 +219,21 @@ const displayNameField: IInputField = {
 };
 
 const phoneInput = new Input({
-  class: "profile__input",
+  class: inputSelector,
   placeholder: '+7 (909) 967 30 30',
   type: 'text',
   minLength: '10',
   name: 'phone',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'phone', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'phone', validator);
+      saveGlobalForm('phone', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'phone', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'phone', validator);
+    }
   },
 });
 

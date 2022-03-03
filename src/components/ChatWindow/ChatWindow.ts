@@ -89,7 +89,8 @@ function generateMessages(): IList {
     }
   }
   return {
-    class: 'discussion__scroll',
+    blockClass: 'discussion__list',
+    listClass: 'discussion__list_wrapper',
     list: prop,
   };
 }

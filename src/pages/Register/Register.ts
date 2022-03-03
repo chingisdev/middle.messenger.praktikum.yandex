@@ -5,15 +5,21 @@ import List from '../../components/List/List';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import {
-  createPatternValidator,
-  logUserInput,
-  validation
+  createPatternValidator, saveGlobalForm,
+  validateOnSubmit,
+  validation,
+  initFormFields
 } from '../../utils/Components/Validation';
 import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import InputField, { IInputField } from '../../components/InputField/InputField';
 
 export default class Register extends Block<{}> {
+  constructor() {
+    super();
+    initFormFields(['password', 'email', 'login', 'confirm',
+    'first_name', 'second_name', 'phone']);
+  }
   protected initChildren() {
     const prop = createRegisterProp();
     this.children.form = new EntranceForm(prop);
@@ -46,7 +52,7 @@ function createRegisterProp(): IEntranceForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        logUserInput('chat');
+        validateOnSubmit('chat', validator);
       },
     },
   };
@@ -63,6 +69,7 @@ const emailInput: Input = new Input({
     blur: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'email', validator);
+      saveGlobalForm('email', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();
@@ -80,6 +87,7 @@ const loginInput: Input = new Input({
     blur: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'login', validator);
+      saveGlobalForm('login', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();
@@ -97,6 +105,7 @@ const passwordInput: Input = new Input({
     blur: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'password', validator);
+      saveGlobalForm('password', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();
@@ -109,11 +118,12 @@ const confirmPassInput: Input = new Input({
   class: 'login__input',
   type: 'password',
   minLength: '8',
-  name: 'confirm_password',
+  name: 'confirm',
   events: {
     blur: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'confirm', validator);
+      saveGlobalForm('confirm', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();
@@ -131,6 +141,7 @@ const firstNameInput: Input = new Input({
     blur: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'name', validator);
+      saveGlobalForm('first_name', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();
@@ -148,6 +159,7 @@ const secondNameInput: Input = new Input({
     blur: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'name', validator);
+      saveGlobalForm('second_name', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();
@@ -165,6 +177,7 @@ const phoneInput: Input = new Input({
     blur: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'phone', validator);
+      saveGlobalForm('phone', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();

@@ -58,7 +58,8 @@ function createChatPreviews(): IList {
     }));
   }
   return {
-    class: 'chat__list',
+    blockClass: 'chat__list',
+    listClass: 'chat__list_wrapper',
     list: prop,
   };
 }

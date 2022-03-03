@@ -22,16 +22,25 @@ export default class Profile extends Block<{}> {
 
 function createProfileFields() {
   return new List({
-    class: 'profile__list',
+    blockClass: 'profile__list',
     list: [
-      new InputField(profileEmail),
-      new InputField(profileLogin),
-      new InputField(profileFirstName),
-      new InputField(profileSecondName),
-      new InputField(profileDisplayName),
-      new InputField(profilePhone)
+      new InputField(emailField),
+      new InputField(loginField),
+      new InputField(firstNameField),
+      new InputField(secondNameField),
+      new InputField(displayNameField),
+      new InputField(phoneField)
     ]
   });
+}
+
+const partialClass = 'profile__part';
+
+const commonInputProps = {
+  partialClass,
+  containerClass: 'profile__field',
+  labelClass: 'profile__field-text profile__field-text_left',
+  errorClass: 'login__input-error',
 }
 
 const backBtnAtr: IButton = {
@@ -81,7 +90,7 @@ export const profileExitBtn: IButton = {
 
 function createProfileControlBtn() {
   return new List({
-    class: 'profile__list',
+    blockClass: 'profile__list',
     list: [new Button(profileUpdateBtn), new Button(profilePassBtn), new Button(profileExitBtn)]
   });
 }
@@ -90,57 +99,76 @@ const profileNameAtr: IProfileName = {
   name: 'SomeName',
 };
 
-const profileEmail: IInputField = {
-  name: 'Email',
-  input: new Input({
-    class: "profile__input",
-    placeholder: 'pochta@mail.ru',
-    disabled: 'disabled',
-  })
+
+const emailInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'pochta@mail.ru',
+  disabled: 'disabled',
+});
+
+const emailField: IInputField = {
+  ...commonInputProps,
+  title: 'Email',
+  input: emailInput,
 };
 
-const profileLogin: IInputField = {
-  name: 'Login',
-  input: new Input({
-    class: "profile__input",
-    placeholder: 'Ivanio',
-    disabled: 'disabled',
-  })
+const loginInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Ivanio',
+  disabled: 'disabled',
+});
+
+const loginField: IInputField = {
+  ...commonInputProps,
+  title: 'Login',
+  input: loginInput,
 };
 
-const profileFirstName: IInputField = {
-  name: 'First Name',
-  input: new Input({
-    class: "profile__input",
-    placeholder: 'Ivan',
-    disabled: 'disabled',
-  })
+const firstNameInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Ivan',
+  disabled: 'disabled',
+});
+
+const firstNameField: IInputField = {
+  ...commonInputProps,
+  title: 'First Name',
+  input: firstNameInput,
 };
 
-const profileSecondName: IInputField = {
-  name: 'Second Name',
-  input: new Input({
-    class: "profile__input",
-    placeholder: 'Ivanov',
-    disabled: 'disabled',
-  })
+const secondNameInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Ivanov',
+  disabled: 'disabled',
+});
+
+const secondNameField: IInputField = {
+  ...commonInputProps,
+  title: 'Second Name',
+  input: secondNameInput,
 };
 
-const profileDisplayName: IInputField = {
-  name: 'Display Name',
-  input: new Input({
-    class: "profile__input",
-    placeholder: 'Iva',
-    disabled: 'disabled',
-  })
+const displayNameInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Iva',
+  disabled: 'disabled',
+});
+
+const displayNameField: IInputField = {
+  ...commonInputProps,
+  title: 'Display Name',
+  input: displayNameInput,
 };
 
-const profilePhone: IInputField = {
-  name: 'Phone',
-  input: new Input({
-    class: "profile__input",
-    placeholder: '+7 (909) 967 30 30',
-    disabled: 'disabled',
-  })
+const phoneInput: Input = new Input({
+  class: "profile__input",
+  placeholder: '+7 (909) 967 30 30',
+  disabled: 'disabled',
+});
+
+const phoneField: IInputField = {
+  ...commonInputProps,
+  title: 'Phone',
+  input: phoneInput,
 };
 

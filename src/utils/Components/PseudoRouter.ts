@@ -24,7 +24,7 @@ export function pseudoRouter(path: string) {
     case 'chat': {
       const page = new Chat();
       renderDOM(ROOT_PATH, page);
-      const elem = document.querySelector('.discussion__scroll');
+      const elem = document.querySelector('.discussion__list_wrapper');
       elem.scrollTop = elem.scrollHeight;
       return;
     }
