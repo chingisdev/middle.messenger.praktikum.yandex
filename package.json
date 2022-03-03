@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./src/**/*.ts ./src/**/**/*.ts",
+    "lint": "eslint ./src/**/**/*.ts ./src/index.ts",
     "fixLint": "/eslint ./src/**/*.ts ./src/**/**/*.ts --fix",
-    "stylelint": "stylelint src/styles/*.css src/main.less",
+    "stylelint": "stylelint src/styles/*.less src/main.less",
     "clean": "rm -rf node_modules dist .parcel-cache package-lock.json",
     "retreat": "rm -rf dist .parcel-cache",
     "dev": "parcel ./src/index.html",
@@ -26,10 +26,11 @@
     "express": "4.17.3",
     "handlebars": "4.7.7",
     "parcel": "2.3.2",
-    "postcss-less": "^6.0.0",
+    "postcss-less": "6.0.0",
     "stylelint": "14.5.3",
     "stylelint-config-standard": "25.0.0",
-    "stylelint-less": "1.0.3"
+    "stylelint-less": "1.0.3",
+    "typescript": "4.5"
   },
   "dependencies": {
     "nanoid": "3.3.1"

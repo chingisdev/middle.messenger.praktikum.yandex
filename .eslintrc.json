@@ -16,6 +16,6 @@
         "prefer-regex-literals": "off",
         "consistent-return": "off",
         "class-methods-use-this": "off",
-        "no-underscore-dangle": "off",
+        "no-underscore-dangle": "off"
     }
 }

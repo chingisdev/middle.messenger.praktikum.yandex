@@ -7,33 +7,6 @@ import InputField, { IInputField } from '../../components/InputField/InputField'
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Input from '../../components/Input/Input';
 
-export default class Profile extends Block<{}> {
-  protected initChildren() {
-    this.children.button = new Button(backBtnAtr);
-    this.children.name = new ProfileName(profileNameAtr);
-    this.children.fields = createProfileFields();
-    this.children.control = createProfileControlBtn();
-  }
-
-  protected render(): DocumentFragment {
-    return this.compile(template, { });
-  }
-}
-
-function createProfileFields() {
-  return new List({
-    blockClass: 'profile__list',
-    list: [
-      new InputField(emailField),
-      new InputField(loginField),
-      new InputField(firstNameField),
-      new InputField(secondNameField),
-      new InputField(displayNameField),
-      new InputField(phoneField)
-    ]
-  });
-}
-
 const partialClass = 'profile__part';
 
 const commonInputProps = {
@@ -41,7 +14,7 @@ const commonInputProps = {
   containerClass: 'profile__field',
   labelClass: 'profile__field-text profile__field-text_left',
   errorClass: 'login__input-error',
-}
+};
 
 const backBtnAtr: IButton = {
   buttonClass: 'profile__back-button',
@@ -91,7 +64,7 @@ export const profileExitBtn: IButton = {
 function createProfileControlBtn() {
   return new List({
     blockClass: 'profile__list',
-    list: [new Button(profileUpdateBtn), new Button(profilePassBtn), new Button(profileExitBtn)]
+    list: [new Button(profileUpdateBtn), new Button(profilePassBtn), new Button(profileExitBtn)],
   });
 }
 
@@ -99,9 +72,8 @@ const profileNameAtr: IProfileName = {
   name: 'SomeName',
 };
 
-
 const emailInput: Input = new Input({
-  class: "profile__input",
+  class: 'profile__input',
   placeholder: 'pochta@mail.ru',
   disabled: 'disabled',
 });
@@ -113,7 +85,7 @@ const emailField: IInputField = {
 };
 
 const loginInput: Input = new Input({
-  class: "profile__input",
+  class: 'profile__input',
   placeholder: 'Ivanio',
   disabled: 'disabled',
 });
@@ -125,7 +97,7 @@ const loginField: IInputField = {
 };
 
 const firstNameInput: Input = new Input({
-  class: "profile__input",
+  class: 'profile__input',
   placeholder: 'Ivan',
   disabled: 'disabled',
 });
@@ -137,7 +109,7 @@ const firstNameField: IInputField = {
 };
 
 const secondNameInput: Input = new Input({
-  class: "profile__input",
+  class: 'profile__input',
   placeholder: 'Ivanov',
   disabled: 'disabled',
 });
@@ -149,7 +121,7 @@ const secondNameField: IInputField = {
 };
 
 const displayNameInput: Input = new Input({
-  class: "profile__input",
+  class: 'profile__input',
   placeholder: 'Iva',
   disabled: 'disabled',
 });
@@ -161,7 +133,7 @@ const displayNameField: IInputField = {
 };
 
 const phoneInput: Input = new Input({
-  class: "profile__input",
+  class: 'profile__input',
   placeholder: '+7 (909) 967 30 30',
   disabled: 'disabled',
 });
@@ -172,3 +144,29 @@ const phoneField: IInputField = {
   input: phoneInput,
 };
 
+function createProfileFields() {
+  return new List({
+    blockClass: 'profile__list',
+    list: [
+      new InputField(emailField),
+      new InputField(loginField),
+      new InputField(firstNameField),
+      new InputField(secondNameField),
+      new InputField(displayNameField),
+      new InputField(phoneField),
+    ],
+  });
+}
+
+export default class Profile extends Block<{}> {
+  protected initChildren() {
+    this.children.button = new Button(backBtnAtr);
+    this.children.name = new ProfileName(profileNameAtr);
+    this.children.fields = createProfileFields();
+    this.children.control = createProfileControlBtn();
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, { });
+  }
+}

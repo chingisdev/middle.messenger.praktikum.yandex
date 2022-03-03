@@ -4,74 +4,24 @@ import template from './template.hbs';
 import List from '../../components/List/List';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import {
-  createPatternValidator, initFormFields, saveGlobalForm, validateOnSubmit,
-  validation
+  createPatternValidator, freeAllInput, initFormFields, saveGlobalForm, validateOnSubmit,
+  validation,
 } from '../../utils/Components/Validation';
 import InputField, { IInputField } from '../../components/InputField/InputField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Input from '../../components/Input/Input';
 import ProfileForm, { IProfileForm } from '../../components/ProfileForm/ProfileForm';
 
-export default class UpdateProfile extends Block<{}> {
-  constructor() {
-    super();
-    initFormFields([
-      'email',
-      'login',
-      'first_name',
-      'second_name',
-      'display_name',
-      'phone',
-    ]);
-  }
-  protected initChildren() {
-    this.children.button = new Button(backBtnAtr);
-    const formProps = createUpdateForm();
-    this.children.form = new ProfileForm(formProps);
-  }
-
-  protected render(): DocumentFragment {
-    return this.compile(template, { });
-  }
-}
-
-function createUpdateForm(): IProfileForm {
-  return {
-    fields: createProfileFields(),
-    submit: new Button({
-      ...submitBtnAtr,
-      name: 'Update profile'
-    }),
-    events: {
-      submit: (event) => {
-        event.preventDefault();
-        validateOnSubmit('profile', validator);
-      },
-    },
-  };
-}
-
-function createProfileFields() {
-  return new List({
-    blockClass: 'profile__list',
-    listClass: 'profile__list_wrapper',
-    list: [
-      new InputField(emailField),
-      new InputField(loginField),
-      new InputField(firstNameField),
-      new InputField(secondNameField),
-      new InputField(displayNameField),
-      new InputField(phoneField)
-    ]
-  });
-}
-
 const backBtnAtr: IButton = {
   buttonClass: 'profile__back-button',
   arrowClass: 'arrow arrow__left',
   divVisible: 'visible',
   events: {
-    click: () => pseudoRouter('profile'),
+    click: () => {
+      window.entranceForm = {};
+      freeAllInput();
+      pseudoRouter('profile');
+    },
   },
 };
 
@@ -79,13 +29,12 @@ const validator = createPatternValidator();
 
 const partialClass = 'profile__part';
 
-
 const commonInputProps = {
   partialClass,
   containerClass: 'profile__field',
   labelClass: 'profile__field-text profile__field-text_left',
   errorClass: 'login__input-error',
-}
+};
 
 const emailInput: Input = new Input({
   class: 'profile__input',
@@ -102,7 +51,7 @@ const emailInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'email', validator);
-    }
+    },
   },
 });
 
@@ -128,7 +77,7 @@ const loginInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'login', validator);
-    }
+    },
   },
 });
 
@@ -154,7 +103,7 @@ const firstNameInput = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'name', validator);
-    }
+    },
   },
 });
 
@@ -180,7 +129,7 @@ const secondNameInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'name', validator);
-    }
+    },
   },
 });
 
@@ -206,7 +155,7 @@ const displayNameInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'login', validator);
-    }
+    },
   },
 });
 
@@ -232,7 +181,7 @@ const phoneInput = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'phone', validator);
-    }
+    },
   },
 });
 
@@ -242,3 +191,58 @@ const phoneField: IInputField = {
   title: 'Phone',
   input: phoneInput,
 };
+
+function createProfileFields() {
+  return new List({
+    blockClass: 'profile__list',
+    listClass: 'profile__list_wrapper',
+    list: [
+      new InputField(emailField),
+      new InputField(loginField),
+      new InputField(firstNameField),
+      new InputField(secondNameField),
+      new InputField(displayNameField),
+      new InputField(phoneField),
+    ],
+  });
+}
+
+function createUpdateForm(): IProfileForm {
+  return {
+    fields: createProfileFields(),
+    submit: new Button({
+      ...submitBtnAtr,
+      name: 'Update profile',
+    }),
+    events: {
+      submit: (event) => {
+        event.preventDefault();
+        validateOnSubmit('profile', validator);
+      },
+    },
+  };
+}
+
+export default class UpdateProfile extends Block<{}> {
+  constructor() {
+    super();
+    initFormFields([
+      'email',
+      'login',
+      'first_name',
+      'second_name',
+      'display_name',
+      'phone',
+    ]);
+  }
+
+  protected initChildren() {
+    this.children.button = new Button(backBtnAtr);
+    const formProps = createUpdateForm();
+    this.children.form = new ProfileForm(formProps);
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, { });
+  }
+}

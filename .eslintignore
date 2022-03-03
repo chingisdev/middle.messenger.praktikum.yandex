@@ -1,5 +1,4 @@
 /dist
 /node_modules
 /.parcel-cache
-src/utils/fakeGenerators.ts
-src/utils/constants/enviroment.ts
+src/utils/constants/environment.ts

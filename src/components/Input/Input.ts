@@ -13,9 +13,6 @@ export interface IInput {
 }
 
 export default class Input extends Block<IInput> {
-  constructor(props: IInput) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

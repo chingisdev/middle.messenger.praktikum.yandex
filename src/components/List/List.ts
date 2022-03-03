@@ -8,9 +8,6 @@ export interface IList {
 }
 
 export default class List extends Block<IList> {
-  constructor(props: IList) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

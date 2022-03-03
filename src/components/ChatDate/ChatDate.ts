@@ -6,9 +6,6 @@ export interface IDate {
 }
 
 export default class ChatDate extends Block<IDate> {
-  constructor(props: IDate) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

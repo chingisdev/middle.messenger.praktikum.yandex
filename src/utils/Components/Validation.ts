@@ -1,16 +1,11 @@
-// TODO: rethink idea, apply validation on every field in List automatically
-
-import { pseudoRouter } from './PseudoRouter';
 import {
   EMAIL_REGEX,
   LOGIN_REGEX,
   NAME_REGEX,
   PASSWORD_REGEX,
-  PHONE_REGEX
-} from '../constants/enviroment';
-
-// TODO: make custom function for validation
-// const message = new RegExp('^.*(?=.+)');
+  PHONE_REGEX,
+} from '../constants/environment';
+import { pseudoRouter } from './PseudoRouter';
 
 export function createPatternValidator() {
   let isValid: boolean = false;
@@ -26,13 +21,18 @@ export function createPatternValidator() {
         isValid = PASSWORD_REGEX.test(value);
         pass = value;
         if (confirmPass) {
-          isValid = isValid && pass === confirmPass;
+          isValid = confirmPass === pass;
         }
         break;
       }
+      case 'old': {
+        isValid = PASSWORD_REGEX.test(value);
+        break;
+      }
       case 'confirm': {
-        isValid = PASSWORD_REGEX.test(value) && value === pass;
+        isValid = PASSWORD_REGEX.test(value);
         confirmPass = value;
+        isValid = confirmPass === pass;
         break;
       }
       case 'login': {
@@ -54,6 +54,10 @@ export function createPatternValidator() {
   };
 }
 
+export function makeEmpty(target) {
+  target.value = '';
+}
+
 export function validation(event, partialClass, field, validator) {
   const insertedValue = event.currentTarget.value;
   let fieldNode = event.target;
@@ -62,19 +66,41 @@ export function validation(event, partialClass, field, validator) {
     fieldNode = fieldNode.parentElement;
     nodeClasses = fieldNode.classList;
   }
-  const isValid = validator(insertedValue, field);
+
+  const isValid = insertedValue ? validator(insertedValue, field) : false;
   const errorClassList = fieldNode.querySelector('span').classList;
-  isValid ? errorClassList.remove('visible') : errorClassList.add('visible');
+  if (isValid) {
+    errorClassList.remove('visible');
+  } else {
+    errorClassList.add('visible');
+  }
 }
 
-export function validateOnSubmit(route: string, validator: (value: string, key: string) => boolean) {
+export function freeAllInput() {
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach((elem) => {
+    elem.textContent = '';
+    elem.value = '';
+  });
+}
+
+export function validateOnSubmit(
+  route: string,
+  validator: (value: string, key: string) => boolean,
+) {
   const validity = Object.entries(window.entranceForm)
-    .every(([key, value]) => validator(value, key.split('_').pop()));
+    .every(([key, value]) => {
+      const field = key.split('_')
+        .pop();
+      const isValid = validator(value, field);
+      return isValid;
+    });
   console.log(window.entranceForm);
   if (!validity) {
-    console.error('Invalid data in login form');
+    console.error('Invalid data in form fields');
   } else {
     window.entranceForm = {};
+    freeAllInput();
     pseudoRouter(route);
   }
 }
@@ -86,5 +112,7 @@ export function saveGlobalForm(field, value) {
 }
 
 export function initFormFields(fields) {
-  fields.forEach(elem => window.entranceForm[elem] = '');
+  fields.forEach((elem) => {
+    window.entranceForm[elem] = '';
+  });
 }

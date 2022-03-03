@@ -7,25 +7,6 @@ import SendMessage from '../ChatSendMessage/SendMessage';
 import ChatDate from '../ChatDate/ChatDate';
 import Message from '../ChatMessage/Message';
 
-export default class ChatWindow extends Block<{}> {
-  protected initChildren() {
-    this.children.header = new Header({
-      name: 'Person',
-      button: new Button(actionBtnAtr),
-    });
-    const prop = generateMessages();
-    this.children.discussion = new List(prop);
-    this.children.message = new SendMessage({
-      attach: new Button(attachBtnAtr),
-      send: new Button(sendBtnAtr),
-    });
-  }
-
-  protected render(): DocumentFragment {
-    return this.compile(template, {});
-  }
-}
-
 const attachBtnAtr: IButton = {
   buttonClass: 'message__attach',
   textVisible: 'hidden',
@@ -63,20 +44,21 @@ function generateMessages(): IList {
   const prop = [];
   const fraze = 'random fraze';
   let count = 0;
-  for (let n = 0; n < 10; n++) {
+  for (let n = 0; n < 10; n += 1) {
     prop[count] = new ChatDate({
       date: `${n + 1} June`,
     });
-    count++;
-    for (let i = 0; i < 10; i++) {
+    count += 1;
+    for (let i = 0; i < 10; i += 1) {
       let message = fraze;
       let j = 0;
-      while (j++ < i % 5) {
+      while (j < i % 5) {
         if (j % 2) {
           message = `${message}    ${message.toUpperCase()} ${message.length}   `;
         } else {
           message = `${message}    ${message.toLowerCase()} ${message.length}   `;
         }
+        j += 1;
       }
       const flag = i % 2 === 0;
       prop[count] = new Message({
@@ -85,7 +67,7 @@ function generateMessages(): IList {
         date: `14:${i < 10 ? `0${i}` : i}`,
         message,
       });
-      count++;
+      count += 1;
     }
   }
   return {
@@ -93,4 +75,23 @@ function generateMessages(): IList {
     listClass: 'discussion__list_wrapper',
     list: prop,
   };
+}
+
+export default class ChatWindow extends Block<{}> {
+  protected initChildren() {
+    this.children.header = new Header({
+      name: 'Person',
+      button: new Button(actionBtnAtr),
+    });
+    const prop = generateMessages();
+    this.children.discussion = new List(prop);
+    this.children.message = new SendMessage({
+      attach: new Button(attachBtnAtr),
+      send: new Button(sendBtnAtr),
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, {});
+  }
 }

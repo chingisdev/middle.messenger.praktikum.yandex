@@ -103,12 +103,6 @@
     align-items: flex-start;
     gap: 10px;
     margin-top: 10px;
-    //border-bottom: 1px solid @borderGray;
-    //margin-bottom: 8px;
-    //
-    //&:nth-last-of-type(1) {
-    //  border-bottom: none;
-    //}
   }
 
   &__field {
@@ -118,11 +112,6 @@
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 1px solid @borderGray;
-    //margin-bottom: 8px;
-
-    //&:nth-last-of-type(1) {
-    //  border-bottom: none;
-    //}
   }
 
   &__field-text {
@@ -139,19 +128,21 @@
   }
 
   &__input {
+    width: 50%;
     text-align: right;
     background-color: transparent;
     border: none;
     font-size: 14px;
     line-height: 17px;
+
     &:focus {
       outline: none;
     }
+
     &:disabled {
       background-color: transparent;
       border: none;
     }
-
   }
 
   &__link {

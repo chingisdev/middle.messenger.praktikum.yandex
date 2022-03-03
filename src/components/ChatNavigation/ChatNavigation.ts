@@ -29,29 +29,19 @@ export const profileBtnAtr: IButton = {
     click: () => pseudoRouter('profile'),
   },
 };
-export default class ChatNavigation extends Block<{}> {
-  protected initChildren() {
-    this.children.button = new Button(profileBtnAtr);
-    this.children.search = new Search(searchAtr);
-    const chatsProp = createChatPreviews();
-    this.children.chats = new List(chatsProp);
-  }
-
-  protected render(): DocumentFragment {
-    return this.compile(template, {});
-  }
-}
 
 function createChatPreviews(): IList {
   const prop = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 20; i += 1) {
     prop.push(new ChatPreview({
       name: 'Batman',
-      lastMessage: 'I wear a mask. And that mask, it’s not to hide who I am, but to create what I am.',
+      lastMessage: 'I wear a mask. '
+        + 'And that mask, it’s not to hide who I am, but to create what I am.',
       lastMessageTime: '23:59',
       unreadQuantity: `${i}`,
       events: {
         click: (event) => {
+          event.preventDefault();
           console.log('click on chat');
         },
       },
@@ -64,3 +54,15 @@ function createChatPreviews(): IList {
   };
 }
 
+export default class ChatNavigation extends Block<{}> {
+  protected initChildren() {
+    this.children.button = new Button(profileBtnAtr);
+    this.children.search = new Search(searchAtr);
+    const chatsProp = createChatPreviews();
+    this.children.chats = new List(chatsProp);
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, {});
+  }
+}

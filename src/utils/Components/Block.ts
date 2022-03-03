@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import EventBus from './eventBus';
-import { LifecycleEvents } from '../constants/enviroment';
+import { LifecycleEvents } from '../constants/environment';
 
 export default class Block<Props extends {}> {
   private static EVENTS = LifecycleEvents;
@@ -192,9 +192,9 @@ export default class Block<Props extends {}> {
             this.children[index] = elem;
             stub[key].push(`<div data-id="id-${elem.id}"></div>`);
           }
-        })
+        });
       }
-    })
+    });
     return stub;
   }
 

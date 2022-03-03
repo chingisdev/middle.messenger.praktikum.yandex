@@ -1,6 +1,5 @@
 {
   "extends": "stylelint-config-standard",
-  "customSyntax": "less",
   "rules": {
     "color-hex-case": "lower"
   },
@@ -10,5 +9,11 @@
   "ignoreFiles": [
     "build/*",
     "dist/*"
+  ],
+  "overrides": [
+    {
+      "files": ["./src/**/*.less", "./src/*.less"],
+      "customSyntax": "postcss-less"
+    }
   ]
 }

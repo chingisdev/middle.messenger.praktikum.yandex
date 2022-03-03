@@ -8,10 +8,6 @@ export interface ISendMessage {
 }
 
 export default class SendMessage extends Block<ISendMessage> {
-  constructor(props: ISendMessage) {
-    super(props);
-  }
-
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }
