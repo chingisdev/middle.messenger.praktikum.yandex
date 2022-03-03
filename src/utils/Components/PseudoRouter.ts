@@ -6,8 +6,8 @@ import Profile from '../../pages/Profile/Profile';
 import ServerError from '../../pages/Error/ServerError';
 import NotFound from '../../pages/Error/NotFound';
 import { ROOT_PATH } from '../constants/enviroment';
-import UpdateProfile from '../../pages/UpdateProfile/UpdateProfile';
-import ChangePassword from '../../pages/ChangePassword/ChangePassword';
+import UpdateProfile from '../../pages/ProfileControls/UpdateProfile';
+import ChangePassword from '../../pages/ProfileControls/ChangePassword';
 
 // TODO: в какой момент удалять слушатели, изучить
 export function pseudoRouter(path: string) {

@@ -1,6 +1,3 @@
-// TODO: rethink idea, apply validation on every field in List automatically
-
-import { pseudoRouter } from './PseudoRouter';
 import {
   EMAIL_REGEX,
   LOGIN_REGEX,
@@ -8,9 +5,7 @@ import {
   PASSWORD_REGEX,
   PHONE_REGEX
 } from '../constants/enviroment';
-
-// TODO: make custom function for validation
-// const message = new RegExp('^.*(?=.+)');
+import { pseudoRouter } from './PseudoRouter';
 
 export function createPatternValidator() {
   let isValid: boolean = false;
