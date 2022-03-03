@@ -72,7 +72,7 @@ const profilePassBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    click: () => console.log('change password button'),
+    click: () => pseudoRouter('change'),
   },
 };
 

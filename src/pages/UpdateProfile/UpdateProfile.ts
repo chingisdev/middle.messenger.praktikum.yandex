@@ -12,7 +12,7 @@ import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Input from '../../components/Input/Input';
 import ProfileForm, { IProfileForm } from '../../components/ProfileForm/ProfileForm';
 
-export default class ProfileUpdateUserInfo extends Block<{}> {
+export default class UpdateProfile extends Block<{}> {
   constructor() {
     super();
     initFormFields([
@@ -79,7 +79,6 @@ const validator = createPatternValidator();
 
 const partialClass = 'profile__part';
 
-const inputSelector = 'profile__input';
 
 const commonInputProps = {
   partialClass,
@@ -89,7 +88,7 @@ const commonInputProps = {
 }
 
 const emailInput: Input = new Input({
-  class: inputSelector,
+  class: 'profile__input',
   type: 'email',
   minLength: '5',
   name: 'email',
@@ -115,7 +114,7 @@ const emailField: IInputField = {
 };
 
 const loginInput: Input = new Input({
-  class: inputSelector,
+  class: 'profile__input',
   placeholder: 'Ivanio',
   type: 'text',
   minLength: '3',
@@ -141,7 +140,7 @@ const loginField: IInputField = {
 };
 
 const firstNameInput = new Input({
-  class: inputSelector,
+  class: 'profile__input',
   placeholder: 'Ivan',
   type: 'text',
   minLength: '2',
@@ -167,7 +166,7 @@ const firstNameField: IInputField = {
 };
 
 const secondNameInput: Input = new Input({
-  class: inputSelector,
+  class: 'profile__input',
   placeholder: 'Ivanov',
   type: 'text',
   minLength: '2',
@@ -193,7 +192,7 @@ const secondNameField: IInputField = {
 };
 
 const displayNameInput: Input = new Input({
-  class: inputSelector,
+  class: 'profile__input',
   placeholder: 'Iva',
   type: 'text',
   minLength: '3',
@@ -219,7 +218,7 @@ const displayNameField: IInputField = {
 };
 
 const phoneInput = new Input({
-  class: inputSelector,
+  class: 'profile__input',
   placeholder: '+7 (909) 967 30 30',
   type: 'text',
   minLength: '10',
