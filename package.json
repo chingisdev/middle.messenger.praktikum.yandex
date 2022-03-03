@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run retreat && npm run build && npm run serve",
     "lint": "eslint ./src/**/**/*.ts ./src/index.ts",
     "fixLint": "/eslint ./src/**/*.ts ./src/**/**/*.ts --fix",
     "stylelint": "stylelint src/styles/*.less src/main.less",
