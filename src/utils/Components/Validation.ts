@@ -13,7 +13,7 @@ import {
 // const message = new RegExp('^.*(?=.+)');
 
 export function createPatternValidator() {
-  let isValid: boolean;
+  let isValid: boolean = false;
   let pass: string = '';
   let confirmPass: string = '';
   return function (value: string, field: string): boolean {
@@ -47,72 +47,44 @@ export function createPatternValidator() {
         isValid = NAME_REGEX.test(value);
         break;
       }
-      default: return false;
+      default:
+        return false;
     }
     return isValid;
   };
 }
 
-export const validator = createPatternValidator();
-
-function toggleErrorClass(isValid: boolean, errorMessageContainer) {
-  if (!isValid) {
-    errorMessageContainer.classList.add('visible');
-  } else {
-    errorMessageContainer.classList.remove('visible');
+export function validation(event, partialClass, field, validator) {
+  const insertedValue = event.currentTarget.value;
+  let fieldNode = event.target;
+  let nodeClasses = fieldNode.classList;
+  while (!nodeClasses.contains(partialClass)) {
+    fieldNode = fieldNode.parentElement;
+    nodeClasses = fieldNode.classList;
   }
+  const isValid = validator(insertedValue, field);
+  const errorClassList = fieldNode.querySelector('span').classList;
+  isValid ? errorClassList.remove('visible') : errorClassList.add('visible');
 }
 
-function getDomElement(rootNode, selector: string) {
-  return rootNode.querySelector(selector);
-}
-
-export function validation(
-  parent: HTMLElement,
-  value: string,
-  field: string,
-  callback: (arg1: string, arg2: string) => boolean,
-) {
-  const isValid = callback(value, field);
-  const errorMessageContainer = getDomElement(parent, '.login__input-error');
-  toggleErrorClass(isValid, errorMessageContainer);
-}
-
-function makeFieldNameFromKey(key: string): string {
-  const keyParts: string[] = key.split('_');
-  return keyParts.pop().trim();
-
-  // key.slice(key.indexOf('_'), key.length).trim();
-}
-
-function checkFormData(data: Record<string, string>) {
-  let isValid = false;
-  Object.entries(data).forEach(([key, value]) => {
-    const newKey = makeFieldNameFromKey(key);
-    isValid = validator(value, newKey);
-    if (!isValid) {
-      return false;
-    }
-  });
-  return isValid;
-}
-
-export function logUserInput(route: string) {
-  const elements = document.querySelectorAll('.login__input');
-  const result = {};
-  elements.forEach((elem: any) => {
-    const name = elem.getAttribute('name');
-    if (elem.value !== '') {
-      result[name] = elem.value;
-    }
-  });
-  console.log(result);
-  let isValid = Object.keys(result).length === elements.length;
-  isValid = isValid ? checkFormData({ ...result }) : isValid;
-
-  if (isValid) {
+export function validateOnSubmit(route: string, validator: (value: string, key: string) => boolean) {
+  const validity = Object.entries(window.entranceForm)
+    .every(([key, value]) => validator(value, key.split('_').pop()));
+  console.log(window.entranceForm);
+  if (!validity) {
+    console.error('Invalid data in login form');
+  } else {
+    window.entranceForm = {};
     pseudoRouter(route);
-  } else {
-    console.error('Invalid data in form');
   }
+}
+
+export function saveGlobalForm(field, value) {
+  if (value) {
+    window.entranceForm[field] = value;
+  }
+}
+
+export function initFormFields(fields) {
+  fields.forEach(elem => window.entranceForm[elem] = '');
 }

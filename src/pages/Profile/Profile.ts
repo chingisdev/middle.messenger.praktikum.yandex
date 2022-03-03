@@ -3,8 +3,9 @@ import Block from '../../utils/Components/Block';
 import Button, { IButton } from '../../components/Button/Button';
 import ProfileName, { IProfileName } from '../../components/ProfileName/ProfileName';
 import List from '../../components/List/List';
-import ProfileField, { IProfileField } from '../../components/ProfileField/ProfileField';
+import InputField, { IInputField } from '../../components/InputField/InputField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import Input from '../../components/Input/Input';
 
 export default class Profile extends Block<{}> {
   protected initChildren() {
@@ -21,19 +22,28 @@ export default class Profile extends Block<{}> {
 
 function createProfileFields() {
   return new List({
-    class: 'profile__list',
+    blockClass: 'profile__list',
     list: [
-      new ProfileField(profileEmail),
-      new ProfileField(profileLogin),
-      new ProfileField(profileFirstName),
-      new ProfileField(profileSecondName),
-      new ProfileField(profileDisplayName),
-      new ProfileField(profilePhone)
+      new InputField(emailField),
+      new InputField(loginField),
+      new InputField(firstNameField),
+      new InputField(secondNameField),
+      new InputField(displayNameField),
+      new InputField(phoneField)
     ]
   });
 }
 
-export const backBtnAtr: IButton = {
+const partialClass = 'profile__part';
+
+const commonInputProps = {
+  partialClass,
+  containerClass: 'profile__field',
+  labelClass: 'profile__field-text profile__field-text_left',
+  errorClass: 'login__input-error',
+}
+
+const backBtnAtr: IButton = {
   buttonClass: 'profile__back-button',
   arrowClass: 'arrow arrow__left',
   divVisible: 'visible',
@@ -50,7 +60,7 @@ const profileUpdateBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    click: () => console.log('update profile button'),
+    click: () => pseudoRouter('update'),
   },
 };
 
@@ -62,7 +72,7 @@ const profilePassBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    click: () => console.log('change password button'),
+    click: () => pseudoRouter('change'),
   },
 };
 
@@ -80,7 +90,7 @@ export const profileExitBtn: IButton = {
 
 function createProfileControlBtn() {
   return new List({
-    class: 'profile__list',
+    blockClass: 'profile__list',
     list: [new Button(profileUpdateBtn), new Button(profilePassBtn), new Button(profileExitBtn)]
   });
 }
@@ -89,33 +99,76 @@ const profileNameAtr: IProfileName = {
   name: 'SomeName',
 };
 
-const profileEmail: IProfileField = {
-  name: 'Email',
-  content: 'pochta@mail.ru',
+
+const emailInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'pochta@mail.ru',
+  disabled: 'disabled',
+});
+
+const emailField: IInputField = {
+  ...commonInputProps,
+  title: 'Email',
+  input: emailInput,
 };
 
-const profileLogin: IProfileField = {
-  name: 'Login',
-  content: 'IvanIvanov',
+const loginInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Ivanio',
+  disabled: 'disabled',
+});
+
+const loginField: IInputField = {
+  ...commonInputProps,
+  title: 'Login',
+  input: loginInput,
 };
 
-const profileFirstName: IProfileField = {
-  name: 'First Name',
-  content: 'Ivan',
+const firstNameInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Ivan',
+  disabled: 'disabled',
+});
+
+const firstNameField: IInputField = {
+  ...commonInputProps,
+  title: 'First Name',
+  input: firstNameInput,
 };
 
-const profileSecondName: IProfileField = {
-  name: 'Second Name',
-  content: 'Ivanov',
+const secondNameInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Ivanov',
+  disabled: 'disabled',
+});
+
+const secondNameField: IInputField = {
+  ...commonInputProps,
+  title: 'Second Name',
+  input: secondNameInput,
 };
 
-const profileDisplayName: IProfileField = {
-  name: 'Display Name',
-  content: 'Ivan',
+const displayNameInput: Input = new Input({
+  class: "profile__input",
+  placeholder: 'Iva',
+  disabled: 'disabled',
+});
+
+const displayNameField: IInputField = {
+  ...commonInputProps,
+  title: 'Display Name',
+  input: displayNameInput,
 };
 
-const profilePhone: IProfileField = {
-  name: 'Phone',
-  content: '+7 (909) 967 30 30',
+const phoneInput: Input = new Input({
+  class: "profile__input",
+  placeholder: '+7 (909) 967 30 30',
+  disabled: 'disabled',
+});
+
+const phoneField: IInputField = {
+  ...commonInputProps,
+  title: 'Phone',
+  input: phoneInput,
 };
 

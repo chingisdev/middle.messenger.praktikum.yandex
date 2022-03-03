@@ -2,7 +2,8 @@ import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 
 export interface IList {
-  class: string,
+  blockClass?: string,
+  listClass?: string,
   list: Block<any>[],
 }
 

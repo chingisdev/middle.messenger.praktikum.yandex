@@ -56,7 +56,7 @@
   width: 100%;
   align-items: center;
   text-align: center;
-  background: @inputGray url("/static/images/loupe.svg") 40% no-repeat;
+  background: @inputGray url("/static/images/loupe.svg") 37% no-repeat;
   margin-bottom: 10px;
 
   &:focus {
@@ -278,19 +278,25 @@
   gap: 10px;
   overflow: hidden;
 
-  &__scroll {
-    overflow-y: scroll;
-    //transform: rotateX(180deg);
-    &::-webkit-scrollbar { width: 0; }
+  &__list {
+    overflow: hidden;
+    width: 100%;
 
-    &::-webkit-scrollbar-track-piece:end {
-      background: transparent;
-      margin-bottom: 10px;
+    &_wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      list-style: outside none none;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      margin: 0 auto;
+      &::-webkit-scrollbar { width: 0; }
     }
   }
 
   &__date {
-    //transform: rotateX(180deg);
     margin: 20px 0;
     font-weight: 500;
     font-size: 12px;
@@ -300,7 +306,6 @@
   }
 
   &__message {
-    //transform: rotateX(180deg);
     display: flex;
     flex-direction: row;
     width: 100%;

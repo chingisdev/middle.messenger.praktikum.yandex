@@ -3,15 +3,14 @@ import template from './template.hbs';
 import List from '../List/List';
 import Button from '../Button/Button';
 
-export interface IEntranceForm {
+export interface IProfileForm {
   fields: List,
   submit: Button,
-  redirect?: Button,
   events?: Record<string, (event) => void>,
 }
 
-export default class EntranceForm extends Block<IEntranceForm> {
-  constructor(props: IEntranceForm) {
+export default class ProfileForm extends Block<IProfileForm> {
+  constructor(props: IProfileForm) {
     super(props);
   }
   protected render(): DocumentFragment {

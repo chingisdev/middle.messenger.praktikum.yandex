@@ -2,9 +2,8 @@
   margin: auto;
   display: flex;
   width: 340px;
-  max-height: 615px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-radius: 12px;
   border: 1px solid @gray;
@@ -87,7 +86,6 @@
     margin-bottom: 8px;
     color: @red;
     display: none;
-    //visibility: hidden;
   }
 
   &__submit-btn {
@@ -129,13 +127,8 @@
   }
 
   &__height {
-    &_login {
-      height: 460px;
-    }
-
-    &_register {
-      height: 615px;
-    }
+    min-height: 40%;
+    max-height: 80%;
   }
 }
 

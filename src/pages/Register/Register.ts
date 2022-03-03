@@ -2,14 +2,24 @@ import Block from '../../utils/Components/Block';
 import EntranceForm, { IEntranceForm } from '../../components/EntranceForm/EntranceForm';
 import template from './template.hbs';
 import List from '../../components/List/List';
-import EntranceField, { IEntranceField } from '../../components/EntranceField/EntranceField';
 import Button, { IButton } from '../../components/Button/Button';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
-import { logUserInput, validation, validator } from '../../utils/Components/Validation';
-import Input, { IInput } from '../../components/Input/Input';
+import {
+  createPatternValidator, saveGlobalForm,
+  validateOnSubmit,
+  validation,
+  initFormFields
+} from '../../utils/Components/Validation';
+import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import InputField, { IInputField } from '../../components/InputField/InputField';
 
 export default class Register extends Block<{}> {
+  constructor() {
+    super();
+    initFormFields(['password', 'email', 'login', 'confirm',
+    'first_name', 'second_name', 'phone']);
+  }
   protected initChildren() {
     const prop = createRegisterProp();
     this.children.form = new EntranceForm(prop);
@@ -20,103 +30,161 @@ export default class Register extends Block<{}> {
   }
 }
 
-const inputEmailAttr: IInput = {
+function createRegisterProp(): IEntranceForm {
+  return {
+    fields: new List({
+      blockClass: 'login__block',
+      list: [
+        new InputField(emailField),
+        new InputField(loginField),
+        new InputField(firstNameField),
+        new InputField(secondNameField),
+        new InputField(phoneField),
+        new InputField(passwordField),
+        new InputField(confirmPassField)
+      ]
+    }),
+    submit: new Button({
+      ...submitBtnAtr,
+      name: 'Register'
+    }),
+    redirect: new Button(registerRedirectBtn),
+    events: {
+      submit: (event) => {
+        event.preventDefault();
+        validateOnSubmit('chat', validator);
+      },
+    },
+  };
+}
+
+const validator = createPatternValidator();
+
+const emailInput: Input = new Input({
+  class: 'login__input',
   type: 'email',
   minLength: '5',
   name: 'email',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
+      saveGlobalForm('email', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'email', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'email', validator);
     }
   },
-};
+});
 
-const inputLoginAttr: IInput = {
+const loginInput: Input = new Input({
+  class: 'login__input',
   type: 'text',
   minLength: '3',
   name: 'login',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'login', validator);
+      saveGlobalForm('login', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'login', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'login', validator);
+    }
   },
-};
+});
 
-const inputPassAttr: IInput = {
+const passwordInput: Input = new Input({
+  class: 'login__input',
   type: 'password',
   minLength: '8',
   name: 'password',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'password', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'password', validator);
+      saveGlobalForm('password', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'password', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'password', validator);
+    }
   },
-};
+});
 
-const inputConfirmPassAttr: IInput = {
+const confirmPassInput: Input = new Input({
+  class: 'login__input',
   type: 'password',
   minLength: '8',
-  name: 'confirm_password',
+  name: 'confirm',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'confirm', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'confirm', validator);
+      saveGlobalForm('confirm', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'confirm', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'confirm', validator);
+    }
   },
-};
+});
 
-const inputFirstNameAttr: IInput = {
+const firstNameInput: Input = new Input({
+  class: 'login__input',
   type: 'text',
   minLength: '2',
   name: 'first_name',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+      saveGlobalForm('first_name', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+    }
   },
-};
+});
 
-const inputSecondNameAttr: IInput = {
+const secondNameInput: Input = new Input({
+  class: 'login__input',
   type: 'text',
   minLength: '2',
   name: 'second_name',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+      saveGlobalForm('second_name', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'name', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'name', validator);
+    }
   },
-};
+});
 
-const inputPhoneAttr: IInput = {
+const phoneInput: Input = new Input({
+  class: 'login__input',
   type: 'text',
   minLength: '10',
   name: 'phone',
   events: {
     blur: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'phone', validator);
+      event.preventDefault();
+      validation(event, partialClass, 'phone', validator);
+      saveGlobalForm('phone', event.currentTarget.value);
     },
     focus: (event) => {
-      validation(event.path[1], event.currentTarget.value, 'phone', validator);
-    },
+      event.preventDefault();
+      validation(event, partialClass, 'phone', validator);
+    }
   },
-};
+});
 
 export const registerRedirectBtn: IButton = {
   textClass: 'login__link login__link_redir',
@@ -130,67 +198,59 @@ export const registerRedirectBtn: IButton = {
   },
 };
 
-function createRegisterProp(): IEntranceForm {
-  return {
-    fields: new List({
-      class: 'login__block',
-      list: [
-        new EntranceField(emailAttr),
-        new EntranceField(loginAttr),
-        new EntranceField(firstNameAttr),
-        new EntranceField(secondNameAttr),
-        new EntranceField(phoneAttr),
-        new EntranceField(passwordAttr),
-        new EntranceField(confirmPasswordAttr)
-      ]
-    }),
-    submit: new Button({
-      ...submitBtnAtr,
-      name: 'Register'
-    }),
-    redirect: new Button(registerRedirectBtn),
-    events: {
-      submit: (event) => {
-        event.preventDefault();
-        logUserInput('chat');
-      },
-    },
-  };
+const partialClass = "login__field-box";
+
+const commonInputProps: IInputField = {
+  errorClass: "login__input-error",
+  labelClass: "login__field-label",
+  partialClass
 }
 
-
-const loginAttr: IEntranceField = {
+const loginField: IInputField = {
+  ...commonInputProps,
   title: 'Login',
   name: 'login',
-  input: new Input(inputLoginAttr),
+  input: loginInput,
 };
-const passwordAttr: IEntranceField = {
+
+const passwordField: IInputField = {
+  ...commonInputProps,
   title: 'Password',
   name: 'password',
-  input: new Input(inputPassAttr),
+  input: passwordInput,
 };
-const firstNameAttr: IEntranceField = {
+
+const firstNameField: IInputField = {
+  ...commonInputProps,
   title: 'First Name',
   name: 'first_name',
-  input: new Input(inputFirstNameAttr),
+  input: firstNameInput,
 };
-const secondNameAttr: IEntranceField = {
+
+const secondNameField: IInputField = {
+  ...commonInputProps,
   title: 'Second Name',
   name: 'second_name',
-  input: new Input(inputSecondNameAttr),
+  input: secondNameInput,
 };
-const phoneAttr: IEntranceField = {
+
+const phoneField: IInputField = {
+  ...commonInputProps,
   title: 'Phone',
   name: 'phone',
-  input: new Input(inputPhoneAttr),
+  input: phoneInput,
 };
-const emailAttr: IEntranceField = {
+
+const emailField: IInputField = {
+  ...commonInputProps,
   title: 'Email',
   name: 'email',
-  input: new Input(inputEmailAttr),
+  input: emailInput,
 };
-const confirmPasswordAttr: IEntranceField = {
+
+const confirmPassField: IInputField = {
+  ...commonInputProps,
   title: 'Confirm Password',
   name: 'password',
-  input: new Input(inputConfirmPassAttr),
+  input: confirmPassInput,
 };
