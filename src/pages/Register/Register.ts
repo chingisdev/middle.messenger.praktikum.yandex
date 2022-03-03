@@ -194,7 +194,10 @@ export const registerRedirectBtn: IButton = {
   name: 'Sign in',
   divVisible: 'hidden',
   events: {
-    click: () => pseudoRouter('login'),
+    click: () => {
+      window.entranceForm = {};
+      pseudoRouter('login')
+    },
   },
 };
 

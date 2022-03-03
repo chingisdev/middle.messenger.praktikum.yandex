@@ -67,7 +67,7 @@ export function validateOnSubmit(route: string, validator: (value: string, key: 
     .every(([key, value]) => validator(value, key.split('_').pop()));
   console.log(window.entranceForm);
   if (!validity) {
-    console.error('Invalid data in login form');
+    console.error('Invalid data in form fields');
   } else {
     window.entranceForm = {};
     pseudoRouter(route);

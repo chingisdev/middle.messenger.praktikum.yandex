@@ -11,6 +11,8 @@ declare global {
   }
 }
 
+window.entranceForm = {};
+
 document.addEventListener('DOMContentLoaded', () => {
   const page = new Login();
   renderDOM(ROOT_PATH, page);

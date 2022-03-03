@@ -1,6 +1,6 @@
 import Block from '../../utils/Components/Block';
 import Button, { IButton } from '../../components/Button/Button';
-import template from './template.hbstemplate.hbs';
+import template from './template.hbs';
 import List from '../../components/List/List';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import {
