@@ -10,9 +10,6 @@ export interface IProfileForm {
 }
 
 export default class ProfileForm extends Block<IProfileForm> {
-  constructor(props: IProfileForm) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

@@ -1,4 +1,4 @@
-import { HttpMethods } from '../constants/enviroment';
+import { HttpMethods } from '../constants/environment';
 
 type TOptions = {
     method: HttpMethods,

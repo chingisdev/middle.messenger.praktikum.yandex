@@ -5,7 +5,7 @@ import Chat from '../../pages/Chat/Chat';
 import Profile from '../../pages/Profile/Profile';
 import ServerError from '../../pages/Error/ServerError';
 import NotFound from '../../pages/Error/NotFound';
-import { ROOT_PATH } from '../constants/enviroment';
+import { ROOT_PATH } from '../constants/environment';
 import UpdateProfile from '../../pages/ProfileControls/UpdateProfile';
 import ChangePassword from '../../pages/ProfileControls/ChangePassword';
 

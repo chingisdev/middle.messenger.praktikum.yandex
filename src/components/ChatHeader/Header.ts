@@ -8,9 +8,6 @@ export interface IHeader {
 }
 
 export default class Header extends Block<IHeader> {
-  constructor(props: IHeader) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

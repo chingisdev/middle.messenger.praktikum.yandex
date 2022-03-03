@@ -11,9 +11,6 @@ export interface IEntranceForm {
 }
 
 export default class EntranceForm extends Block<IEntranceForm> {
-  constructor(props: IEntranceForm) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

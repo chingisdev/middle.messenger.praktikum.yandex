@@ -9,9 +9,6 @@ export interface IMessage {
 }
 
 export default class Message extends Block<IMessage> {
-  constructor(props: IMessage) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

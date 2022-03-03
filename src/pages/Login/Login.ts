@@ -14,21 +14,8 @@ import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import InputField, { IInputField } from '../../components/InputField/InputField';
 
-export default class Login extends Block<{}> {
-  constructor() {
-    super();
-    initFormFields(['password', 'email']);
-  }
-
-  protected initChildren() {
-    const prop = createLoginProp();
-    this.children.form = new EntranceForm(prop);
-  }
-
-  protected render(): DocumentFragment {
-    return this.compile(template, {});
-  }
-}
+const partialClass = 'login__field-box';
+const validator = createPatternValidator();
 
 export const loginRedirectBtn: IButton = {
   textClass: 'login__link login__link_redir',
@@ -40,36 +27,13 @@ export const loginRedirectBtn: IButton = {
   events: {
     click: () => {
       window.entranceForm = {};
-      pseudoRouter('register')
+      pseudoRouter('register');
     },
   },
 };
 
-function createLoginProp(): IEntranceForm {
-  return {
-    fields: new List({
-      listClass: 'login__field-box',
-      blockClass: 'login__block',
-      list: [new InputField(emailField), new InputField(passwordField)]
-    }),
-    submit: new Button({
-      ...submitBtnAtr,
-      name: 'Sign in'
-    }),
-    redirect: new Button(loginRedirectBtn),
-    events: {
-      submit: (event) => {
-        event.preventDefault();
-        validateOnSubmit('chat', validator);
-      },
-    },
-  };
-}
-
-const inputSelector = 'login__input';
-
 const emailInput: Input = new Input({
-  class: inputSelector,
+  class: 'login__input',
   type: 'email',
   minLength: '5',
   name: 'email',
@@ -84,13 +48,11 @@ const emailInput: Input = new Input({
       event.preventDefault();
       validation(event, partialClass, 'email', validator);
     },
-   },
+  },
 });
 
-const validator = createPatternValidator();
-
 const passwordInput: Input = new Input({
-  class: inputSelector,
+  class: 'login__input',
   type: 'password',
   minLength: '8',
   name: 'password',
@@ -104,16 +66,14 @@ const passwordInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'password', validator);
-    }
+    },
   },
 });
-
-const partialClass = 'login__field-box';
 
 const commonInputProps: IInputField = {
   errorClass: 'login__input-error',
   labelClass: 'login__field-label',
-  partialClass
+  partialClass,
 };
 
 const passwordField: IInputField = {
@@ -130,4 +90,39 @@ const emailField: IInputField = {
   input: emailInput,
 };
 
+function createLoginProp(): IEntranceForm {
+  return {
+    fields: new List({
+      listClass: 'login__field-box',
+      blockClass: 'login__block',
+      list: [new InputField(emailField), new InputField(passwordField)],
+    }),
+    submit: new Button({
+      ...submitBtnAtr,
+      name: 'Sign in',
+    }),
+    redirect: new Button(loginRedirectBtn),
+    events: {
+      submit: (event) => {
+        event.preventDefault();
+        validateOnSubmit('chat', validator);
+      },
+    },
+  };
+}
 
+export default class Login extends Block<{}> {
+  constructor() {
+    super();
+    initFormFields(['password', 'email']);
+  }
+
+  protected initChildren() {
+    const prop = createLoginProp();
+    this.children.form = new EntranceForm(prop);
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, {});
+  }
+}

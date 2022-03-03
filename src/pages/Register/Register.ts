@@ -8,57 +8,21 @@ import {
   createPatternValidator, saveGlobalForm,
   validateOnSubmit,
   validation,
-  initFormFields
+  initFormFields,
 } from '../../utils/Components/Validation';
 import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import InputField, { IInputField } from '../../components/InputField/InputField';
 
-export default class Register extends Block<{}> {
-  constructor() {
-    super();
-    initFormFields(['password', 'email', 'login', 'confirm',
-    'first_name', 'second_name', 'phone']);
-  }
-  protected initChildren() {
-    const prop = createRegisterProp();
-    this.children.form = new EntranceForm(prop);
-  }
-
-  protected render(): DocumentFragment {
-    return this.compile(template, {});
-  }
-}
-
-function createRegisterProp(): IEntranceForm {
-  return {
-    fields: new List({
-      blockClass: 'login__block',
-      list: [
-        new InputField(emailField),
-        new InputField(loginField),
-        new InputField(firstNameField),
-        new InputField(secondNameField),
-        new InputField(phoneField),
-        new InputField(passwordField),
-        new InputField(confirmPassField)
-      ]
-    }),
-    submit: new Button({
-      ...submitBtnAtr,
-      name: 'Register'
-    }),
-    redirect: new Button(registerRedirectBtn),
-    events: {
-      submit: (event) => {
-        event.preventDefault();
-        validateOnSubmit('chat', validator);
-      },
-    },
-  };
-}
-
 const validator = createPatternValidator();
+
+const partialClass = 'login__field-box';
+
+const commonInputProps: IInputField = {
+  errorClass: 'login__input-error',
+  labelClass: 'login__field-label',
+  partialClass,
+};
 
 const emailInput: Input = new Input({
   class: 'login__input',
@@ -74,7 +38,7 @@ const emailInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'email', validator);
-    }
+    },
   },
 });
 
@@ -92,7 +56,7 @@ const loginInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'login', validator);
-    }
+    },
   },
 });
 
@@ -110,7 +74,7 @@ const passwordInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'password', validator);
-    }
+    },
   },
 });
 
@@ -128,7 +92,7 @@ const confirmPassInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'confirm', validator);
-    }
+    },
   },
 });
 
@@ -146,7 +110,7 @@ const firstNameInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'name', validator);
-    }
+    },
   },
 });
 
@@ -164,7 +128,7 @@ const secondNameInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'name', validator);
-    }
+    },
   },
 });
 
@@ -182,7 +146,7 @@ const phoneInput: Input = new Input({
     focus: (event) => {
       event.preventDefault();
       validation(event, partialClass, 'phone', validator);
-    }
+    },
   },
 });
 
@@ -196,18 +160,10 @@ export const registerRedirectBtn: IButton = {
   events: {
     click: () => {
       window.entranceForm = {};
-      pseudoRouter('login')
+      pseudoRouter('login');
     },
   },
 };
-
-const partialClass = "login__field-box";
-
-const commonInputProps: IInputField = {
-  errorClass: "login__input-error",
-  labelClass: "login__field-label",
-  partialClass
-}
 
 const loginField: IInputField = {
   ...commonInputProps,
@@ -257,3 +213,48 @@ const confirmPassField: IInputField = {
   name: 'password',
   input: confirmPassInput,
 };
+
+function createRegisterProp(): IEntranceForm {
+  return {
+    fields: new List({
+      blockClass: 'login__block',
+      list: [
+        new InputField(emailField),
+        new InputField(loginField),
+        new InputField(firstNameField),
+        new InputField(secondNameField),
+        new InputField(phoneField),
+        new InputField(passwordField),
+        new InputField(confirmPassField),
+      ],
+    }),
+    submit: new Button({
+      ...submitBtnAtr,
+      name: 'Register',
+    }),
+    redirect: new Button(registerRedirectBtn),
+    events: {
+      submit: (event) => {
+        event.preventDefault();
+        validateOnSubmit('chat', validator);
+      },
+    },
+  };
+}
+
+export default class Register extends Block<{}> {
+  constructor() {
+    super();
+    initFormFields(['password', 'email', 'login', 'confirm',
+      'first_name', 'second_name', 'phone']);
+  }
+
+  protected initChildren() {
+    const prop = createRegisterProp();
+    this.children.form = new EntranceForm(prop);
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, {});
+  }
+}

@@ -7,9 +7,6 @@ export interface ISearch {
 }
 
 export default class Search extends Block<ISearch> {
-  constructor(props: ISearch) {
-    super(props);
-  }
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }
