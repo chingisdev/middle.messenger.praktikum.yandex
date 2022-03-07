@@ -14,7 +14,19 @@ https://github.com/chingisdev/middle.messenger.praktikum.yandex/pull/2
 4: пишем команду: npm install <br/>
 5: пишем команду: npm start <br />
 6: Копируем 'localhost:3000/' и вставляем в поисковую строку в браузере <br />
+
+### ссылка на Pull request
+
+=======
 ### ссылка на макет Figma
 https://www.figma.com/file/Sxfam3gU1Bn2zdmeKVN2r7/Messager?node-id=0%3A1
 ### ссылка на задеплоенный проект в netlify
 https://chingis-yandex-messenger.netlify.app/
+
+### Описание добавленного во 2 спринте функционала
+1: Декомпозиция на компоненты
+2: Имплементация typescript
+3: Компоненты EventBus, Block, HTTPTransport
+4: Сделаны фейковые генерации объектов
+5: Имплементирован псевдо роутер (для реализации SPA подхода)
+

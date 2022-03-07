@@ -1,22 +1,25 @@
 .error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+
+  &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 50px;
-    &__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    };
-    &__code {
-        font-size: 40px;
-        font-weight: 700;
-        margin: 10px;
-    };
-    &__message {
-        font-size: 20px;
-        font-weight: 400;
-        margin: 10px;
-    };
+  }
+
+  &__code {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 10px;
+  }
+
+  &__message {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px;
+  }
 }
