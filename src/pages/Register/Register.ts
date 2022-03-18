@@ -13,6 +13,7 @@ import {
 import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import InputField, { IInputField } from '../../components/InputField/InputField';
+import { router } from '../../utils/Components/Router';
 
 const validator = createPatternValidator();
 
@@ -160,7 +161,8 @@ export const registerRedirectBtn: IButton = {
   events: {
     click: () => {
       window.entranceForm = {};
-      pseudoRouter('login');
+      // pseudoRouter('login');
+      router.go('/signin');
     },
   },
 };

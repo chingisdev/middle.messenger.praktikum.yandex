@@ -68,6 +68,7 @@ function createProfileControlBtn() {
   });
 }
 
+//TODO: Реализовать раздачу из globalState. Пока что всё еще заглушки задействованы
 const profileNameAtr: IProfileName = {
   name: 'SomeName',
 };

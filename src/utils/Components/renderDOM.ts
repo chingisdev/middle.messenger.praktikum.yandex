@@ -9,7 +9,5 @@ export function renderDOM(rootSelector: string, component: Block<any>) {
 
   component.dispatchComponentDidMount();
 
-  root.innerHTML = '';
-
   root.append(component.getContent());
 }

@@ -153,6 +153,8 @@ export default class Block<Props extends {}> {
   }
 
   show() {
+    console.log('show');
+    console.log(this.getContent());
     this.getContent().style.display = 'block';
   }
 

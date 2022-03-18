@@ -58,8 +58,8 @@ export default class ChatNavigation extends Block<{}> {
   protected initChildren() {
     this.children.button = new Button(profileBtnAtr);
     this.children.search = new Search(searchAtr);
-    const chatsProp = createChatPreviews();
-    this.children.chats = new List(chatsProp);
+    // const chatsProp = createChatPreviews();
+    // this.children.chats = new List(chatsProp);
   }
 
   protected render(): DocumentFragment {

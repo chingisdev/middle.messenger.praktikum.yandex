@@ -36,6 +36,7 @@ const commonInputProps = {
   errorClass: 'login__input-error',
 };
 
+//TODO: в полях инпутов placeholder ДОЛЖЕН СОДЕРЖАТЬ инфу из global state.
 const emailInput: Input = new Input({
   class: 'profile__input',
   type: 'email',

@@ -80,11 +80,11 @@ function generateMessages(): IList {
 export default class ChatWindow extends Block<{}> {
   protected initChildren() {
     this.children.header = new Header({
-      name: 'Person',
+      // name: 'Person',
       button: new Button(actionBtnAtr),
     });
-    const prop = generateMessages();
-    this.children.discussion = new List(prop);
+    // const prop = generateMessages();
+    // this.children.discussion = new List(prop);
     this.children.message = new SendMessage({
       attach: new Button(attachBtnAtr),
       send: new Button(sendBtnAtr),

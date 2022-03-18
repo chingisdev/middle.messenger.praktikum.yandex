@@ -13,6 +13,7 @@ import {
 import Input from '../../components/Input/Input';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import InputField, { IInputField } from '../../components/InputField/InputField';
+import { router } from '../../utils/Components/Router';
 
 const partialClass = 'login__field-box';
 const validator = createPatternValidator();
@@ -27,7 +28,8 @@ export const loginRedirectBtn: IButton = {
   events: {
     click: () => {
       window.entranceForm = {};
-      pseudoRouter('register');
+      // pseudoRouter('register');
+      router.go('/signup');
     },
   },
 };
