@@ -8,7 +8,7 @@ export interface IMessage {
   message: string,
 }
 
-export default class Message extends Block<IMessage> {
+export class Message extends Block<IMessage> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

@@ -1,15 +1,17 @@
-import Login from '../../pages/Login/Login';
-import { renderDOM } from './renderDOM';
-import Register from '../../pages/Register/Register';
-import Chat from '../../pages/Chat/Chat';
-import Profile from '../../pages/Profile/Profile';
-import ServerError from '../../pages/Error/ServerError';
-import NotFound from '../../pages/Error/NotFound';
-import { ROOT_PATH } from '../constants/environment';
-import UpdateProfile from '../../pages/ProfileControls/UpdateProfile';
-import ChangePassword from '../../pages/ProfileControls/ChangePassword';
+
 
 // TODO: в какой момент удалять слушатели, изучить
+import ChangePassword from '../../pages/ChangePass';
+import UpdateProfile from '../../pages/UpdateProfile';
+import Register from '../../pages/Register';
+import ServerError from '../../pages/ServerError';
+import Chat from '../../pages/Chat/Chat';
+import { ROOT_PATH } from '../constants/environment';
+import { renderDOM } from './renderDOM';
+import Login from '../../pages/Login';
+import Profile from '../../pages/Profile';
+import NotFound from '../../pages/NotFoundErr';
+
 export function pseudoRouter(path: string) {
   switch (path.toLowerCase()) {
     case 'login': {

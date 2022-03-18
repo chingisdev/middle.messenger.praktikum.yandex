@@ -1,19 +1,19 @@
-import Block from '../../utils/Components/Block';
-import template from './template.hbs';
-import EntranceForm, { IEntranceForm } from '../../components/EntranceForm/EntranceForm';
-import List from '../../components/List/List';
-import Button, { IButton } from '../../components/Button/Button';
-import { submitBtnAtr } from '../../utils/constants/redirectButtons';
+import { EntranceForm, IEntranceForm } from '../../components/EntranceForm/EntranceForm';
 import {
-  createPatternValidator, saveGlobalForm,
-  validateOnSubmit,
-  validation,
-  initFormFields,
+  createPatternValidator,
+  initFormFields, saveGlobalForm,
+  validateOnSubmit, validation
 } from '../../utils/Components/Validation';
-import Input from '../../components/Input/Input';
-import { pseudoRouter } from '../../utils/Components/PseudoRouter';
-import InputField, { IInputField } from '../../components/InputField/InputField';
+import InputField from '../../components/InputField';
+import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import { router } from '../../utils/Components/Router';
+import Input from '../../components/Input';
+import { IInputField } from '../../components/InputField/InputField';
+import Button from '../../components/Button';
+import { IButton } from '../../components/Button/Button';
+import Block from '../../utils/Components/Block';
+import List from '../../components/List';
+import template from './template.hbs';
 
 const partialClass = 'login__field-box';
 const validator = createPatternValidator();
@@ -113,7 +113,7 @@ function createLoginProp(): IEntranceForm {
   };
 }
 
-export default class Login extends Block<{}> {
+export class Login extends Block<{}> {
   constructor() {
     super();
     initFormFields(['password', 'email']);

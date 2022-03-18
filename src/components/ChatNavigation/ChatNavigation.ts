@@ -1,10 +1,12 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import Button, { IButton } from '../Button/Button';
-import Search, { ISearch } from '../ChatSearch/Search';
-import List, { IList } from '../List/List';
-import ChatPreview from '../ChatPreview/ChatPreview';
+import Button from '../Button';
+import { IButton } from '../Button/Button';
+import { ISearch, Search } from '../ChatSearch/Search';
+import ChatPreview from '../ChatPreview';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import { IList } from '../List/List';
+
 
 export const searchAtr: ISearch = {
   searchClass: 'search-input',
@@ -54,7 +56,7 @@ function createChatPreviews(): IList {
   };
 }
 
-export default class ChatNavigation extends Block<{}> {
+export class ChatNavigation extends Block<{}> {
   protected initChildren() {
     this.children.button = new Button(profileBtnAtr);
     this.children.search = new Search(searchAtr);

@@ -1,11 +1,12 @@
-import template from './template.hbs';
-import Block from '../../utils/Components/Block';
-import Button, { IButton } from '../../components/Button/Button';
-import ProfileName, { IProfileName } from '../../components/ProfileName/ProfileName';
-import List from '../../components/List/List';
-import InputField, { IInputField } from '../../components/InputField/InputField';
+import { Button, IButton } from '../../components/Button/Button';
+import Input from '../../components/Input';
+import { IInputField, InputField } from '../../components/InputField/InputField';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
-import Input from '../../components/Input/Input';
+import Block from '../../utils/Components/Block';
+import List from '../../components/List';
+import ProfileName from '../../components/ProfileName';
+import { IProfileName } from '../../components/ProfileName/ProfileName';
+import template from './template.hbs';
 
 const partialClass = 'profile__part';
 
@@ -159,7 +160,7 @@ function createProfileFields() {
   });
 }
 
-export default class Profile extends Block<{}> {
+export class Profile extends Block<{}> {
   protected initChildren() {
     this.children.button = new Button(backBtnAtr);
     this.children.name = new ProfileName(profileNameAtr);

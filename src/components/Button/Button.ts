@@ -12,7 +12,7 @@ export interface IButton {
   events?: Record<string, (event) => void>,
 }
 
-export default class Button extends Block<IButton> {
+export class Button extends Block<IButton> {
   render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

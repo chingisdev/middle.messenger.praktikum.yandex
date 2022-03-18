@@ -6,7 +6,7 @@ export interface ISearch {
   events?: Record<string, (event) => void>
 }
 
-export default class Search extends Block<ISearch> {
+export class Search extends Block<ISearch> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

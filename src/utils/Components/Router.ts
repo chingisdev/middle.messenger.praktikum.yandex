@@ -2,8 +2,9 @@ import Block from './Block';
 import { renderDOM } from './renderDOM';
 import isEqual from '../utilFunctions/isEqual';
 import { ROOT_PATH } from '../constants/environment';
-import Login from '../../pages/Login/Login';
-import Register from '../../pages/Register/Register';
+import Register from '../../pages/Register';
+import Login from '../../pages/Login';
+
 
 class Route {
   private block: Block<any> | null;
@@ -119,3 +120,17 @@ router
   .use('/signup', Register);
 
 export { Router, router };
+
+export interface IWithRouterProps {
+  router: Router;
+}
+
+export function withRouter(Component: typeof Block) {
+  return class WithRouter extends Component<any> {
+    public static componentName = Component.name;
+
+    constructor(props: any) {
+      super({...props, router: new Router('')});
+    }
+  }
+}

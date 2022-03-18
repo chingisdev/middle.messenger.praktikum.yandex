@@ -1,11 +1,10 @@
+import Header from '../ChatHeader';
+import Button from '../Button';
+import { IButton } from '../Button/Button';
 import Block from '../../utils/Components/Block';
+import { IList } from '../List/List';
+import SendMessage from '../ChatSendMessage';
 import template from './template.hbs';
-import List, { IList } from '../List/List';
-import Header from '../ChatHeader/Header';
-import Button, { IButton } from '../Button/Button';
-import SendMessage from '../ChatSendMessage/SendMessage';
-import ChatDate from '../ChatDate/ChatDate';
-import Message from '../ChatMessage/Message';
 
 const attachBtnAtr: IButton = {
   buttonClass: 'message__attach',
@@ -44,32 +43,32 @@ function generateMessages(): IList {
   const prop = [];
   const fraze = 'random fraze';
   let count = 0;
-  for (let n = 0; n < 10; n += 1) {
-    prop[count] = new ChatDate({
-      date: `${n + 1} June`,
-    });
-    count += 1;
-    for (let i = 0; i < 10; i += 1) {
-      let message = fraze;
-      let j = 0;
-      while (j < i % 5) {
-        if (j % 2) {
-          message = `${message}    ${message.toUpperCase()} ${message.length}   `;
-        } else {
-          message = `${message}    ${message.toLowerCase()} ${message.length}   `;
-        }
-        j += 1;
-      }
-      const flag = i % 2 === 0;
-      prop[count] = new Message({
-        positionClass: flag ? 'left' : 'right',
-        backgroundClass: flag ? 'left' : 'right',
-        date: `14:${i < 10 ? `0${i}` : i}`,
-        message,
-      });
-      count += 1;
-    }
-  }
+  // for (let n = 0; n < 10; n += 1) {
+  //   prop[count] = new ChatDate({
+  //     date: `${n + 1} June`,
+  //   });
+  //   count += 1;
+  //   for (let i = 0; i < 10; i += 1) {
+  //     let message = fraze;
+  //     let j = 0;
+  //     while (j < i % 5) {
+  //       if (j % 2) {
+  //         message = `${message}    ${message.toUpperCase()} ${message.length}   `;
+  //       } else {
+  //         message = `${message}    ${message.toLowerCase()} ${message.length}   `;
+  //       }
+  //       j += 1;
+  //     }
+  //     const flag = i % 2 === 0;
+  //     prop[count] = new Message({
+  //       positionClass: flag ? 'left' : 'right',
+  //       backgroundClass: flag ? 'left' : 'right',
+  //       date: `14:${i < 10 ? `0${i}` : i}`,
+  //       message,
+  //     });
+  //     count += 1;
+  //   }
+  // }
   return {
     blockClass: 'discussion__list',
     listClass: 'discussion__list_wrapper',
@@ -77,7 +76,7 @@ function generateMessages(): IList {
   };
 }
 
-export default class ChatWindow extends Block<{}> {
+export class ChatWindow extends Block<{}> {
   protected initChildren() {
     this.children.header = new Header({
       // name: 'Person',

@@ -7,7 +7,7 @@ export interface IList {
   list: Block<any>[],
 }
 
-export default class List extends Block<IList> {
+export class List extends Block<IList> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

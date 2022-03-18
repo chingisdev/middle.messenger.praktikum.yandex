@@ -1,7 +1,7 @@
+import Button from '../Button';
 import Block from '../../utils/Components/Block';
+import List from '../List';
 import template from './template.hbs';
-import List from '../List/List';
-import Button from '../Button/Button';
 
 export interface IEntranceForm {
   fields: List,
@@ -10,7 +10,7 @@ export interface IEntranceForm {
   events?: Record<string, (event) => void>,
 }
 
-export default class EntranceForm extends Block<IEntranceForm> {
+export class EntranceForm extends Block<IEntranceForm> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

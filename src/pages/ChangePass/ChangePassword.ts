@@ -1,17 +1,18 @@
-import template from './template.hbs';
-import Block from '../../utils/Components/Block';
+import { Button, IButton } from '../../components/Button/Button';
 import {
-  createPatternValidator, freeAllInput,
-  initFormFields, makeEmpty, saveGlobalForm,
-  validateOnSubmit, validation,
+  createPatternValidator, freeAllInput, initFormFields,
+  makeEmpty, saveGlobalForm,
+  validateOnSubmit, validation
 } from '../../utils/Components/Validation';
-import Button, { IButton } from '../../components/Button/Button';
-import ProfileForm, { IProfileForm } from '../../components/ProfileForm/ProfileForm';
-import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import InputField from '../../components/InputField';
+import { IProfileForm, ProfileForm } from '../../components/ProfileForm/ProfileForm';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
-import List from '../../components/List/List';
-import InputField, { IInputField } from '../../components/InputField/InputField';
-import Input from '../../components/Input/Input';
+import Input from '../../components/Input';
+import { IInputField } from '../../components/InputField/InputField';
+import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import Block from '../../utils/Components/Block';
+import List from '../../components/List';
+import template from './template.hbs';
 
 const validator = createPatternValidator();
 
@@ -146,7 +147,7 @@ function createUpdateForm(): IProfileForm {
   };
 }
 
-export default class ChangePassword extends Block<{}> {
+export class ChangePassword extends Block<{}> {
   constructor() {
     super();
     initFormFields([

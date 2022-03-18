@@ -1,6 +1,6 @@
+import { IMessage } from '../ChatMessage/Message';
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import { IMessage } from '../ChatMessage/Message';
 
 interface IChatPreview {
   name: string,
@@ -12,7 +12,7 @@ interface IChatPreview {
   events?: Record<string, (event) => void>,
 }
 
-export default class ChatPreview extends Block<IChatPreview> {
+export class ChatPreview extends Block<IChatPreview> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

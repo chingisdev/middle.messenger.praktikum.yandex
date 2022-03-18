@@ -1,16 +1,19 @@
-import Block from '../../utils/Components/Block';
-import Button, { IButton } from '../../components/Button/Button';
-import template from './template.hbs';
-import List from '../../components/List/List';
-import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import {
-  createPatternValidator, freeAllInput, initFormFields, saveGlobalForm, validateOnSubmit,
-  validation,
+  createPatternValidator,
+  freeAllInput, initFormFields, saveGlobalForm,
+  validateOnSubmit, validation
 } from '../../utils/Components/Validation';
-import InputField, { IInputField } from '../../components/InputField/InputField';
+import InputField from '../../components/InputField';
+import { IProfileForm, ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import { submitBtnAtr } from '../../utils/constants/redirectButtons';
+import Input from '../../components/Input';
+import { IInputField } from '../../components/InputField/InputField';
+import Button from '../../components/Button';
+import { IButton } from '../../components/Button/Button';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
-import Input from '../../components/Input/Input';
-import ProfileForm, { IProfileForm } from '../../components/ProfileForm/ProfileForm';
+import Block from '../../utils/Components/Block';
+import List from '../../components/List';
+import template from './template.hbs';
 
 const backBtnAtr: IButton = {
   buttonClass: 'profile__back-button',
@@ -224,7 +227,7 @@ function createUpdateForm(): IProfileForm {
   };
 }
 
-export default class UpdateProfile extends Block<{}> {
+export class UpdateProfile extends Block<{}> {
   constructor() {
     super();
     initFormFields([

@@ -5,7 +5,7 @@ export interface IDate {
   date: string,
 }
 
-export default class ChatDate extends Block<IDate> {
+export class ChatDate extends Block<IDate> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

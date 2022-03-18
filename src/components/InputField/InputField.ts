@@ -1,6 +1,6 @@
-import template from './template.hbs';
+import Input from '../Input';
 import Block from '../../utils/Components/Block';
-import Input from '../Input/Input';
+import template from './template.hbs';
 
 export interface IInputField {
   partialClass?: string,
@@ -12,7 +12,7 @@ export interface IInputField {
   input?: Input
 }
 
-export default class InputField extends Block<IInputField> {
+export class InputField extends Block<IInputField> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

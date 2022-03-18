@@ -1,5 +1,5 @@
-import template from './template.hbs';
 import Block from '../../utils/Components/Block';
+import template from './template.hbs';
 
 export interface IInput {
   class: string,
@@ -12,7 +12,7 @@ export interface IInput {
   events?: Record<string, (event) => void>
 }
 
-export default class Input extends Block<IInput> {
+export class Input extends Block<IInput> {
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }
