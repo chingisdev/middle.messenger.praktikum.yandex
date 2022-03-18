@@ -9,5 +9,6 @@ declare global {
 window.entranceForm = {};
 
 document.addEventListener('DOMContentLoaded', () => {
+  router.start();
   router.go('/signin');
 });
