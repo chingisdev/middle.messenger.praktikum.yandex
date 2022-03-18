@@ -22,34 +22,43 @@ function queryStringify(data): string {
 }
 
 export class HTTPTransport {
-  get<IResponse>(url: string, options: any): Promise<IResponse> {
+  //TODO: add url
+  static API_URL: string = '';
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
+
+
+  get<IResponse>(path: string, options: any): Promise<IResponse> {
     const data = options.data ? queryStringify(options.data) : null;
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: HttpMethods.GET, data },
       options.timeout,
     );
   }
 
-  put<IResponse>(url: string, options: any): Promise<IResponse> {
+  put<IResponse>(path: string, options: any): Promise<IResponse> {
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: HttpMethods.PUT },
       options.timeout,
     );
   }
 
-  post<IResponse>(url: string, options: any): Promise<IResponse> {
+  post<IResponse>(path: string, options: any): Promise<IResponse> {
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: HttpMethods.POST },
       options.timeout,
     );
   }
 
-  delete<IResponse>(url: string, options: any): Promise<IResponse> {
+  delete<IResponse>(path: string, options: any): Promise<IResponse> {
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: HttpMethods.DELETE },
       options.timeout,
     );
