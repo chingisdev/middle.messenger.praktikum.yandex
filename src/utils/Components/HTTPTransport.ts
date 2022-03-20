@@ -1,4 +1,5 @@
 import { HttpMethods } from '../constants/environment';
+import queryStringify from '../utilFunctions/queryStringify';
 
 type TOptions = {
     method: HttpMethods,
@@ -6,24 +7,9 @@ type TOptions = {
     headers?: Record<string, string>,
 }
 
-// TODO: побаловаться с редьюсом.
-function queryStringify(data): string {
-  let result;
-  if (data) {
-    result = '?';
-  } else {
-    return '';
-  }
-  Object.entries(data).forEach(([key, value]) => {
-    result = `${result}${key}=${value.toString()}&`;
-  });
-  result = result.slice(0, result.length - 1);
-  return result;
-}
-
 export class HTTPTransport {
   //TODO: add url
-  static API_URL: string = '';
+  static API_URL: string = 'ya-praktikum.tech/api/v2';
   protected endpoint: string;
 
   constructor(endpoint: string) {

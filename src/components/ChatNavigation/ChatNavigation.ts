@@ -6,6 +6,7 @@ import { ISearch, Search } from '../ChatSearch/Search';
 import ChatPreview from '../ChatPreview';
 import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import { IList } from '../List/List';
+import { router } from '../../utils/Components/Router';
 
 
 export const searchAtr: ISearch = {
@@ -28,7 +29,7 @@ export const profileBtnAtr: IButton = {
   arrowClass: 'navigation__profile-arrow arrow__right',
   divVisible: 'visible',
   events: {
-    click: () => pseudoRouter('profile'),
+    click: () => router.go('/profile'),
   },
 };
 

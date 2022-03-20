@@ -4,6 +4,7 @@ import isEqual from '../utilFunctions/isEqual';
 import { ROOT_PATH } from '../constants/environment';
 import Register from '../../pages/Register';
 import Login from '../../pages/Login';
+import Profile from '../../pages/Profile';
 
 
 class Route {
@@ -116,10 +117,12 @@ class Router {
 
 const router = new Router(ROOT_PATH);
 router
-  .use('/signin', Login)
-  .use('/signup', Register);
+  .use('/', Login)
+  .use('/signup', Register)
+  .use('/profile', Profile);
 
 export { Router, router };
+/*
 
 export interface IWithRouterProps {
   router: Router;
@@ -134,3 +137,4 @@ export function withRouter(Component: typeof Block) {
     }
   }
 }
+*/
