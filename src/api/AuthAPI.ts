@@ -32,11 +32,11 @@ export default class AuthAPI extends BaseAPI {
     return this.http.post('/logout', null);
   }
 
-  public create?(identifier: string): Promise<unknown> {
-    throw new Error('Method \'read\' not implemented.');
+  public read(): Promise<unknown> {
+    return this.http.get('/user');
   }
 
-  public read?(identifier: string): Promise<unknown> {
+  public create?(identifier: string): Promise<unknown> {
     throw new Error('Method \'read\' not implemented.');
   }
 

@@ -16,9 +16,10 @@ export class HTTPTransport {
   }
 
 
-  get<IResponse>(path: string = '/', data: any): Promise<IResponse> {
-    const query = data ? queryStringify(data) : null;
-    return this.request(this.endpoint + path + query);
+  get<IResponse>(path: string = '/'): Promise<IResponse> {
+    // const query = data ? queryStringify(data) : null;
+    // return this.request(this.endpoint + path + query);
+    return this.request(this.endpoint + path);
   }
 
   put<IResponse>(path: string, data: any): Promise<IResponse> {
@@ -78,7 +79,7 @@ export class HTTPTransport {
 
 
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+      // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 
       if (headers) {
         Object.entries(headers).forEach(([key, value]) => {
@@ -89,6 +90,7 @@ export class HTTPTransport {
       }
 
       xhr.withCredentials = true;
+      xhr.responseType = 'json';
 
       if (method === HttpMethods.GET || !data) {
         xhr.send();

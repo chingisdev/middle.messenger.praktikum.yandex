@@ -161,6 +161,11 @@ function createProfileFields() {
 }
 
 export class Profile extends Block<{}> {
+  constructor(props) {
+    console.log(props);
+    super(props);
+  }
+
   protected initChildren() {
     this.children.button = new Button(backBtnAtr);
     this.children.name = new ProfileName(profileNameAtr);
@@ -168,7 +173,13 @@ export class Profile extends Block<{}> {
     this.children.control = createProfileControlBtn();
   }
 
+  expandProps(props) {
+
+  }
+
+
   protected render(): DocumentFragment {
+    // return this.compile(template, this.props);
     return this.compile(template, { });
   }
 }

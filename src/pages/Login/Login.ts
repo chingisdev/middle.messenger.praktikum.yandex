@@ -115,8 +115,8 @@ function createLoginProp(): TForm {
           try {
             await AuthController.signOut();
           } catch (e) {
-            const { reason } = JSON.parse(e);
-            console.log(reason);
+            // const { reason } = JSON.parse(e);
+            console.log(e);
           }
         }
       }

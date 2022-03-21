@@ -1,4 +1,6 @@
 import AuthAPI, { ISignInData, ISignUpData } from '../api/AuthAPI';
+import store from '../utils/Components/Store';
+import { router } from '../utils/Components/Router';
 
 export interface ControllerSignUpData extends ISignUpData {
   confirm: string;
@@ -21,6 +23,9 @@ class AuthController {
     if (response.reason) {
       throw new Error(response.reason);
     }
+
+    await this.fetchUser();
+    router.go('/profile');
   }
 
   async signIn(data: ISignInData) {
@@ -32,6 +37,12 @@ class AuthController {
     if (response.status !== 200) {
       throw new Error('Can not logout');
     }
+    router.go('/');
+  }
+
+  async fetchUser() {
+    const user = await this.api.read();
+    store.set('currentUser', user);
   }
 }
 

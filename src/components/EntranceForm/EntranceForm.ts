@@ -5,6 +5,7 @@ import template from './template.hbs';
 import { merge } from '../../utils/utilFunctions/merge';
 import AuthController, { ControllerSignUpData } from '../../controllers/AuthController';
 import { ISignInData } from '../../api/AuthAPI';
+import { router } from '../../utils/Components/Router';
 // import { ISignUpData } from '../../api/AuthAPI';
 // import {
 //   createPatternValidator,
@@ -63,8 +64,9 @@ export class EntranceForm extends Block<TForm> {
     merge(data, window.entranceForm);
     try {
       await AuthController.signIn(data as ISignInData);
-    } catch (e) {
-      alert(e.message);
+      // router.go('/profile');
+    } catch (err) {
+      alert(err.message);
     }
   }
 
@@ -76,8 +78,8 @@ export class EntranceForm extends Block<TForm> {
     // if (validity)
     try {
       await AuthController.signUp(data as ControllerSignUpData);
-    } catch (e) {
-      alert(e.message);
+    } catch (err) {
+      alert(err.message);
     }
   }
 
