@@ -1,7 +1,6 @@
-import { EntranceForm, IEntranceForm } from '../../components/EntranceForm/EntranceForm';
+import { EntranceForm, IEntranceForm, TForm } from '../../components/EntranceForm/EntranceForm';
 import {
-  createPatternValidator,
-  initFormFields, saveGlobalForm,
+  initFormFields, saveGlobalForm, validator,
   validateOnSubmit, validation
 } from '../../utils/Components/Validation';
 import InputField from '../../components/InputField';
@@ -14,10 +13,11 @@ import { IButton } from '../../components/Button/Button';
 import Block from '../../utils/Components/Block';
 import List from '../../components/List';
 import template from './template.hbs';
+import AuthController from '../../controllers/AuthController';
 
 const partialClass = 'login__field-box';
-const validator = createPatternValidator();
 
+//TODO: вынести добавление эвентов инпута в логику компонента
 export const loginRedirectBtn: IButton = {
   textClass: 'login__link login__link_redir',
   buttonClass: 'login__redirect',
@@ -34,21 +34,21 @@ export const loginRedirectBtn: IButton = {
   },
 };
 
-const emailInput: Input = new Input({
+const loginInput: Input = new Input({
   class: 'login__input',
-  type: 'email',
-  minLength: '5',
-  name: 'email',
+  type: 'login',
+  minLength: '3',
+  name: 'login',
   required: 'required',
   events: {
     blur: (event) => {
       event.preventDefault();
-      validation(event, partialClass, 'email', validator);
-      saveGlobalForm('email', event.currentTarget.value);
+      validation(event, partialClass, 'login', validator);
+      saveGlobalForm('login', event.currentTarget.value);
     },
     focus: (event) => {
       event.preventDefault();
-      validation(event, partialClass, 'email', validator);
+      validation(event, partialClass, 'login', validator);
     },
   },
 });
@@ -85,31 +85,49 @@ const passwordField: IInputField = {
   input: passwordInput,
 };
 
-const emailField: IInputField = {
+const loginField: IInputField = {
   ...commonInputProps,
-  title: 'Email',
-  name: 'email',
-  input: emailInput,
+  title: 'Login',
+  name: 'login',
+  input: loginInput,
 };
 
-function createLoginProp(): IEntranceForm {
+function createLoginProp(): TForm {
   return {
     fields: new List({
       listClass: 'login__field-box',
       blockClass: 'login__block',
-      list: [new InputField(emailField), new InputField(passwordField)],
+      list: [new InputField(loginField), new InputField(passwordField)],
     }),
     submit: new Button({
       ...submitBtnAtr,
       name: 'Sign in',
     }),
+    logout: new Button({
+      buttonClass: 'login__submit-btn',
+      type: 'button',
+      textClass: 'login__link',
+      textVisible: 'visible',
+      divVisible: 'hidden',
+      name: 'Sign Out',
+      events: {
+        click: async () => {
+          try {
+            await AuthController.signOut();
+          } catch (e) {
+            const { reason } = JSON.parse(e);
+            console.log(reason);
+          }
+        }
+      }
+    }),
     redirect: new Button(loginRedirectBtn),
-    events: {
-      submit: (event) => {
-        event.preventDefault();
-        validateOnSubmit('chat', validator);
-      },
-    },
+    // events: {
+    //   submit: (event) => {
+    //     event.preventDefault();
+    //     validateOnSubmit('chat', validator);
+    //   },
+    // },
   };
 }
 
@@ -121,7 +139,7 @@ export class Login extends Block<{}> {
 
   protected initChildren() {
     const prop = createLoginProp();
-    this.children.form = new EntranceForm(prop);
+    this.children.form = new EntranceForm(prop, 'signin');
   }
 
   protected render(): DocumentFragment {

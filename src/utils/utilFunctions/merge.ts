@@ -2,34 +2,24 @@ type Indexed<T = unknown> = {
   [key in string]: T;
 };
 
-const isObject = (item: any): boolean => {
-  return (item && typeof item === 'object' && !Array.isArray(item));
-}
+function merge(lhs: Indexed, rhs: Indexed): Indexed {
+  for (let p in rhs) {
+    if (!rhs.hasOwnProperty(p)) {
+      continue;
+    }
 
-function merge(left: Indexed, ...objects: Indexed[]): Indexed {
-  if (!objects.length) {
-    return left;
-  }
-  const source = objects.pop();
-
-  if (isObject(left) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!left[key]) {
-          Object.assign(left, {
-            [key]: {}
-          });
-        }
-        merge(left[key] as Indexed, source[key] as Indexed);
+    try {
+      if (rhs[p].constructor === Object) {
+        rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
       } else {
-        Object.assign(left, {
-          [key]: source[key]
-        });
+        lhs[p] = rhs[p];
       }
+    } catch(e) {
+      lhs[p] = rhs[p];
     }
   }
 
-  return merge(left, ...objects);
+  return lhs;
 }
 
 export { merge, Indexed }

@@ -1,4 +1,4 @@
-import { pseudoRouter } from '../Components/PseudoRouter';
+// import { pseudoRouter } from '../Components/PseudoRouter';
 import { IButton } from '../../components/Button/Button';
 
 export const redirectBtnAtr: IButton = {
@@ -9,7 +9,7 @@ export const redirectBtnAtr: IButton = {
   name: 'Back to chats',
   divVisible: 'hidden',
   events: {
-    click: () => pseudoRouter('chat'),
+    // click: () => pseudoRouter('chat'),
   },
 };
 

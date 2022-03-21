@@ -1,8 +1,7 @@
-import { EntranceForm, IEntranceForm } from '../../components/EntranceForm/EntranceForm';
+import { EntranceForm, IEntranceForm, TForm } from '../../components/EntranceForm/EntranceForm';
 import {
-  createPatternValidator,
   initFormFields, saveGlobalForm,
-  validateOnSubmit, validation
+  validateOnSubmit, validation, validator
 } from '../../utils/Components/Validation';
 import InputField from '../../components/InputField';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
@@ -14,8 +13,16 @@ import { IButton } from '../../components/Button/Button';
 import Block from '../../utils/Components/Block';
 import List from '../../components/List';
 import template from './template.hbs';
+import AuthController, { ControllerSignUpData } from '../../controllers/AuthController';
 
-const validator = createPatternValidator();
+/*
+* todo:
+*  1. Вынести регистрацию событий инпутов в сам класс инпутов
+*  2. Убрать кнопку логаута из формы
+*  3. Спроектировать стор
+*  4. Осуществить Редирект при успешной регистрации/логине
+* */
+
 
 const partialClass = 'login__field-box';
 
@@ -162,7 +169,7 @@ export const registerRedirectBtn: IButton = {
     click: () => {
       window.entranceForm = {};
       // pseudoRouter('login');
-      router.go('/signin');
+      router.go('/');
     },
   },
 };
@@ -216,7 +223,8 @@ const confirmPassField: IInputField = {
   input: confirmPassInput,
 };
 
-function createRegisterProp(): IEntranceForm {
+// function createRegisterProp(): IEntranceForm {
+function createRegisterProp(): TForm {
   return {
     fields: new List({
       blockClass: 'login__block',
@@ -234,13 +242,33 @@ function createRegisterProp(): IEntranceForm {
       ...submitBtnAtr,
       name: 'Register',
     }),
+    logout: new Button({
+      buttonClass: 'login__submit-btn',
+      type: 'button',
+      textClass: 'login__link',
+      textVisible: 'visible',
+      divVisible: 'hidden',
+      name: 'Sign Out',
+      events: {
+        click: async () => {
+          try {
+            await AuthController.signOut();
+          } catch (e) {
+            const { reason } = JSON.parse(e);
+            console.log(reason);
+          }
+        }
+      }
+    }),
     redirect: new Button(registerRedirectBtn),
-    events: {
-      submit: (event) => {
-        event.preventDefault();
-        validateOnSubmit('chat', validator);
-      },
-    },
+    // events: {
+    //   submit: (event) => {
+    //     event.preventDefault();
+    //
+    //     // validateOnSubmit('chat', validator);
+    //     // console.log('children', this);
+    //   },
+    // },
   };
 }
 
@@ -253,7 +281,8 @@ export class Register extends Block<{}> {
 
   protected initChildren() {
     const prop = createRegisterProp();
-    this.children.form = new EntranceForm(prop);
+    console.log('before constructor', prop);
+    this.children.form = new EntranceForm(prop, 'signup');
   }
 
   protected render(): DocumentFragment {

@@ -8,8 +8,7 @@ type TOptions = {
 }
 
 export class HTTPTransport {
-  //TODO: add url
-  static API_URL: string = 'ya-praktikum.tech/api/v2';
+  static API_URL: string = 'https://ya-praktikum.tech/api/v2';
   protected endpoint: string;
 
   constructor(endpoint: string) {
@@ -17,53 +16,69 @@ export class HTTPTransport {
   }
 
 
-  get<IResponse>(path: string, options: any): Promise<IResponse> {
-    const data = options.data ? queryStringify(options.data) : null;
+  get<IResponse>(path: string = '/', data: any): Promise<IResponse> {
+    const query = data ? queryStringify(data) : null;
+    return this.request(this.endpoint + path + query);
+  }
+
+  put<IResponse>(path: string, data: any): Promise<IResponse> {
     return this.request(
       this.endpoint + path,
-      { ...options, method: HttpMethods.GET, data },
-      options.timeout,
+      {
+        method: HttpMethods.PUT,
+        data
+      }
     );
   }
 
-  put<IResponse>(path: string, options: any): Promise<IResponse> {
+  post<IResponse>(path: string, data: any): Promise<IResponse> {
     return this.request(
       this.endpoint + path,
-      { ...options, method: HttpMethods.PUT },
-      options.timeout,
+      {
+        method: HttpMethods.POST,
+        data
+      },
     );
   }
 
-  post<IResponse>(path: string, options: any): Promise<IResponse> {
+  delete<IResponse>(path: string, data: any): Promise<IResponse> {
     return this.request(
       this.endpoint + path,
-      { ...options, method: HttpMethods.POST },
-      options.timeout,
+      {
+        method: HttpMethods.DELETE,
+        data
+      },
     );
   }
 
-  delete<IResponse>(path: string, options: any): Promise<IResponse> {
-    return this.request(
-      this.endpoint + path,
-      { ...options, method: HttpMethods.DELETE },
-      options.timeout,
-    );
-  }
-
-  request<IResponse>(url: string, options: TOptions, timeout): Promise<IResponse> {
+  request<IResponse>(url: string, options: TOptions = { method: HttpMethods.GET }): Promise<IResponse> {
     const { data, headers, method } = options;
+    // const { method, data } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      if (method === HttpMethods.GET) {
-        url = url.concat(data);
-      }
-
       xhr.open(method, url);
-      xhr.timeout = timeout;
-      xhr.withCredentials = true;
-      xhr.setRequestHeader('Content-Type', 'text/plain');
+
+      xhr.onreadystatechange = (e) => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
+      }
+      xhr.onload = () => {
+        resolve(xhr.response);
+      };
+      xhr.onabort = () => reject(xhr.statusText);
+      xhr.onerror = () => reject(xhr.statusText);
+      xhr.ontimeout = () => reject(xhr.statusText);
+
+
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 
       if (headers) {
         Object.entries(headers).forEach(([key, value]) => {
@@ -73,18 +88,13 @@ export class HTTPTransport {
         xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
       }
 
+      xhr.withCredentials = true;
+
       if (method === HttpMethods.GET || !data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));
       }
-
-      xhr.onload = () => {
-        resolve(xhr.response);
-      };
-      xhr.onabort = () => reject(xhr.statusText);
-      xhr.onerror = () => reject(xhr.statusText);
-      xhr.ontimeout = () => reject(xhr.statusText);
     });
   }
 }

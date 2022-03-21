@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid';
 import EventBus from './eventBus';
 import { LifecycleEvents } from '../constants/environment';
+import { merge } from '../utilFunctions/merge';
+import isEqual from '../utilFunctions/isEqual';
 
 export default class Block<Props extends {}> {
   private static EVENTS = LifecycleEvents;
@@ -39,6 +41,14 @@ export default class Block<Props extends {}> {
     return document.createElement(tagName);
   }
 
+  getChildren() {
+    return this.children;
+  }
+
+  getProps() {
+    return this.props;
+  }
+
   init() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
@@ -61,18 +71,17 @@ export default class Block<Props extends {}> {
     }
   }
 
-  //  TODO: implement deep comparison
-  //  eslint-disable-next-line
   protected componentDidUpdate(oldProps: any, newProps: any) {
-    return true;
+    return !isEqual(oldProps, newProps);
   }
 
-  setProps = (nextProps: any) => {
+  public setProps = (nextProps: any) => {
+    console.log(nextProps);
     if (!nextProps) {
       return;
     }
-
-    Object.assign(this.props, nextProps);
+    merge(this.props, nextProps);
+    // console.log('setprops', this.props.events);
   };
 
   get element(): HTMLElement | null {
@@ -85,6 +94,7 @@ export default class Block<Props extends {}> {
 
   private _addEvents() {
     const { events } = this.props as any;
+    // console.log('add events', events);
     if (!events || !this._element) {
       return;
     }
@@ -136,7 +146,6 @@ export default class Block<Props extends {}> {
       },
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         const oldTarget = { ...target };
-
         target[prop] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;

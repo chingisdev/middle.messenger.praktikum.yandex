@@ -10,5 +10,5 @@ window.entranceForm = {};
 
 document.addEventListener('DOMContentLoaded', () => {
   router.start();
-  router.go('/signin');
+  router.go('/');
 });

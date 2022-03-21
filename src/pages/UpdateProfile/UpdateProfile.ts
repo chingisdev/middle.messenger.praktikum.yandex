@@ -10,7 +10,7 @@ import Input from '../../components/Input';
 import { IInputField } from '../../components/InputField/InputField';
 import Button from '../../components/Button';
 import { IButton } from '../../components/Button/Button';
-import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+// import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Block from '../../utils/Components/Block';
 import List from '../../components/List';
 import template from './template.hbs';
@@ -23,7 +23,7 @@ const backBtnAtr: IButton = {
     click: () => {
       window.entranceForm = {};
       freeAllInput();
-      pseudoRouter('profile');
+      // pseudoRouter('profile');
     },
   },
 };

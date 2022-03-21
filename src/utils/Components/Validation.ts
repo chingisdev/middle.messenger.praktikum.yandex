@@ -5,53 +5,35 @@ import {
   PASSWORD_REGEX,
   PHONE_REGEX,
 } from '../constants/environment';
-import { pseudoRouter } from './PseudoRouter';
+import { router } from './Router';
+// import { pseudoRouter } from './PseudoRouter';
 
-export function createPatternValidator() {
-  let isValid: boolean = false;
-  let pass: string = '';
-  let confirmPass: string = '';
-  return function (value: string, field: string): boolean {
+export function validator(value: string, field: string): boolean {
     switch (field.toLowerCase()) {
       case 'email': {
-        isValid = EMAIL_REGEX.test(value);
-        break;
+        return EMAIL_REGEX.test(value);
       }
       case 'password': {
-        isValid = PASSWORD_REGEX.test(value);
-        pass = value;
-        if (confirmPass) {
-          isValid = confirmPass === pass;
-        }
-        break;
+        return PASSWORD_REGEX.test(value);
       }
       case 'old': {
-        isValid = PASSWORD_REGEX.test(value);
-        break;
+        return PASSWORD_REGEX.test(value);
       }
       case 'confirm': {
-        isValid = PASSWORD_REGEX.test(value);
-        confirmPass = value;
-        isValid = confirmPass === pass;
-        break;
+        return PASSWORD_REGEX.test(value);
       }
       case 'login': {
-        isValid = LOGIN_REGEX.test(value);
-        break;
+        return LOGIN_REGEX.test(value);
       }
       case 'phone': {
-        isValid = PHONE_REGEX.test(value);
-        break;
+        return PHONE_REGEX.test(value);
       }
       case 'name': {
-        isValid = NAME_REGEX.test(value);
-        break;
+        return NAME_REGEX.test(value);
       }
       default:
         return false;
     }
-    return isValid;
-  };
 }
 
 export function makeEmpty(target) {
@@ -90,23 +72,38 @@ export function validateOnSubmit(
 ) {
   const validity = Object.entries(window.entranceForm)
     .every(([key, value]) => {
-      const field = key.split('_')
-        .pop();
-      const isValid = validator(value, field);
-      return isValid;
+      const field = key.split('_').pop();
+      return validator(value, field);
     });
-  console.log(window.entranceForm);
-  if (!validity) {
-    console.error('Invalid data in form fields');
-  } else {
-    window.entranceForm = {};
-    freeAllInput();
-    pseudoRouter(route);
-  }
+  // if (!validity) {
+  //   console.error('Invalid data in form fields');
+  // } else {
+  //   window.entranceForm = {};
+  //   freeAllInput();
+  //   router.go(route);
+  // }
+}
+
+export function validateOnSubmitClone(
+  data: Record<string, any>,
+  validator: (value: string, key: string) => boolean,
+): boolean {
+  return Object.entries(data)
+    .every(([key, value]) => {
+      const field = key.split('_').pop();
+      return validator(value, field);
+    });
+  // if (!validity) {
+  //   console.error('Invalid data in form fields');
+  // } else {
+  //   window.entranceForm = {};
+  //   freeAllInput();
+  //   router.go(route);
+  // }
 }
 
 export function saveGlobalForm(field, value) {
-  if (value) {
+  if (value || value === '') {
     window.entranceForm[field] = value;
   }
 }

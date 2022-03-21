@@ -11,7 +11,7 @@ import { renderDOM } from './renderDOM';
 import Login from '../../pages/Login';
 import Profile from '../../pages/Profile';
 import NotFound from '../../pages/NotFoundErr';
-
+/*
 export function pseudoRouter(path: string) {
   switch (path.toLowerCase()) {
     case 'login': {
@@ -61,4 +61,4 @@ export function pseudoRouter(path: string) {
       renderDOM(ROOT_PATH, page);
     }
   }
-}
+}*/

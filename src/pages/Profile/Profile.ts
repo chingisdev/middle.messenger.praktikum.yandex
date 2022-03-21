@@ -1,7 +1,7 @@
 import { Button, IButton } from '../../components/Button/Button';
 import Input from '../../components/Input';
 import { IInputField, InputField } from '../../components/InputField/InputField';
-import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+// import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Block from '../../utils/Components/Block';
 import List from '../../components/List';
 import ProfileName from '../../components/ProfileName';
@@ -22,7 +22,7 @@ const backBtnAtr: IButton = {
   arrowClass: 'arrow arrow__left',
   divVisible: 'visible',
   events: {
-    click: () => pseudoRouter('chat'),
+    // click: () => pseudoRouter('chat'),
   },
 };
 
@@ -34,7 +34,7 @@ const profileUpdateBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    click: () => pseudoRouter('update'),
+    // click: () => pseudoRouter('update'),
   },
 };
 
@@ -46,7 +46,7 @@ const profilePassBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    click: () => pseudoRouter('change'),
+    // click: () => pseudoRouter('change'),
   },
 };
 
@@ -58,7 +58,7 @@ export const profileExitBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    click: () => pseudoRouter('login'),
+    // click: () => pseudoRouter('login'),
   },
 };
 

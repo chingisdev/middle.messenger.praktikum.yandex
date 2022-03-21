@@ -1,3 +1,3 @@
 import { EntranceForm } from './EntranceForm';
 
-export default EntranceForm;
+// export default EntranceForm;
