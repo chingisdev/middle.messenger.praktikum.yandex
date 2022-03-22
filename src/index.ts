@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(err.message, 'Error fetching user');
   }
 
-  router.go('/');
+  // router.go('/');
   router.start();
 });

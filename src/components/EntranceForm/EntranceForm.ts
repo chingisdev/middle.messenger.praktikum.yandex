@@ -6,12 +6,6 @@ import { merge } from '../../utils/utilFunctions/merge';
 import AuthController, { ControllerSignUpData } from '../../controllers/AuthController';
 import { ISignInData } from '../../api/AuthAPI';
 import { router } from '../../utils/Components/Router';
-// import { ISignUpData } from '../../api/AuthAPI';
-// import {
-//   createPatternValidator,
-//   validateOnSubmitClone,
-//   validator
-// } from '../../utils/Components/Validation';
 
 export interface IEntranceForm {
   fields: List,
@@ -23,21 +17,11 @@ export interface IEntranceForm {
 export type TForm = Record<string, Block<any>>;
 
 export class EntranceForm extends Block<TForm> {
-// export class EntranceForm extends Block<IEntranceForm> {
-
   constructor(props: TForm, path) {
-    console.log('props', props);
     super(props);
 
     const submitCallback = this.defineAuthMethod(path);
 
-    // this.children.submit.setProps({
-    //   events: {
-    //     click: submitCallback
-    //   }
-    // })
-
-    console.log(this.children);
     this.setProps({
       events: {
         submit: submitCallback
@@ -63,8 +47,9 @@ export class EntranceForm extends Block<TForm> {
     const data: Record<string, any> = {};
     merge(data, window.entranceForm);
     try {
+      debugger;
       await AuthController.signIn(data as ISignInData);
-      // router.go('/profile');
+      router.go('/profile');
     } catch (err) {
       alert(err.message);
     }
@@ -78,6 +63,7 @@ export class EntranceForm extends Block<TForm> {
     // if (validity)
     try {
       await AuthController.signUp(data as ControllerSignUpData);
+      router.go('/profile');
     } catch (err) {
       alert(err.message);
     }

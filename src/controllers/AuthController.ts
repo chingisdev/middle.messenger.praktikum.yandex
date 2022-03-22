@@ -30,6 +30,7 @@ class AuthController {
 
   async signIn(data: ISignInData) {
     await this.api.signIn(data);
+    this.fetchUser();
   }
 
   async signOut() {

@@ -69,117 +69,49 @@ function createProfileControlBtn() {
   });
 }
 
-//TODO: Реализовать раздачу из globalState. Пока что всё еще заглушки задействованы
-const profileNameAtr: IProfileName = {
-  name: 'SomeName',
-};
+function makeInputFields(fields) {
+  return Object.entries(fields)
+    .map(([key, value]) => {
+      return new InputField({
+        ...commonInputProps,
+        title: key,
+        input: new Input({
+          class: 'profile__input',
+          placeholder: value,
+          disabled: 'disabled'
+        })
+      });
+    });
+}
 
-const emailInput: Input = new Input({
-  class: 'profile__input',
-  placeholder: 'pochta@mail.ru',
-  disabled: 'disabled',
-});
-
-const emailField: IInputField = {
-  ...commonInputProps,
-  title: 'Email',
-  input: emailInput,
-};
-
-const loginInput: Input = new Input({
-  class: 'profile__input',
-  placeholder: 'Ivanio',
-  disabled: 'disabled',
-});
-
-const loginField: IInputField = {
-  ...commonInputProps,
-  title: 'Login',
-  input: loginInput,
-};
-
-const firstNameInput: Input = new Input({
-  class: 'profile__input',
-  placeholder: 'Ivan',
-  disabled: 'disabled',
-});
-
-const firstNameField: IInputField = {
-  ...commonInputProps,
-  title: 'First Name',
-  input: firstNameInput,
-};
-
-const secondNameInput: Input = new Input({
-  class: 'profile__input',
-  placeholder: 'Ivanov',
-  disabled: 'disabled',
-});
-
-const secondNameField: IInputField = {
-  ...commonInputProps,
-  title: 'Second Name',
-  input: secondNameInput,
-};
-
-const displayNameInput: Input = new Input({
-  class: 'profile__input',
-  placeholder: 'Iva',
-  disabled: 'disabled',
-});
-
-const displayNameField: IInputField = {
-  ...commonInputProps,
-  title: 'Display Name',
-  input: displayNameInput,
-};
-
-const phoneInput: Input = new Input({
-  class: 'profile__input',
-  placeholder: '+7 (909) 967 30 30',
-  disabled: 'disabled',
-});
-
-const phoneField: IInputField = {
-  ...commonInputProps,
-  title: 'Phone',
-  input: phoneInput,
-};
-
-function createProfileFields() {
+function createProfileFields(fields) {
+  const blockClass = 'profile__list';
+  const list = makeInputFields(fields);
   return new List({
-    blockClass: 'profile__list',
-    list: [
-      new InputField(emailField),
-      new InputField(loginField),
-      new InputField(firstNameField),
-      new InputField(secondNameField),
-      new InputField(displayNameField),
-      new InputField(phoneField),
-    ],
+    blockClass,
+    list
   });
 }
 
 export class Profile extends Block<{}> {
   constructor(props) {
-    console.log(props);
     super(props);
   }
 
-  protected initChildren() {
+  protected initChildren(props) {
+    const {
+      avatar,
+      display_name: name,
+      id,
+      ...fields
+    } = props;
     this.children.button = new Button(backBtnAtr);
-    this.children.name = new ProfileName(profileNameAtr);
-    this.children.fields = createProfileFields();
+    this.children.name = new ProfileName({ name });
+    this.children.fields = createProfileFields(fields);
     this.children.control = createProfileControlBtn();
   }
 
-  expandProps(props) {
-
-  }
-
-
   protected render(): DocumentFragment {
-    // return this.compile(template, this.props);
-    return this.compile(template, { });
+    return this.compile(template, this.props);
   }
 }

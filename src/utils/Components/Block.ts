@@ -22,8 +22,8 @@ export default class Block<Props extends {}> {
     const eventBus = new EventBus();
     const { children, props } = this.divideChildrenProps(propsAndChildren);
     this.children = children;
-    this.initChildren();
     this.props = this._makePropsProxy(props);
+    this.initChildren(this.props);
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
     this.eventBus().emit(Block.EVENTS.INIT);
@@ -80,7 +80,6 @@ export default class Block<Props extends {}> {
       return;
     }
     merge(this.props, nextProps);
-    // console.log('setprops', this.props.events);
   };
 
   get element(): HTMLElement | null {
@@ -183,7 +182,7 @@ export default class Block<Props extends {}> {
     return { children, props };
   }
 
-  protected initChildren() {
+  protected initChildren(props) {
 
   }
 
