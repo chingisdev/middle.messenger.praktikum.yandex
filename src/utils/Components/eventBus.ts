@@ -26,10 +26,10 @@ export default class EventBus {
   }
 
   public emit(event: string, ...args: unknown[]): void {
-    if (!this.listeners[event]) {
-      console.log('non-existent event triggered');
-      return;
-    }
+    // if (!this.listeners[event]) {
+    //   console.log('non-existent event triggered');
+    //   return;
+    // }
 
     this.listeners[event].forEach((callback: Function) => {
       callback(...args);

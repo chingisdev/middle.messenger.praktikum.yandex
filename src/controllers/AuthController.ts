@@ -25,7 +25,7 @@ class AuthController {
     }
 
     await this.fetchUser();
-    router.go('/profile');
+    // router.go('/profile');
   }
 
   async signIn(data: ISignInData) {
@@ -37,7 +37,7 @@ class AuthController {
     if (response.status !== 200) {
       throw new Error('Can not logout');
     }
-    router.go('/');
+    // router.go('/');
   }
 
   async fetchUser() {

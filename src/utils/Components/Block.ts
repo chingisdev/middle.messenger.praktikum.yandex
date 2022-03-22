@@ -76,7 +76,6 @@ export default class Block<Props extends {}> {
   }
 
   public setProps = (nextProps: any) => {
-    console.log(nextProps);
     if (!nextProps) {
       return;
     }
