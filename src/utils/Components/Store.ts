@@ -8,7 +8,7 @@ export enum StoreEvents {
   Updated = 'updated',
 }
 
-interface User {
+export interface IUser {
   id: number,
   first_name: string;
   second_name: string;
@@ -20,7 +20,7 @@ interface User {
 }
 
 interface StoreData {
-  currentUser?: User;
+  currentUser?: IUser;
 }
 
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
@@ -44,22 +44,23 @@ const store = new Store();
 export const withStore = (
   mapStateToProps: (state: StoreData) => Record<string, unknown>
 ) => (Component: typeof Block) => {
-  let state;
 
   return class extends Component<any> {
     constructor(props) {
-      state = mapStateToProps(store.getState());
+      const state = mapStateToProps(store.getState());
       super({ ...props, ...state });
-      store.on(StoreEvents.Updated, this.onUpdateStore);
+      store.on(StoreEvents.Updated, this.onUpdateStore.bind(this, state));
     }
 
-    private onUpdateStore() {
-      const newState = mapStateToProps(store.getState());
-      if (!isEqual(state, newState)) {
-        this.setProps({
-          ...newState
-        });
-      }
+    private onUpdateStore(state) {
+      // debugger;
+      // const newState = mapStateToProps(store.getState());
+      // if (!isEqual(oldState, newState)) {
+      //   this.setProps({
+      //     ...newState
+      //   });
+      // }
+      this.setProps(state);
     }
   };
 };

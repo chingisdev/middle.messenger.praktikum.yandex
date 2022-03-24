@@ -48,7 +48,7 @@ export class EntranceForm extends Block<TForm> {
     merge(data, window.entranceForm);
     try {
       await AuthController.signIn(data as ISignInData);
-      router.go('/profile');
+      // router.go('/profile');
     } catch (err) {
       alert(err.message);
     }
@@ -60,7 +60,7 @@ export class EntranceForm extends Block<TForm> {
     merge(data, window.entranceForm);
     try {
       await AuthController.signUp(data as ControllerSignUpData);
-      router.go('/profile');
+      // router.go('/profile');
     } catch (err) {
       alert(err.message);
     }

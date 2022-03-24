@@ -46,15 +46,14 @@ export function validation(event, partialClass, fieldName, validator) {
   const insertedValue = event.currentTarget.value;
   let fieldNode = event.target;
   let nodeClasses = fieldNode.classList;
-  console.log('fieldNode',fieldNode);
-  console.log('nodeClasses', nodeClasses);
   while (!nodeClasses.contains(partialClass)) {
     fieldNode = fieldNode.parentElement;
     nodeClasses = fieldNode.classList;
   }
   const isValid = insertedValue ? validator(insertedValue, fieldName) : false;
   const errorClassList = fieldNode.querySelector('span').classList;
-  if (isValid || !(isValid || insertedValue)) {
+  // if (isValid || !(isValid || insertedValue)) {
+  if (isValid) {
     errorClassList.remove('visible');
   } else {
     errorClassList.add('visible');
@@ -75,15 +74,13 @@ export function onSubmitValidation(
   validator: (value: string, key: string) => boolean,
 ): boolean {
   return Object.entries(data)
-    .every(([key, value]) => {
-      const field = key.split('_').pop();
-      return validator(value, field);
-    });
+    .every(([key, value]) => validator(value, key));
 }
 
 export function saveGlobalForm(field, value) {
+  const key = field.replaceAll(' ', '_').toLowerCase();
   if (value || value === '') {
-    window.entranceForm[field] = value;
+    window.entranceForm[key] = value;
   }
 }
 

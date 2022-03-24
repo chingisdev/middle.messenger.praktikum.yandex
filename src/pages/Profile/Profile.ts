@@ -7,6 +7,8 @@ import ProfileName from '../../components/ProfileName';
 import template from './template.hbs';
 import { router } from '../../utils/Components/Router';
 import { backBtnAtr } from '../ChangePass/ChangePassword';
+import { formatInputs } from '../../utils/utilFunctions/formatInputs';
+import isEqual from '../../utils/utilFunctions/isEqual';
 
 export const partialClass = 'profile__part';
 
@@ -62,7 +64,8 @@ function createProfileControlBtn() {
 }
 
 export function makeInputFields({fields, isDisable, partialClass}) {
-  return Object.entries(fields)
+  const inputs = formatInputs(fields);
+  return Object.entries(inputs)
     .map(([key, value]) => {
       const name = key.toLowerCase();
       return new InputField({
@@ -84,11 +87,12 @@ export function createProfileFields(inputData) {
   const blockClass = 'profile__list';
   const listClass = 'profile__list_wrapper';
   const list = makeInputFields(inputData);
-  return new List({
-    blockClass,
-    listClass,
-    list
-  });
+  return {blockClass, listClass, list};
+  // return new List({
+  //   blockClass,
+  //   listClass,
+  //   list
+  // });
 }
 
 export class Profile extends Block<{}> {
@@ -96,16 +100,35 @@ export class Profile extends Block<{}> {
     super(props);
   }
 
+  protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+    const {avatar, display_name: name, id, status, ...fields} = newProps;
+    this.children.name = new ProfileName({ name });
+    this.children.fields = new List(createProfileFields({
+      fields,
+      isDisable: true,
+      partialClass
+    }));
+    return true;
+  }
+
   protected initChildren(props) {
     const {
       avatar,
       display_name: name,
       id,
+      status,
       ...fields
     } = props;
     this.children.button = new Button(backBtnAtr);
     this.children.name = new ProfileName({ name });
-    this.children.fields = createProfileFields({fields, isDisable: true, partialClass});
+    this.children.fields = new List(createProfileFields({
+      fields,
+      isDisable: true,
+      partialClass
+    }));
     this.children.control = createProfileControlBtn();
   }
 

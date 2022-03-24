@@ -1,12 +1,15 @@
 import BaseAPI from './BaseAPI';
 
-export interface ISignUpData {
+export interface IProfile {
   first_name: string;
   second_name: string;
   login: string;
   email: string;
-  password: string;
   phone: string;
+}
+
+export interface ISignUpData extends IProfile {
+  password: string;
 }
 
 export interface ISignInData {

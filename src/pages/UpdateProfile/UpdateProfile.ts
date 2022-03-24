@@ -6,20 +6,44 @@ import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 import { backBtnAtr } from '../ChangePass/ChangePassword';
 import { createProfileFields, partialClass } from '../Profile/Profile';
+import UsersController from '../../controllers/UsersController';
+import { merge } from '../../utils/utilFunctions/merge';
+import { IUpdateProfile } from '../../api/UsersAPI';
+import store from '../../utils/Components/Store';
+import List from '../../components/List';
 
-//TODO: в полях инпутов placeholder ДОЛЖЕН СОДЕРЖАТЬ инфу из global state.
 
+/*
+TODO: сделать общую форму, инкапсулировать создание сабмита внутри класса формы
+ как в логине и регистрации
+ */
 function createUpdateForm(data): IProfileForm {
   return {
-    fields: createProfileFields(data),
+    fields: new List(createProfileFields(data)),
     submit: new Button({
       ...submitBtnAtr,
       name: 'Update profile',
     }),
     events: {
-      submit: (event) => {
+      submit: async (event) => {
         event.preventDefault();
-        // validateOnSubmit('profile', validator);
+        const data: Record<string, any> = {};
+        const {avatar, id, ...fields} = store.getState().currentUser;
+        // @ts-ignore
+        merge(data, fields);
+        Object.entries(window.entranceForm).forEach(([key, value]) => {
+          if (window.entranceForm[key]) {
+            data[key] = value;
+          }
+        })
+
+        // merge(data, window.entranceForm);
+        console.log(data);
+        try {
+          await UsersController.updateProfile(data as IUpdateProfile);
+        } catch (err) {
+          alert(err);
+        }
       },
     },
   };
@@ -39,7 +63,7 @@ export class UpdateProfile extends Block<{}> {
   }
 
   protected initChildren(props) {
-    const { avatar, display_name: name, id, ...fields} = props;
+    const { avatar, id, ...fields} = props;
     console.log('fields', fields);
     this.children.button = new Button(backBtnAtr);
     const formProps = createUpdateForm({fields, isDisable: false, partialClass});

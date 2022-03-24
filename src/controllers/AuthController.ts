@@ -1,6 +1,9 @@
 import AuthAPI, { ISignInData, ISignUpData } from '../api/AuthAPI';
 import store from '../utils/Components/Store';
 import { router } from '../utils/Components/Router';
+import { IBadRequest } from './UsersController';
+
+type TResponse = IBadRequest | {id: number}
 
 export interface ControllerSignUpData extends ISignUpData {
   confirm: string;
@@ -18,32 +21,31 @@ class AuthController {
       throw new Error('Passwords must be equal');
     }
     delete data.confirm;
-    const response = await this.api.signUp(data);
+    const response: TResponse = await this.api.signUp(data) as TResponse;
 
-    if (response.reason) {
+    if ('reason' in response && response.reason) {
       throw new Error(response.reason);
     }
 
     await this.fetchUser();
-    // router.go('/profile');
+    //todo: redirect to chats
+    router.go('/profile');
   }
 
   async signIn(data: ISignInData) {
     await this.api.signIn(data);
     await this.fetchUser();
+    //todo: redirect to chats
+    router.go('/profile');
   }
 
   async signOut() {
-    const response = await this.api.signOut();
-    if (response.status !== 200) {
-      throw new Error('Can not logout');
-    }
-    // router.go('/');
+    await this.api.signOut();
+    router.go('/');
   }
 
   async fetchUser() {
     const user = await this.api.read();
-    console.log('user', user);
     store.set('currentUser', user);
   }
 }
