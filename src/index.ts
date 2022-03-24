@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let path = '/';
   try {
     await AuthController.fetchUser();
-    path = '/profile';
+    path = '/update';
   } catch (err) {
     console.log(err, err.reason, '/ Error fetching user');
   }

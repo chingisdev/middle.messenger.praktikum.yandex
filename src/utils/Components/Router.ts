@@ -5,6 +5,8 @@ import { ROOT_PATH } from '../constants/environment';
 import Register from '../../pages/Register';
 import Login from '../../pages/Login';
 import Profile from '../../pages/Profile';
+import UpdateProfile from '../../pages/UpdateProfile';
+import ChangePassword from '../../pages/ChangePass';
 
 
 class Route {
@@ -119,7 +121,9 @@ const router = new Router(ROOT_PATH);
 router
   .use('/', Login)
   .use('/signup', Register)
-  .use('/profile', Profile);
+  .use('/profile', Profile)
+  .use('/update', UpdateProfile)
+  .use('/change-password', ChangePassword)
 
 export { Router, router };
 /*

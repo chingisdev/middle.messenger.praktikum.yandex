@@ -1,3 +1,4 @@
 import { UpdateProfile } from './UpdateProfile';
+import { withUser } from '../Profile';
 
-export default UpdateProfile;
+export default withUser(UpdateProfile);

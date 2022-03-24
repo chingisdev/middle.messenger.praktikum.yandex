@@ -7,6 +7,8 @@ import List from '../../components/List';
 import ProfileName from '../../components/ProfileName';
 import { IProfileName } from '../../components/ProfileName/ProfileName';
 import template from './template.hbs';
+import { router } from '../../utils/Components/Router';
+import { backBtnAtr } from '../ChangePass/ChangePassword';
 
 const partialClass = 'profile__part';
 
@@ -17,15 +19,6 @@ const commonInputProps = {
   errorClass: 'login__input-error',
 };
 
-const backBtnAtr: IButton = {
-  buttonClass: 'profile__back-button',
-  arrowClass: 'arrow arrow__left',
-  divVisible: 'visible',
-  events: {
-    // click: () => pseudoRouter('chat'),
-  },
-};
-
 const profileUpdateBtn: IButton = {
   buttonClass: 'profile__control',
   textClass: 'profile__control-redir',
@@ -34,11 +27,11 @@ const profileUpdateBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    // click: () => pseudoRouter('update'),
+    click: () => router.go('/update'),
   },
 };
 
-const profilePassBtn: IButton = {
+const changePassBtn: IButton = {
   buttonClass: 'profile__control',
   textClass: 'profile__control-redir',
   type: 'button',
@@ -46,7 +39,7 @@ const profilePassBtn: IButton = {
   textVisible: 'visible',
   divVisible: 'hidden',
   events: {
-    // click: () => pseudoRouter('change'),
+    click: () => router.go('/change-password'),
   },
 };
 
@@ -65,30 +58,34 @@ export const profileExitBtn: IButton = {
 function createProfileControlBtn() {
   return new List({
     blockClass: 'profile__list',
-    list: [new Button(profileUpdateBtn), new Button(profilePassBtn), new Button(profileExitBtn)],
+    listClass: 'profile__list_wrapper',
+    list: [new Button(profileUpdateBtn), new Button(changePassBtn), new Button(profileExitBtn)],
   });
 }
 
-function makeInputFields(fields) {
+export function makeInputFields(fields, isDisable: boolean) {
   return Object.entries(fields)
     .map(([key, value]) => {
       return new InputField({
         ...commonInputProps,
         title: key,
+        name: key.toLowerCase(),
         input: new Input({
           class: 'profile__input',
-          placeholder: value,
-          disabled: 'disabled'
+          placeholder: value as string,
+          disabled: isDisable ? 'disabled': ''
         })
       });
     });
 }
 
-function createProfileFields(fields) {
+export function createProfileFields({ fields, isDisable }) {
   const blockClass = 'profile__list';
-  const list = makeInputFields(fields);
+  const listClass = 'profile__list_wrapper';
+  const list = makeInputFields(fields, isDisable);
   return new List({
     blockClass,
+    listClass,
     list
   });
 }
@@ -107,7 +104,7 @@ export class Profile extends Block<{}> {
     } = props;
     this.children.button = new Button(backBtnAtr);
     this.children.name = new ProfileName({ name });
-    this.children.fields = createProfileFields(fields);
+    this.children.fields = createProfileFields({fields, isDisable: true});
     this.children.control = createProfileControlBtn();
   }
 

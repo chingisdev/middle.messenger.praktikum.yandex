@@ -1,22 +1,21 @@
 import { Button, IButton } from '../../components/Button/Button';
 import {
-  createPatternValidator, freeAllInput, initFormFields,
+  freeAllInput, initFormFields,
   makeEmpty, saveGlobalForm,
-  validateOnSubmit, validation
+  validation
 } from '../../utils/Components/Validation';
 import InputField from '../../components/InputField';
 import { IProfileForm, ProfileForm } from '../../components/ProfileForm/ProfileForm';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import Input from '../../components/Input';
 import { IInputField } from '../../components/InputField/InputField';
-import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import Block from '../../utils/Components/Block';
 import List from '../../components/List';
 import template from './template.hbs';
+import { router } from '../../utils/Components/Router';
 
-const validator = createPatternValidator();
 
-const backBtnAtr: IButton = {
+export const backBtnAtr: IButton = {
   buttonClass: 'profile__back-button',
   arrowClass: 'arrow arrow__left',
   divVisible: 'visible',
@@ -24,7 +23,7 @@ const backBtnAtr: IButton = {
     click: () => {
       window.entranceForm = {};
       freeAllInput();
-      pseudoRouter('profile');
+      router.back();
     },
   },
 };
@@ -44,18 +43,6 @@ const oldPassInput: Input = new Input({
   minLength: '8',
   name: 'password_old',
   placeholder: 'enter your old password',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'old', validator);
-      saveGlobalForm('password_old', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      makeEmpty(event.target);
-      validation(event, partialClass, 'old', validator);
-    },
-  },
 });
 
 const oldPassField: IInputField = {
@@ -71,18 +58,6 @@ const newPassInput: Input = new Input({
   minLength: '8',
   name: 'password',
   placeholder: 'enter new password',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'password', validator);
-      saveGlobalForm('new_password', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      makeEmpty(event.target);
-      validation(event, partialClass, 'password', validator);
-    },
-  },
 });
 
 const newPassField: IInputField = {
@@ -98,18 +73,6 @@ const confirmPassInput: Input = new Input({
   minLength: '8',
   name: 'password_confirm',
   placeholder: 'repeat your password please',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'confirm', validator);
-      saveGlobalForm('password_confirm', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      makeEmpty(event.target);
-      validation(event, partialClass, 'confirm', validator);
-    },
-  },
 });
 
 const confirmPassField: IInputField = {
@@ -141,7 +104,7 @@ function createUpdateForm(): IProfileForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        validateOnSubmit('profile', validator);
+        // validateOnSubmit('profile', validator);
       },
     },
   };

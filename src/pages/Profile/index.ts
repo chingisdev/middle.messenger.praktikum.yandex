@@ -3,7 +3,7 @@ import { withStore } from '../../utils/Components/Store';
 
 // @ts-ignore
 // super useless в моей архитектуре.
-const withUser = withStore((state) => {
+export const withUser = withStore((state) => {
   if (!state.currentUser) {
     return;
   }

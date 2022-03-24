@@ -47,7 +47,6 @@ export class EntranceForm extends Block<TForm> {
     const data: Record<string, any> = {};
     merge(data, window.entranceForm);
     try {
-      // debugger;
       await AuthController.signIn(data as ISignInData);
       router.go('/profile');
     } catch (err) {
@@ -59,8 +58,6 @@ export class EntranceForm extends Block<TForm> {
     e.preventDefault();
     const data = {}
     merge(data, window.entranceForm);
-    // const validity = validateOnSubmitClone(data, validator);
-    // if (validity)
     try {
       await AuthController.signUp(data as ControllerSignUpData);
       router.go('/profile');

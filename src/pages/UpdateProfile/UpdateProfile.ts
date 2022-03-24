@@ -1,7 +1,5 @@
 import {
-  createPatternValidator,
-  freeAllInput, initFormFields, saveGlobalForm,
-  validateOnSubmit, validation
+  freeAllInput, initFormFields,
 } from '../../utils/Components/Validation';
 import InputField from '../../components/InputField';
 import { IProfileForm, ProfileForm } from '../../components/ProfileForm/ProfileForm';
@@ -14,21 +12,8 @@ import { IButton } from '../../components/Button/Button';
 import Block from '../../utils/Components/Block';
 import List from '../../components/List';
 import template from './template.hbs';
-
-const backBtnAtr: IButton = {
-  buttonClass: 'profile__back-button',
-  arrowClass: 'arrow arrow__left',
-  divVisible: 'visible',
-  events: {
-    click: () => {
-      window.entranceForm = {};
-      freeAllInput();
-      // pseudoRouter('profile');
-    },
-  },
-};
-
-const validator = createPatternValidator();
+import { backBtnAtr } from '../ChangePass/ChangePassword';
+import { createProfileFields } from '../Profile/Profile';
 
 const partialClass = 'profile__part';
 
@@ -46,17 +31,6 @@ const emailInput: Input = new Input({
   minLength: '5',
   name: 'email',
   placeholder: 'pochta@mail.ru',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'email', validator);
-      saveGlobalForm('email', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'email', validator);
-    },
-  },
 });
 
 const emailField: IInputField = {
@@ -72,17 +46,6 @@ const loginInput: Input = new Input({
   type: 'text',
   minLength: '3',
   name: 'login',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'login', validator);
-      saveGlobalForm('login', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'login', validator);
-    },
-  },
 });
 
 const loginField: IInputField = {
@@ -98,17 +61,6 @@ const firstNameInput = new Input({
   type: 'text',
   minLength: '2',
   name: 'first_name',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-      saveGlobalForm('first_name', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-    },
-  },
 });
 
 const firstNameField: IInputField = {
@@ -124,17 +76,6 @@ const secondNameInput: Input = new Input({
   type: 'text',
   minLength: '2',
   name: 'second_name',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-      saveGlobalForm('second_name', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-    },
-  },
 });
 
 const secondNameField: IInputField = {
@@ -150,17 +91,6 @@ const displayNameInput: Input = new Input({
   type: 'text',
   minLength: '3',
   name: 'display_name',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-      saveGlobalForm('display_name', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'login', validator);
-    },
-  },
 });
 
 const displayNameField: IInputField = {
@@ -176,17 +106,6 @@ const phoneInput = new Input({
   type: 'text',
   minLength: '10',
   name: 'phone',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'phone', validator);
-      saveGlobalForm('phone', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'phone', validator);
-    },
-  },
 });
 
 const phoneField: IInputField = {
@@ -196,24 +115,24 @@ const phoneField: IInputField = {
   input: phoneInput,
 };
 
-function createProfileFields() {
-  return new List({
-    blockClass: 'profile__list',
-    listClass: 'profile__list_wrapper',
-    list: [
-      new InputField(emailField),
-      new InputField(loginField),
-      new InputField(firstNameField),
-      new InputField(secondNameField),
-      new InputField(displayNameField),
-      new InputField(phoneField),
-    ],
-  });
-}
+// function createProfileFields() {
+//   return new List({
+//     blockClass: 'profile__list',
+//     listClass: 'profile__list_wrapper',
+//     list: [
+//       new InputField(emailField),
+//       new InputField(loginField),
+//       new InputField(firstNameField),
+//       new InputField(secondNameField),
+//       new InputField(displayNameField),
+//       new InputField(phoneField),
+//     ],
+//   });
+// }
 
-function createUpdateForm(): IProfileForm {
+function createUpdateForm(data): IProfileForm {
   return {
-    fields: createProfileFields(),
+    fields: createProfileFields(data),
     submit: new Button({
       ...submitBtnAtr,
       name: 'Update profile',
@@ -221,15 +140,15 @@ function createUpdateForm(): IProfileForm {
     events: {
       submit: (event) => {
         event.preventDefault();
-        validateOnSubmit('profile', validator);
+        // validateOnSubmit('profile', validator);
       },
     },
   };
 }
 
 export class UpdateProfile extends Block<{}> {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     initFormFields([
       'email',
       'login',
@@ -240,9 +159,11 @@ export class UpdateProfile extends Block<{}> {
     ]);
   }
 
-  protected initChildren() {
+  protected initChildren(props) {
+    const { avatar, display_name: name, id, ...fields} = props;
+    console.log('fields', fields);
     this.children.button = new Button(backBtnAtr);
-    const formProps = createUpdateForm();
+    const formProps = createUpdateForm({fields, isDisable: false});
     this.children.form = new ProfileForm(formProps);
   }
 
