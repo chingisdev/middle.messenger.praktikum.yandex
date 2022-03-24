@@ -1,16 +1,14 @@
 import { Button, IButton } from '../../components/Button/Button';
 import Input from '../../components/Input';
-import { IInputField, InputField } from '../../components/InputField/InputField';
-// import { pseudoRouter } from '../../utils/Components/PseudoRouter';
+import { InputField } from '../../components/InputField/InputField';
 import Block from '../../utils/Components/Block';
 import List from '../../components/List';
 import ProfileName from '../../components/ProfileName';
-import { IProfileName } from '../../components/ProfileName/ProfileName';
 import template from './template.hbs';
 import { router } from '../../utils/Components/Router';
 import { backBtnAtr } from '../ChangePass/ChangePassword';
 
-const partialClass = 'profile__part';
+export const partialClass = 'profile__part';
 
 const commonInputProps = {
   partialClass,
@@ -63,26 +61,29 @@ function createProfileControlBtn() {
   });
 }
 
-export function makeInputFields(fields, isDisable: boolean) {
+export function makeInputFields({fields, isDisable, partialClass}) {
   return Object.entries(fields)
     .map(([key, value]) => {
+      const name = key.toLowerCase();
       return new InputField({
         ...commonInputProps,
+        name,
         title: key,
-        name: key.toLowerCase(),
         input: new Input({
+          name,
           class: 'profile__input',
           placeholder: value as string,
-          disabled: isDisable ? 'disabled': ''
+          disabled: isDisable ? 'disabled': '',
+          rootClass: partialClass,
         })
       });
     });
 }
 
-export function createProfileFields({ fields, isDisable }) {
+export function createProfileFields(inputData) {
   const blockClass = 'profile__list';
   const listClass = 'profile__list_wrapper';
-  const list = makeInputFields(fields, isDisable);
+  const list = makeInputFields(inputData);
   return new List({
     blockClass,
     listClass,
@@ -104,7 +105,7 @@ export class Profile extends Block<{}> {
     } = props;
     this.children.button = new Button(backBtnAtr);
     this.children.name = new ProfileName({ name });
-    this.children.fields = createProfileFields({fields, isDisable: true});
+    this.children.fields = createProfileFields({fields, isDisable: true, partialClass});
     this.children.control = createProfileControlBtn();
   }
 

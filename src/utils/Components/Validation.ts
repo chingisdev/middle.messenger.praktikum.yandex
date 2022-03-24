@@ -9,7 +9,8 @@ import { router } from './Router';
 // import { pseudoRouter } from './PseudoRouter';
 
 export function validator(value: string, field: string): boolean {
-    switch (field.toLowerCase()) {
+  const checkWord = field.split(/[\s_,]+/).pop().toLowerCase();
+    switch (checkWord) {
       case 'email': {
         return EMAIL_REGEX.test(value);
       }
@@ -28,7 +29,7 @@ export function validator(value: string, field: string): boolean {
       case 'phone': {
         return PHONE_REGEX.test(value);
       }
-      case 'first_name' || 'second_name': {
+      case 'name': {
         return NAME_REGEX.test(value);
       }
       default:
@@ -41,9 +42,12 @@ export function makeEmpty(target) {
 }
 
 export function validation(event, partialClass, fieldName, validator) {
+  // debugger;
   const insertedValue = event.currentTarget.value;
   let fieldNode = event.target;
   let nodeClasses = fieldNode.classList;
+  console.log('fieldNode',fieldNode);
+  console.log('nodeClasses', nodeClasses);
   while (!nodeClasses.contains(partialClass)) {
     fieldNode = fieldNode.parentElement;
     nodeClasses = fieldNode.classList;
