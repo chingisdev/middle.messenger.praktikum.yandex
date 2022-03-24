@@ -47,7 +47,7 @@ export class EntranceForm extends Block<TForm> {
     const data: Record<string, any> = {};
     merge(data, window.entranceForm);
     try {
-      debugger;
+      // debugger;
       await AuthController.signIn(data as ISignInData);
       router.go('/profile');
     } catch (err) {

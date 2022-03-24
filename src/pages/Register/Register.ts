@@ -1,8 +1,5 @@
 import { EntranceForm, IEntranceForm, TForm } from '../../components/EntranceForm/EntranceForm';
-import {
-  initFormFields, saveGlobalForm,
-  validateOnSubmit, validation, validator
-} from '../../utils/Components/Validation';
+import { initFormFields } from '../../utils/Components/Validation';
 import InputField from '../../components/InputField';
 import { submitBtnAtr } from '../../utils/constants/redirectButtons';
 import Input from '../../components/Input';

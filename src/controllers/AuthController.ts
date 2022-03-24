@@ -30,7 +30,7 @@ class AuthController {
 
   async signIn(data: ISignInData) {
     await this.api.signIn(data);
-    this.fetchUser();
+    await this.fetchUser();
   }
 
   async signOut() {
@@ -43,6 +43,7 @@ class AuthController {
 
   async fetchUser() {
     const user = await this.api.read();
+    console.log('user', user);
     store.set('currentUser', user);
   }
 }

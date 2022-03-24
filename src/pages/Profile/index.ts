@@ -4,6 +4,9 @@ import { withStore } from '../../utils/Components/Store';
 // @ts-ignore
 // super useless в моей архитектуре.
 const withUser = withStore((state) => {
+  if (!state.currentUser) {
+    return;
+  }
   const {avatar, display_name, id, ...fields } = state.currentUser;
   const newFields = {}
   Object.entries(fields).forEach(([key, value]) => {

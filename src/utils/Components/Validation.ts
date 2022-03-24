@@ -41,7 +41,6 @@ export function makeEmpty(target) {
 }
 
 export function validation(event, partialClass, fieldName, validator) {
-  debugger;
   const insertedValue = event.currentTarget.value;
   let fieldNode = event.target;
   let nodeClasses = fieldNode.classList;

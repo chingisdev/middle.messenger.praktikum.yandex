@@ -1,5 +1,6 @@
 import { router } from './utils/Components/Router';
 import AuthController from './controllers/AuthController';
+import store from './utils/Components/Store';
 
 declare global {
   interface Window {
@@ -8,14 +9,16 @@ declare global {
 }
 
 window.entranceForm = {};
-
+//todo: change redirect to chats
 document.addEventListener('DOMContentLoaded', async () => {
+  let path = '/';
   try {
     await AuthController.fetchUser();
+    path = '/profile';
   } catch (err) {
-    console.log(err.message, 'Error fetching user');
+    console.log(err, err.reason, '/ Error fetching user');
   }
-
-  // router.go('/');
+  console.log(path);
   router.start();
+  router.go(path);
 });
