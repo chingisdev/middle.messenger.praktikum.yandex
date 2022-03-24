@@ -40,17 +40,7 @@ const loginInput: Input = new Input({
   minLength: '3',
   name: 'login',
   required: 'required',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'login', validator);
-      saveGlobalForm('login', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'login', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const passwordInput: Input = new Input({
@@ -59,17 +49,7 @@ const passwordInput: Input = new Input({
   minLength: '8',
   name: 'password',
   required: 'required',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'password', validator);
-      saveGlobalForm('password', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'password', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const commonInputProps: IInputField = {
@@ -122,12 +102,6 @@ function createLoginProp(): TForm {
       }
     }),
     redirect: new Button(loginRedirectBtn),
-    // events: {
-    //   submit: (event) => {
-    //     event.preventDefault();
-    //     validateOnSubmit('chat', validator);
-    //   },
-    // },
   };
 }
 

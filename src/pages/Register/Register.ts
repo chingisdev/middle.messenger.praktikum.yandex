@@ -17,7 +17,6 @@ import AuthController, { ControllerSignUpData } from '../../controllers/AuthCont
 
 /*
 * todo:
-*  1. Вынести регистрацию событий инпутов в сам класс инпутов
 *  2. Убрать кнопку логаута из формы
 *  3. Спроектировать стор
 *  4. Осуществить Редирект при успешной регистрации/логине
@@ -37,17 +36,7 @@ const emailInput: Input = new Input({
   type: 'email',
   minLength: '5',
   name: 'email',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'email', validator);
-      saveGlobalForm('email', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'email', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const loginInput: Input = new Input({
@@ -55,17 +44,7 @@ const loginInput: Input = new Input({
   type: 'text',
   minLength: '3',
   name: 'login',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'login', validator);
-      saveGlobalForm('login', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'login', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const passwordInput: Input = new Input({
@@ -73,17 +52,7 @@ const passwordInput: Input = new Input({
   type: 'password',
   minLength: '8',
   name: 'password',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'password', validator);
-      saveGlobalForm('password', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'password', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const confirmPassInput: Input = new Input({
@@ -91,17 +60,7 @@ const confirmPassInput: Input = new Input({
   type: 'password',
   minLength: '8',
   name: 'confirm',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'confirm', validator);
-      saveGlobalForm('confirm', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'confirm', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const firstNameInput: Input = new Input({
@@ -109,17 +68,7 @@ const firstNameInput: Input = new Input({
   type: 'text',
   minLength: '2',
   name: 'first_name',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-      saveGlobalForm('first_name', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const secondNameInput: Input = new Input({
@@ -127,17 +76,7 @@ const secondNameInput: Input = new Input({
   type: 'text',
   minLength: '2',
   name: 'second_name',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-      saveGlobalForm('second_name', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'name', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 const phoneInput: Input = new Input({
@@ -145,17 +84,7 @@ const phoneInput: Input = new Input({
   type: 'text',
   minLength: '10',
   name: 'phone',
-  events: {
-    blur: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'phone', validator);
-      saveGlobalForm('phone', event.currentTarget.value);
-    },
-    focus: (event) => {
-      event.preventDefault();
-      validation(event, partialClass, 'phone', validator);
-    },
-  },
+  rootClass: partialClass,
 });
 
 export const registerRedirectBtn: IButton = {

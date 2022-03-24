@@ -28,7 +28,7 @@ export function validator(value: string, field: string): boolean {
       case 'phone': {
         return PHONE_REGEX.test(value);
       }
-      case 'name': {
+      case 'first_name' || 'second_name': {
         return NAME_REGEX.test(value);
       }
       default:
@@ -40,7 +40,8 @@ export function makeEmpty(target) {
   target.value = '';
 }
 
-export function validation(event, partialClass, field, validator) {
+export function validation(event, partialClass, fieldName, validator) {
+  debugger;
   const insertedValue = event.currentTarget.value;
   let fieldNode = event.target;
   let nodeClasses = fieldNode.classList;
@@ -48,15 +49,15 @@ export function validation(event, partialClass, field, validator) {
     fieldNode = fieldNode.parentElement;
     nodeClasses = fieldNode.classList;
   }
-
-  const isValid = insertedValue ? validator(insertedValue, field) : false;
+  const isValid = insertedValue ? validator(insertedValue, fieldName) : false;
   const errorClassList = fieldNode.querySelector('span').classList;
-  if (isValid) {
+  if (isValid || !(isValid || insertedValue)) {
     errorClassList.remove('visible');
   } else {
     errorClassList.add('visible');
   }
 }
+
 
 export function freeAllInput() {
   const inputs = document.querySelectorAll('input');
@@ -66,25 +67,7 @@ export function freeAllInput() {
   });
 }
 
-export function validateOnSubmit(
-  route: string,
-  validator: (value: string, key: string) => boolean,
-) {
-  const validity = Object.entries(window.entranceForm)
-    .every(([key, value]) => {
-      const field = key.split('_').pop();
-      return validator(value, field);
-    });
-  // if (!validity) {
-  //   console.error('Invalid data in form fields');
-  // } else {
-  //   window.entranceForm = {};
-  //   freeAllInput();
-  //   router.go(route);
-  // }
-}
-
-export function validateOnSubmitClone(
+export function onSubmitValidation(
   data: Record<string, any>,
   validator: (value: string, key: string) => boolean,
 ): boolean {
@@ -93,13 +76,6 @@ export function validateOnSubmitClone(
       const field = key.split('_').pop();
       return validator(value, field);
     });
-  // if (!validity) {
-  //   console.error('Invalid data in form fields');
-  // } else {
-  //   window.entranceForm = {};
-  //   freeAllInput();
-  //   router.go(route);
-  // }
 }
 
 export function saveGlobalForm(field, value) {
