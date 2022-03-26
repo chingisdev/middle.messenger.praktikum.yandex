@@ -13,7 +13,11 @@ window.entranceForm = {};
 document.addEventListener('DOMContentLoaded', async () => {
   let path = '/';
   try {
-    await AuthController.fetchUser();
+    const user = await AuthController.fetchUser();
+    console.log('user', user);
+    if (!user) {
+      throw new Error('User is not here');
+    }
     path = '/update';
   } catch (err) {
     console.log(err, err.reason, '/ Error fetching user');

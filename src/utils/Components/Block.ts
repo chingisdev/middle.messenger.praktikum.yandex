@@ -75,12 +75,35 @@ export default class Block<Props extends {}> {
     return !isEqual(oldProps, newProps);
   }
 
+  protected updateChildren(state) {
+
+  }
+
   public setProps = (nextProps: any) => {
+    // debugger;
     if (!nextProps) {
+      console.log('here');
       return;
     }
-    merge(this.props, nextProps);
-  };
+
+    // merge(this.props, nextProps);
+    let flag = false;
+    Object.entries(nextProps).forEach(([key, value]) => {
+      if (value instanceof Block) {
+        if (!isEqual(this.children[key], value)) {
+          this.children[key] = value;
+          if (!flag) {
+            flag = true;
+          }
+        }
+      } else {
+        this.props[key] = value;
+      }
+    })
+    if (flag) {
+      this.eventBus().emit(Block.EVENTS.FLOW_CDU);
+    }
+  }
 
   get element(): HTMLElement | null {
     return this._element;
@@ -200,6 +223,8 @@ export default class Block<Props extends {}> {
             stub[key].push(`<div data-id="id-${elem.id}"></div>`);
           }
         });
+      } else {
+        stub[key] = child;
       }
     });
     return stub;
@@ -218,15 +243,8 @@ export default class Block<Props extends {}> {
   compile(template: (context: any) => string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     const stub = this.makeStub(context);
-    // console.log('second stub');
-    // console.log(stub);
     fragment.innerHTML = template(stub);
-    // console.log('before');
-    // console.log(fragment.innerHTML);
     this.substituteStub(fragment);
-    // console.log('after');
-    // console.log(fragment.content);
-    // console.log('_____________________');
     return fragment.content;
   }
 }

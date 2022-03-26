@@ -35,6 +35,7 @@ class Store extends EventBus {
     set(this.state, path, value);
 
     // метод EventBus
+    // debugger;
     this.emit(StoreEvents.Updated);
   };
 }
@@ -44,25 +45,33 @@ const store = new Store();
 export const withStore = (
   mapStateToProps: (state: StoreData) => Record<string, unknown>
 ) => (Component: typeof Block) => {
+  let state;
 
   return class extends Component<any> {
     constructor(props) {
-      const state = mapStateToProps(store.getState());
-      super({ ...props, ...state });
-      store.on(StoreEvents.Updated, this.onUpdateStore.bind(this, state));
-    }
-
-    private onUpdateStore(state) {
       // debugger;
-      // const newState = mapStateToProps(store.getState());
-      // if (!isEqual(oldState, newState)) {
-      //   this.setProps({
-      //     ...newState
-      //   });
-      // }
-      this.setProps(state);
+      state = mapStateToProps(store.getState());
+
+      super({ ...props, ...state });
+
+      // можно расширить регистер событий
+      store.on(StoreEvents.Updated, () => {
+        const newState = mapStateToProps(store.getState());
+
+        // if (!isEqual(state, newState)) {
+        //   this.setProps({
+        //     ...newState
+        //   });
+        //   this.updateChildren(newState);
+        // }
+        this.setProps({
+          ...newState
+        });
+        this.updateChildren(newState);
+        state = newState;
+      });
     }
-  };
+  }
 };
 
 export default store;

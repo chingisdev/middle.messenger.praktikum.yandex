@@ -11,6 +11,7 @@ import { merge } from '../../utils/utilFunctions/merge';
 import { IUpdateProfile } from '../../api/UsersAPI';
 import store from '../../utils/Components/Store';
 import List from '../../components/List';
+import isEqual from '../../utils/utilFunctions/isEqual';
 
 
 /*
@@ -37,8 +38,6 @@ function createUpdateForm(data): IProfileForm {
           }
         })
 
-        // merge(data, window.entranceForm);
-        console.log(data);
         try {
           await UsersController.updateProfile(data as IUpdateProfile);
         } catch (err) {
@@ -62,6 +61,16 @@ export class UpdateProfile extends Block<{}> {
     ]);
   }
 
+  protected updateChildren(state) {
+    const {avatar, id, status, ...fields} = state;
+    const formProps = createUpdateForm({
+      fields,
+      isDisable: false,
+      partialClass
+    })
+    this.children.form.setProps(formProps);
+  }
+
   protected initChildren(props) {
     const { avatar, id, ...fields} = props;
     console.log('fields', fields);
@@ -71,6 +80,6 @@ export class UpdateProfile extends Block<{}> {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, { });
+    return this.compile(template, { ...this.props });
   }
 }

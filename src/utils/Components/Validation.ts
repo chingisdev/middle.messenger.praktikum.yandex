@@ -52,8 +52,7 @@ export function validation(event, partialClass, fieldName, validator) {
   }
   const isValid = insertedValue ? validator(insertedValue, fieldName) : false;
   const errorClassList = fieldNode.querySelector('span').classList;
-  // if (isValid || !(isValid || insertedValue)) {
-  if (isValid) {
+  if (isValid || !(isValid || insertedValue)) {
     errorClassList.remove('visible');
   } else {
     errorClassList.add('visible');

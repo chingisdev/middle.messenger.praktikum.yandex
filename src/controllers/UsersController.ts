@@ -1,6 +1,7 @@
 import UsersAPI, { IUpdateProfile } from '../api/UsersAPI';
 import store, { IUser } from '../utils/Components/Store';
 import { router } from '../utils/Components/Router';
+import { freeAllInput } from '../utils/Components/Validation';
 
 export interface IBadRequest {
   reason: string
@@ -23,8 +24,9 @@ class UsersController {
     if ('reason' in user && user.reason) {
       throw new Error(user.reason);
     }
-    debugger;
+    // debugger;
     store.set('currentUser', user);
+    freeAllInput();
     router.go('/profile');
   }
 }

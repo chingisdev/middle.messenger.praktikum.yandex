@@ -114,6 +114,16 @@ export class Profile extends Block<{}> {
     return true;
   }
 
+  protected updateChildren(state) {
+    const {avatar, display_name: name, id, status, ...fields} = state;
+    this.children.name = new ProfileName({ name });
+    this.children.fields = new List(createProfileFields({
+      fields,
+      isDisable: true,
+      partialClass
+    }));
+  }
+
   protected initChildren(props) {
     const {
       avatar,
@@ -133,6 +143,6 @@ export class Profile extends Block<{}> {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(template, {...this.props});
   }
 }
