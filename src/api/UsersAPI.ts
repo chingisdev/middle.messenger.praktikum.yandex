@@ -5,6 +5,11 @@ export interface IUpdateProfile extends IProfile {
   display_name: string;
 }
 
+export interface IUpdatePass {
+  oldPassword: string,
+  newPassword: string,
+}
+
 export default class UsersAPI extends BaseAPI {
   constructor(endpoint: string) {
     super(endpoint);
@@ -12,6 +17,10 @@ export default class UsersAPI extends BaseAPI {
 
   public updateProfile(data: IUpdateProfile): Promise<unknown> {
     return this.http.put('/profile', data);
+  }
+
+  public updatePassword(data: IUpdatePass): Promise<unknown> {
+    return this.http.put('/password', data);
   }
 
   public create?(data: unknown): Promise<unknown> {

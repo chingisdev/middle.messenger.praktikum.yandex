@@ -63,6 +63,19 @@ function createProfileControlBtn() {
   });
 }
 
+function defineType(name) {
+  const words = name.split(' ');
+  let type = '';
+  if (words.includes('password')) {
+    type = 'password';
+  } else if (name === 'email') {
+    type = 'email';
+  } else {
+    type = 'text';
+  }
+  return type;
+}
+
 export function makeInputFields({fields, isDisable, partialClass}) {
   const inputs = formatInputs(fields);
   return Object.entries(inputs)
@@ -74,6 +87,7 @@ export function makeInputFields({fields, isDisable, partialClass}) {
         title: key,
         input: new Input({
           name,
+          type: defineType(name),
           class: 'profile__input',
           placeholder: value as string,
           disabled: isDisable ? 'disabled': '',
@@ -88,11 +102,6 @@ export function createProfileFields(inputData) {
   const listClass = 'profile__list_wrapper';
   const list = makeInputFields(inputData);
   return {blockClass, listClass, list};
-  // return new List({
-  //   blockClass,
-  //   listClass,
-  //   list
-  // });
 }
 
 export class Profile extends Block<{}> {

@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!user) {
       throw new Error('User is not here');
     }
-    path = '/update';
+    path = '/change-password';
   } catch (err) {
     console.log(err, err.reason, '/ Error fetching user');
   }

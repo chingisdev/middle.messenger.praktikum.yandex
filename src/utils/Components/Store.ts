@@ -21,6 +21,7 @@ export interface IUser {
 
 interface StoreData {
   currentUser?: IUser;
+  currentPassword?: string;
 }
 
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
@@ -58,12 +59,6 @@ export const withStore = (
       store.on(StoreEvents.Updated, () => {
         const newState = mapStateToProps(store.getState());
 
-        // if (!isEqual(state, newState)) {
-        //   this.setProps({
-        //     ...newState
-        //   });
-        //   this.updateChildren(newState);
-        // }
         this.setProps({
           ...newState
         });

@@ -28,6 +28,8 @@ class AuthController {
     }
 
     await this.fetchUser();
+    store.set('currentPassword', data.password);
+    debugger;
     //todo: redirect to chats
     router.go('/profile');
   }

@@ -187,14 +187,6 @@ function createRegisterProp(): TForm {
       }
     }),
     redirect: new Button(registerRedirectBtn),
-    // events: {
-    //   submit: (event) => {
-    //     event.preventDefault();
-    //
-    //     // validateOnSubmit('chat', validator);
-    //     // console.log('children', this);
-    //   },
-    // },
   };
 }
 
@@ -207,7 +199,6 @@ export class Register extends Block<{}> {
 
   protected initChildren() {
     const prop = createRegisterProp();
-    console.log('before constructor', prop);
     this.children.form = new EntranceForm(prop, 'signup');
   }
 
