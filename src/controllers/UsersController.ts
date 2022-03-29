@@ -33,8 +33,6 @@ class UsersController {
   }
 
   async updatePassword(data: IPassword) {
-    //check that passwords match.
-    // debugger;
     const currentPass = store.getState().currentPassword;
     if (currentPass && data.oldPassword !== currentPass) {
       throw new Error('Passwords don\'t match');
@@ -50,7 +48,6 @@ class UsersController {
     store.set('currentPassword', data.newPassword);
     freeAllInput();
     router.go('/profile');
-    //set password.
   }
 }
 

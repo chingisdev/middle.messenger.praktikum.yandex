@@ -7,6 +7,8 @@ import Login from '../../pages/Login';
 import Profile from '../../pages/Profile';
 import UpdateProfile from '../../pages/UpdateProfile';
 import ChangePassword from '../../pages/ChangePass';
+import Chat from '../../pages/Chat/Chat';
+import ChatControlPopup from '../../components/ChatControlPopup';
 
 
 class Route {
@@ -124,6 +126,8 @@ router
   .use('/profile', Profile)
   .use('/update', UpdateProfile)
   .use('/change-password', ChangePassword)
+  .use('/chats', Chat)
+  .use('/test', ChatControlPopup)
 
 export { Router, router };
 /*

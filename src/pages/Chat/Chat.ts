@@ -1,7 +1,7 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import ChatNavigation from '../../components/ChatNavigation/ChatNavigation';
-import ChatWindow from '../../components/ChatWindow/ChatWindow';
+import ChatNavigation from '../../components/ChatNavigation';
+import ChatWindow from '../../components/ChatWindow';
 
 export default class Chat extends Block<{}> {
   protected initChildren() {

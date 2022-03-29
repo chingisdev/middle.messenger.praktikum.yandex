@@ -11,7 +11,7 @@ export enum LifecycleEvents {
     INIT = 'init',
     FLOW_CDM = 'flow:component-did-mount',
     FLOW_CDU = 'flow:component-did-update',
-    FLOW_RENDER = 'flow:render'
+    FLOW_RENDER = 'flow:render',
 }
 
 export const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

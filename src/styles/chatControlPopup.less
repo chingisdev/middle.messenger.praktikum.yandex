@@ -1,0 +1,43 @@
+.chat-control {
+  //display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 150px;
+  height: 70px;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  &__command {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: @white;
+    border: transparent;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    align-items: center;
+    gap: 10px;
+  }
+  &__create {
+    color: @blue;
+    cursor: pointer;
+  }
+  &__delete {
+    color: @red;
+    cursor: pointer;
+  }
+  &__img {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    &_create {
+      background: transparent url("/static/images/add.svg") 100% no-repeat;
+    }
+    &_delete {
+      background: transparent url("/static/images/delete.svg") 100% no-repeat;
+    }
+  }
+}

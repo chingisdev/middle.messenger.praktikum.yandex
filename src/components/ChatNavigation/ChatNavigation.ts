@@ -4,9 +4,9 @@ import Button from '../Button';
 import { IButton } from '../Button/Button';
 import { ISearch, Search } from '../ChatSearch/Search';
 import ChatPreview from '../ChatPreview';
-import { pseudoRouter } from '../../utils/Components/PseudoRouter';
 import { IList } from '../List/List';
 import { router } from '../../utils/Components/Router';
+import EventBus from '../../utils/Components/eventBus';
 
 
 export const searchAtr: ISearch = {
@@ -58,12 +58,25 @@ function createChatPreviews(): IList {
 }
 
 export class ChatNavigation extends Block<{}> {
+  constructor(props) {
+    super(props);
+
+    this.eventBus().on(Block.EVENTS.CONTEXT_MENU, this.showAction.bind(this));
+  }
+
+  showAction() {
+    this.children.popup.show()
+  }
+
   protected initChildren() {
     this.children.button = new Button(profileBtnAtr);
     this.children.search = new Search(searchAtr);
+    this.children.popup = new ChatControlPopup();
     // const chatsProp = createChatPreviews();
     // this.children.chats = new List(chatsProp);
   }
+
+
 
   protected render(): DocumentFragment {
     return this.compile(template, {});

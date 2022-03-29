@@ -5,11 +5,11 @@ import { merge } from '../utilFunctions/merge';
 import isEqual from '../utilFunctions/isEqual';
 
 export default class Block<Props extends {}> {
-  private static EVENTS = LifecycleEvents;
+  protected static EVENTS = LifecycleEvents;
 
   private _element: HTMLElement | null = null;
 
-  private eventBus: () => EventBus = null;
+  protected eventBus: () => EventBus = null;
 
   protected props: ProxyConstructor | any; // по сути всегда делаем прокси
 
@@ -29,7 +29,7 @@ export default class Block<Props extends {}> {
     this.eventBus().emit(Block.EVENTS.INIT);
   }
 
-  private _registerEvents(eventBus: EventBus) {
+  protected _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
