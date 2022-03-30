@@ -1,7 +1,7 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
 
-interface IControlButton {
+export interface IControlButton {
   action: string,
   text: string,
   events?: Record<string, any>,

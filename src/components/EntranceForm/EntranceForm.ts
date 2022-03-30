@@ -8,10 +8,10 @@ import { ISignInData } from '../../api/AuthAPI';
 import { router } from '../../utils/Components/Router';
 
 export interface IEntranceForm {
-  fields: List,
-  submit: Button,
-  redirect?: Button,
-  events?: Record<string, (event) => void>,
+  fields: List;
+  submit: Button;
+  redirect?: Button;
+  events?: Record<string, (event) => void>;
 }
 
 export type TForm = Record<string, Block<any>>;

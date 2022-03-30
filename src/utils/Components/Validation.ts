@@ -32,6 +32,9 @@ export function validator(value: string, field: string): boolean {
       case 'name': {
         return NAME_REGEX.test(value);
       }
+      case 'chat': {
+        return true;
+      }
       default:
         return false;
     }

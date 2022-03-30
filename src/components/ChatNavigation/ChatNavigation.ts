@@ -7,7 +7,8 @@ import ChatPreview from '../ChatPreview';
 import { IList } from '../List/List';
 import { router } from '../../utils/Components/Router';
 import EventBus from '../../utils/Components/eventBus';
-
+import ChatControlPopup from '../ChatControlPopup';
+import { popupCreateChat } from '../../index';
 
 export const searchAtr: ISearch = {
   searchClass: 'search-input',
@@ -32,6 +33,21 @@ export const profileBtnAtr: IButton = {
     click: () => router.go('/profile'),
   },
 };
+
+export const createChatBtn: IButton = {
+  buttonClass: 'navigation__profile-link',
+  type: 'button',
+  textClass: 'navigation__profile',
+  textVisible: 'visible',
+  name: 'Create chat',
+  divVisible: 'hidden',
+  events: {
+    click: () => {
+      console.log('clicked create chat');
+      popupCreateChat.show();
+    },
+  }
+}
 
 function createChatPreviews(): IList {
   const prop = [];
@@ -58,25 +74,19 @@ function createChatPreviews(): IList {
 }
 
 export class ChatNavigation extends Block<{}> {
-  constructor(props) {
-    super(props);
-
-    this.eventBus().on(Block.EVENTS.CONTEXT_MENU, this.showAction.bind(this));
-  }
-
-  showAction() {
-    this.children.popup.show()
+  constructor() {
+    super();
   }
 
   protected initChildren() {
+    this.children.controls = new Button(createChatBtn);
     this.children.button = new Button(profileBtnAtr);
     this.children.search = new Search(searchAtr);
-    this.children.popup = new ChatControlPopup();
+    // this.children.popup = new ChatControlPopup();
+    // this.children.popup.hide();
     // const chatsProp = createChatPreviews();
     // this.children.chats = new List(chatsProp);
   }
-
-
 
   protected render(): DocumentFragment {
     return this.compile(template, {});

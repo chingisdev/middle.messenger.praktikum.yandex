@@ -127,7 +127,7 @@ router
   .use('/update', UpdateProfile)
   .use('/change-password', ChangePassword)
   .use('/chats', Chat)
-  .use('/test', ChatControlPopup)
+  // .use('/test', ChatControlPopup)
 
 export { Router, router };
 /*

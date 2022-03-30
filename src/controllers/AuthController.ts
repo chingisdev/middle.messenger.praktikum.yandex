@@ -31,14 +31,14 @@ class AuthController {
     store.set('currentPassword', data.password);
     debugger;
     //todo: redirect to chats
-    router.go('/profile');
+    router.go('/chats');
   }
 
   async signIn(data: ISignInData) {
     await this.api.signIn(data);
     await this.fetchUser();
     //todo: redirect to chats
-    router.go('/profile');
+    router.go('/chats');
   }
 
   async signOut() {
