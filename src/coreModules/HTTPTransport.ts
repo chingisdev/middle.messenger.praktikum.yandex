@@ -1,5 +1,5 @@
-import { HttpMethods } from '../constants/environment';
-import queryStringify from '../utilFunctions/queryStringify';
+import { HttpMethods } from '../utils/constants/environment';
+import queryStringify from '../utils/queryStringify';
 
 type TOptions = {
     method: HttpMethods,

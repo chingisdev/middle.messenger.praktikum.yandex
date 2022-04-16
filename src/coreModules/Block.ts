@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid';
 import EventBus from './eventBus';
-import { LifecycleEvents } from '../constants/environment';
-import { merge } from '../utilFunctions/merge';
-import isEqual from '../utilFunctions/isEqual';
+import { LifecycleEvents } from '../utils/constants/environment';
+import { merge } from '../utils/merge';
+import isEqual from '../utils/isEqual';
 
 export default class Block<Props extends {}> {
   protected static EVENTS = LifecycleEvents;

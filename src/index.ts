@@ -7,6 +7,7 @@ import { ROOT_PATH } from './utils/constants/environment';
 import InputField from './components/InputField';
 import Button from './components/Button';
 import Input from './components/Input';
+import ChatController from './controllers/ChatController';
 
 declare global {
   interface Window {
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     const user = await AuthController.fetchUser();
     console.log('user', user);
+    await ChatController.fetchChats();
     if (!user) {
       throw new Error('User is not here');
     }

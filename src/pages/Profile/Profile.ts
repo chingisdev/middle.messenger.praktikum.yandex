@@ -7,8 +7,8 @@ import ProfileName from '../../components/ProfileName';
 import template from './template.hbs';
 import { router } from '../../utils/Components/Router';
 import { backBtnAtr } from '../ChangePass/ChangePassword';
-import { formatInputs } from '../../utils/utilFunctions/formatInputs';
-import isEqual from '../../utils/utilFunctions/isEqual';
+import { formatInputs } from '../../utils/formatInputs';
+import isEqual from '../../utils/isEqual';
 
 export const partialClass = 'profile__part';
 

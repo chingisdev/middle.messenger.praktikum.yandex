@@ -7,11 +7,11 @@ import template from './template.hbs';
 import { backBtnAtr } from '../ChangePass/ChangePassword';
 import { createProfileFields, partialClass } from '../Profile/Profile';
 import UsersController from '../../controllers/UsersController';
-import { merge } from '../../utils/utilFunctions/merge';
+import { merge } from '../../utils/merge';
 import { IUpdateProfile } from '../../api/UsersAPI';
 import store from '../../utils/Components/Store';
 import List from '../../components/List';
-import isEqual from '../../utils/utilFunctions/isEqual';
+import isEqual from '../../utils/isEqual';
 
 
 /*

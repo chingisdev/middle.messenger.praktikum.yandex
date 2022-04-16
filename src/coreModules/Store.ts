@@ -1,8 +1,8 @@
 import EventBus from './eventBus';
-import { Indexed } from '../utilFunctions/merge';
-import { set } from '../utilFunctions/set';
+import { Indexed } from '../utils/merge';
+import { set } from '../utils/set';
 import Block from './Block';
-import isEqual from '../utilFunctions/isEqual';
+import isEqual from '../utils/isEqual';
 
 export enum StoreEvents {
   Updated = 'updated',

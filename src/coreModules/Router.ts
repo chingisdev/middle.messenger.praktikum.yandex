@@ -1,14 +1,14 @@
 import Block from './Block';
 import { renderDOM } from './renderDOM';
-import isEqual from '../utilFunctions/isEqual';
-import { ROOT_PATH } from '../constants/environment';
-import Register from '../../pages/Register';
-import Login from '../../pages/Login';
-import Profile from '../../pages/Profile';
-import UpdateProfile from '../../pages/UpdateProfile';
-import ChangePassword from '../../pages/ChangePass';
-import Chat from '../../pages/Chat/Chat';
-import ChatControlPopup from '../../components/ChatControlPopup';
+import isEqual from '../utils/isEqual';
+import { ROOT_PATH } from '../utils/constants/environment';
+import Register from '../pages/Register';
+import Login from '../pages/Login';
+import Profile from '../pages/Profile';
+import UpdateProfile from '../pages/UpdateProfile';
+import ChangePassword from '../pages/ChangePass';
+import Chat from '../pages/Chat/Chat';
+import ChatControlPopup from '../components/ChatControlPopup';
 
 
 class Route {

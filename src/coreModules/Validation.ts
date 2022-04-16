@@ -4,7 +4,7 @@ import {
   NAME_REGEX,
   PASSWORD_REGEX,
   PHONE_REGEX,
-} from '../constants/environment';
+} from '../utils/constants/environment';
 import { router } from './Router';
 // import { pseudoRouter } from './PseudoRouter';
 
