@@ -2,7 +2,7 @@ import Button from '../Button';
 import Block from '../../utils/Components/Block';
 import List from '../List';
 import template from './template.hbs';
-import { merge } from '../../utils/utilFunctions/merge';
+import { merge } from '../../utils/merge';
 import AuthController, { ControllerSignUpData } from '../../controllers/AuthController';
 import { ISignInData } from '../../api/AuthAPI';
 import { router } from '../../utils/Components/Router';

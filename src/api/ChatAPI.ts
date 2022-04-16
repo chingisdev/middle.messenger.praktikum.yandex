@@ -14,9 +14,10 @@ export class ChatAPI extends BaseAPI {
       return this.http.post('', data);
     }
 
-    public read?(identifier: string): Promise<unknown> {
-        throw new Error('Method not implemented.');
+    public read(): Promise<unknown> {
+        return this.http.get('');
     }
+
     public update?(identifier: string, data: unknown): Promise<unknown> {
         throw new Error('Method not implemented.');
     }

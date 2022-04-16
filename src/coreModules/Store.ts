@@ -8,20 +8,39 @@ export enum StoreEvents {
   Updated = 'updated',
 }
 
-export interface IUser {
+export interface IUser extends ICommonUser{
   id: number,
+  display_name: string;
+}
+
+export interface ICommonUser {
   first_name: string;
   second_name: string;
-  display_name: string;
   login: string;
   email: string;
   phone: string;
   avatar: string;
 }
 
+export interface ILastMessage {
+  user: ICommonUser;
+  time: string;
+  content: string;
+}
+
+export interface IChat {
+  id: number;
+  title: string;
+  avatar: string;
+  created_by: number;
+  unread_count: number;
+  last_message: ILastMessage | null;
+}
+
 interface StoreData {
   currentUser?: IUser;
   currentPassword?: string;
+  currentChats?: IChat[];
 }
 
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store

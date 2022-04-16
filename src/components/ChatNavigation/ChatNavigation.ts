@@ -4,11 +4,12 @@ import Button from '../Button';
 import { IButton } from '../Button/Button';
 import { ISearch, Search } from '../ChatSearch/Search';
 import ChatPreview from '../ChatPreview';
-import { IList } from '../List/List';
+import { IList, List } from '../List/List';
 import { router } from '../../utils/Components/Router';
 import EventBus from '../../utils/Components/eventBus';
 import ChatControlPopup from '../ChatControlPopup';
 import { popupCreateChat } from '../../index';
+import store from '../../utils/Components/Store';
 
 export const searchAtr: ISearch = {
   searchClass: 'search-input',
@@ -50,21 +51,24 @@ export const createChatBtn: IButton = {
 }
 
 function createChatPreviews(): IList {
-  const prop = [];
-  for (let i = 0; i < 20; i += 1) {
-    prop.push(new ChatPreview({
-      name: 'Batman',
-      lastMessage: 'I wear a mask. '
-        + 'And that mask, it’s not to hide who I am, but to create what I am.',
-      lastMessageTime: '23:59',
-      unreadQuantity: `${i}`,
-      events: {
-        click: (event) => {
-          event.preventDefault();
-          console.log('click on chat');
-        },
-      },
-    }));
+  let prop = [];
+  const state = store.getState();
+  if (state.currentChats) {
+    //отрефакторить в функцию мапер
+    prop = Array.from(state.currentChats).map((chat) => {
+      return new ChatPreview({
+        name: chat?.title,
+        lastMessage: chat?.last_message?.content,
+        lastMessageTime: chat?.last_message?.time, // конвертатор сюда нужен
+        unreadQuantity: chat?.unread_count,
+        events: {
+          click: (event) => {
+            event.preventDefault();
+            console.log('click on chat');
+          },
+        }
+      })
+    });
   }
   return {
     blockClass: 'chat__list',
@@ -82,10 +86,8 @@ export class ChatNavigation extends Block<{}> {
     this.children.controls = new Button(createChatBtn);
     this.children.button = new Button(profileBtnAtr);
     this.children.search = new Search(searchAtr);
-    // this.children.popup = new ChatControlPopup();
-    // this.children.popup.hide();
-    // const chatsProp = createChatPreviews();
-    // this.children.chats = new List(chatsProp);
+    const chatsProp = createChatPreviews();
+    this.children.chats = new List(chatsProp);
   }
 
   protected render(): DocumentFragment {

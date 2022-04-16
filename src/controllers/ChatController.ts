@@ -1,4 +1,5 @@
 import { ChatAPI, IChatName } from '../api/ChatAPI';
+import store from '../utils/Components/Store';
 
 class ChatController {
   private api: ChatAPI;
@@ -8,7 +9,18 @@ class ChatController {
   }
 
   async createChat(data: IChatName) {
-    const response = await this.api.create(data);
+    await this.api.create(data);
+    await this.fetchChats();
+  }
+
+  async fetchChats() {
+    try {
+      const chats  = await this.api.read();
+      store.set('currentChats', chats);
+      console.log('chats', chats);
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 

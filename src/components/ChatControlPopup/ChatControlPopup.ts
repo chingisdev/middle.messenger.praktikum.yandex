@@ -1,7 +1,10 @@
 import Block from '../../utils/Components/Block';
 import template from './template.hbs';
-import { IInputField, InputField } from '../InputField/InputField';
+import { InputField } from '../InputField/InputField';
 import Button from '../Button';
+import ChatController from '../../controllers/ChatController';
+import store, { IChat } from '../../utils/Components/Store';
+import { freeAllInput } from '../../utils/Components/Validation';
 
 export interface IPopup {
   title: string;
@@ -30,7 +33,7 @@ export class ChatControlPopup extends Block<any> {
       events: {
         submit: (event) => {
           submitPopup(event);
-          debugger;
+          // debugger;
           this.hide();
         }
       }
@@ -55,11 +58,20 @@ export class ChatControlPopup extends Block<any> {
         return;
     }
   }
-
+  /*
+  TODO: после каждого вызова метода,
+   обновлять стейт чатов через метод получения чатов.
+   Должен происходить ререндер, так как чаты изменились.
+  */
   async onCreateChat(event) {
     event.preventDefault();
     const title = event.currentTarget.querySelector('input').value;
-    //обращение к контроллеру
+    try {
+      await ChatController.createChat({ title });
+      freeAllInput();
+    } catch (err) {
+      console.log(err.message);
+    }
     console.log('title', title);
   }
 
